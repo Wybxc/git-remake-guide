@@ -1,4 +1,4 @@
-<center>
+<div align="center">
 
 <img src="./theme/favicon.svg" alt="Logo" width="200px" />
 
@@ -6,7 +6,7 @@
 
 > 不要因为学不会 Git 而选择 remake。在那之前，先来 remake 一下你的 Git 知识。
 
-</center>
+</div>
 
 这里是 Git 重学指南，顾名思义，帮助你重新学习 Git。
 
