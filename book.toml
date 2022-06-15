@@ -1,0 +1,12 @@
+[book]
+authors = ["忘忧北萱草"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Git 重学指南"
+
+[output.html]
+additional-css = ["assets/sidetoc.css", "assets/custom.css"]
+additional-js = ["assets/sidetoc.js"]
+git-repository-url = "https://github.com/Wybxc/git-remake-guide"
+edit-url-template = "https://github.com/Wybxc/git-remake-guide/edit/main/{path}"

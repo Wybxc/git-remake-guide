@@ -1,0 +1,5 @@
+/* 修改滚动条宽度 */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
