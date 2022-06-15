@@ -1,12 +1,3 @@
-@media only screen and (max-width: 1080px) {
-  main {
-    padding-right: 0;
-  }
-  .sidetoc {
-    display: none;
-  }
-}
-
 main {
   position: relative;
   padding-right: 170px;
@@ -43,4 +34,13 @@ main {
 .pagetoc .active {
   background: var(--sidebar-bg);
   color: var(--sidebar-fg);
+}
+
+@media only screen and (max-width: 1080px) {
+  main {
+    padding-right: 0;
+  }
+  .sidetoc {
+    display: none;
+  }
 }
