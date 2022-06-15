@@ -1,6 +1,6 @@
 <center>
 
-<img src="./book/favicon.svg" alt="Logo" width="200px" />
+<img src="./theme/favicon.svg" alt="Logo" width="200px" />
 
 # Git 重学指南
 
