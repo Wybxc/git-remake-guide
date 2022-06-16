@@ -1,0 +1,248 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>约定式提交 - Git 重学指南</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../assets/sidetoc.css">
+        <link rel="stylesheet" href="../assets/custom.css">
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../Git-重学指南.html">Git 重学指南</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../安装/安装.html"><strong aria-hidden="true">1.</strong> 安装</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../安装/下载.html"><strong aria-hidden="true">1.1.</strong> 下载</a></li><li class="chapter-item expanded "><a href="../安装/配置.html"><strong aria-hidden="true">1.2.</strong> 配置</a></li></ol></li><li class="chapter-item expanded "><a href="../储存库/储存库.html"><strong aria-hidden="true">2.</strong> 储存库</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../储存库/创建储存库.html"><strong aria-hidden="true">2.1.</strong> 创建储存库</a></li><li class="chapter-item expanded "><a href="../储存库/管理暂存区.html"><strong aria-hidden="true">2.2.</strong> 管理暂存区</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 远程和分支</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 工作流程</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 杂项</div></li><li class="spacer"></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> 附录</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> 语义化版本</div></li><li class="chapter-item expanded "><a href="../附录/约定式提交.html" class="active"><strong aria-hidden="true">6.2.</strong> 约定式提交</a></li><li class="chapter-item expanded "><a href="../附录/gitmoji-速查表.html"><strong aria-hidden="true">6.3.</strong> gitmoji 速查表</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Git 重学指南</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/Wybxc/git-remake-guide" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/Wybxc/git-remake-guide/edit/main/src/附录/约定式提交.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <!-- Page table of contents -->
+                    <div class="sidetoc"><nav class="pagetoc"></nav></div>
+                    <main>
+                        <h1 id="约定式提交"><a class="header" href="#约定式提交">约定式提交</a></h1>
+<blockquote>
+<p>部分内容参考自约定式提交的<a href="https://www.conventionalcommits.org/zh-hans/v1.0.0/">官方网站</a>，在原文基础上有一定修改。</p>
+</blockquote>
+<h2 id="什么是约定式提交"><a class="header" href="#什么是约定式提交">什么是约定式提交？</a></h2>
+<p>约定式提交规范是一种基于提交信息的轻量级约定，换句话说，它规定了你应该用什么格式写提交信息。</p>
+<p>一段符合约定式提交的 git log 看起来是这样的（来自 <a href="https://github.com/unocss/unocss">unocss</a>）：</p>
+<pre><code>* 1762ef93 - (tag: v0.33.3) release v0.33.3
+* 7b3b8a97 - chore: update deps
+* eccaed9d - chore: bump pnpm
+* a1fac007 - feat(vite): support build watch mode (#963)
+* fa1e8202 - fix(vite): emit better warning in build (#961)
+* 89003436 - feat(preset-mini): add break-spaces to white-space (#962)
+* b0fd9a83 - feat(vscode): support loading from iles.config file (#956)
+* bcaa6eed - docs: update
+* 6e6f07e5 - docs: update features
+* 31a24fd1 - (tag: v0.33.2) release v0.33.2
+* d2d0c497 - chore: lint
+* d051b5c0 - feat(compile-class): new transformer (#950)
+* 10c0ae28 - docs: fix query loading
+* 59403676 - (tag: v0.33.1) release v0.33.1
+</code></pre>
+<h2 id="为什么要使用约定式提交"><a class="header" href="#为什么要使用约定式提交">为什么要使用约定式提交？</a></h2>
+<ul>
+<li>自动化生成 CHANGELOG。</li>
+<li>基于提交的类型，自动决定语义化的版本变更。</li>
+<li>向同事、公众与其他利益关系者传达变化的性质。</li>
+<li>触发构建和部署流程。</li>
+<li>让人们探索一个更加结构化的提交历史，以便降低对你的项目做出贡献的难度。</li>
+</ul>
+<h2 id="约定式提交的格式是怎样的"><a class="header" href="#约定式提交的格式是怎样的">约定式提交的格式是怎样的？</a></h2>
+<h3 id="一般格式"><a class="header" href="#一般格式">一般格式</a></h3>
+<p>对于单行提交，约定式提交的格式是这样的：</p>
+<pre><code>type(scope): description
+</code></pre>
+<p>对于多行提交，约定式提交的格式是这样的：</p>
+<pre><code>type(scope): description
+
+body
+
+footers
+</code></pre>
+<p>其中，<code>type</code> 是提交做出更改的类型，它可以为：</p>
+<ul>
+<li><strong>fix</strong>：表示在代码库中修复了一个 bug（这和语义化版本中的 <a href="https://semver.org/lang/zh-CN/#%E6%91%98%E8%A6%81">PATCH</a> 相对应）。</li>
+<li><strong>feat</strong>：表示在代码库中新增了一个功能（这和语义化版本中的 <a href="https://semver.org/lang/zh-CN/#%E6%91%98%E8%A6%81">MINOR</a> 相对应）。</li>
+<li>除 <code>fix:</code> 和 <code>feat:</code> 之外，也可以使用其它提交类型，例如 <a href="https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional">@commitlint/config-conventional</a>（基于 <a href="https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines">Angular 约定</a>）中推荐的 <code>build:</code>、<code>chore:</code>、<code>ci:</code>、<code>docs:</code>、<code>style:</code>、<code>refactor:</code>、<code>perf:</code>、<code>test:</code>，等等。</li>
+</ul>
+<p><code>scope</code> 是此次更改涉及到的项目子模块范围。如果不能明确，这一部分可以省略。</p>
+<p><code>description</code> 是描述此次更改的简短描述。</p>
+<h3 id="破坏性更改"><a class="header" href="#破坏性更改">破坏性更改</a></h3>
+<p>当提交的内容包含破坏性更改时，必须在描述中指出，例如：</p>
+<pre><code>feat!: send an email to the customer when a product is shipped
+</code></pre>
+<pre><code>feat: allow provided config object to extend other configs
+
+BREAKING CHANGE: `extends` key in config file is now used for extending other config files
+</code></pre>
+<p>在冒号前面加上 <code>!</code> ，或者在脚注中表明 <code>BREAKING CHANGE</code>，就表示此次更改是破坏性更改。</p>
+<h2 id="约定式提交的正式规范"><a class="header" href="#约定式提交的正式规范">约定式提交的正式规范</a></h2>
+<p>详见<a href="https://www.conventionalcommits.org/zh-hans/v1.0.0/#%E7%BA%A6%E5%AE%9A%E5%BC%8F%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83">官方网站</a>。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../储存库/管理暂存区.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../附录/gitmoji-速查表.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../储存库/管理暂存区.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../附录/gitmoji-速查表.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript" src="../assets/sidetoc.js"></script>
+    </body>
+</html>

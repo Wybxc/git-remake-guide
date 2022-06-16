@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 669 457">
+  <path fill="#e0e0e0" d="M25 25h100v52H25Z"/>
+  <text y="8" fill="#323232" font-size="20" text-anchor="middle" transform="translate(25 25)"><tspan x="50" dy="25">未跟踪</tspan></text>
+  <path fill="#0097a7" d="M198 25h100v52H198Z"/>
+  <text y="8" fill="#fff" font-size="20" text-anchor="middle" transform="translate(198 25)"><tspan x="50" dy="25">未修改</tspan></text>
+  <path fill="#f57c00" d="M371 25h100v52H371Z"/>
+  <text y="8" fill="#fff" font-size="20" text-anchor="middle" transform="translate(371 25)"><tspan x="50" dy="25">已修改</tspan></text>
+  <path fill="#d32f2f" d="M542 25h102v52H542Z"/>
+  <text y="8" fill="#fff" font-size="20" text-anchor="middle" transform="translate(542 25)"><tspan x="51" dy="25">已暂存</tspan></text>
+  <path fill="none" stroke="#9e9e9e" stroke-width="2" d="M75 77v355M248 77v355M421 77v355M593 77v355"/>
+  <path fill="#e6a5af" d="M75 142.39h476.5V115l41.5 41.5-41.5 41.5v-27.39H75v-28.22Z"/>
+  <text y="26.875" fill="#fff" font-size="17" transform="translate(75 115)"><tspan x="50" dy="21">添加文件</tspan></text>
+  <path fill="#95adf9" d="M248 210.09h135.5V186l36.5 36.5-36.5 36.5v-24.09H248v-24.82Z"/>
+  <text y="21.875" fill="#fff" font-size="17" text-anchor="middle" transform="translate(248 186)"><tspan x="76" dy="21">修改文件</tspan></text>
+  <path fill="#e6a5af" d="M420 249.43h137.5V226l35.5 35.5-35.5 35.5v-23.43H420v-24.14Z"/>
+  <text y="20.875" fill="#fff" font-size="17" text-anchor="middle" transform="translate(420 226)"><tspan x="76" dy="21">暂存文件</tspan></text>
+  <path fill="#9e9e9e" d="m75 288.5 37.5-37.5v24.75H248v25.5H112.5V326L75 288.5Z"/>
+  <text y="22.875" fill="#fff" font-size="17" text-anchor="middle" transform="translate(75 251)"><tspan x="86.5" dy="21">删除文件</tspan></text>
+  <path fill="#cdbbb0" d="m249 354 39-39v25.74h305v26.52H288V393l-39-39Z"/>
+  <text y="24.375" fill="#fff" font-size="17" text-anchor="middle" transform="translate(249 315)"><tspan x="250" dy="21">提交</tspan></text>
+</svg>

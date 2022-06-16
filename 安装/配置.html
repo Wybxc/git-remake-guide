@@ -1,0 +1,260 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>配置 - Git 重学指南</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../assets/sidetoc.css">
+        <link rel="stylesheet" href="../assets/custom.css">
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../Git-重学指南.html">Git 重学指南</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../安装/安装.html"><strong aria-hidden="true">1.</strong> 安装</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../安装/下载.html"><strong aria-hidden="true">1.1.</strong> 下载</a></li><li class="chapter-item expanded "><a href="../安装/配置.html" class="active"><strong aria-hidden="true">1.2.</strong> 配置</a></li></ol></li><li class="chapter-item expanded "><a href="../储存库/储存库.html"><strong aria-hidden="true">2.</strong> 储存库</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../储存库/创建储存库.html"><strong aria-hidden="true">2.1.</strong> 创建储存库</a></li><li class="chapter-item expanded "><a href="../储存库/管理暂存区.html"><strong aria-hidden="true">2.2.</strong> 管理暂存区</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 远程和分支</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 工作流程</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 杂项</div></li><li class="spacer"></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> 附录</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> 语义化版本</div></li><li class="chapter-item expanded "><a href="../附录/约定式提交.html"><strong aria-hidden="true">6.2.</strong> 约定式提交</a></li><li class="chapter-item expanded "><a href="../附录/gitmoji-速查表.html"><strong aria-hidden="true">6.3.</strong> gitmoji 速查表</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Git 重学指南</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/Wybxc/git-remake-guide" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/Wybxc/git-remake-guide/edit/main/src/安装/配置.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <!-- Page table of contents -->
+                    <div class="sidetoc"><nav class="pagetoc"></nav></div>
+                    <main>
+                        <h1 id="配置"><a class="header" href="#配置">配置</a></h1>
+<h2 id="名字和邮箱"><a class="header" href="#名字和邮箱">名字和邮箱</a></h2>
+<p>在命令行输入：</p>
+<pre><code class="language-bash">git config --global user.name &quot;Your Name&quot;
+git config --global user.email &quot;email@example.com&quot;
+</code></pre>
+<p>因为 Git 是分布式版本控制系统，所以，每个机器都必须自报家门：你的名字和邮箱。大多数情况下，Git 就是靠这些来确定身份的。</p>
+<p>注意 <code>git config</code> 命令的 <code>--global</code> 参数，这表示将配置设置为全局的。全局设置对本机的每个仓库都生效。</p>
+<h2 id="ssh-密钥"><a class="header" href="#ssh-密钥">SSH 密钥</a></h2>
+<p>SSH 密钥用于连接 GitHub 或者类似的托管服务。</p>
+<p>首先查看你的 SSH 密钥是否已经生成。</p>
+<pre><code class="language-bash">ls ~/.ssh
+</code></pre>
+<p>如果你没有生成过 SSH 密钥，那么这个目录应该是不存在的。你可以使用 <code>ssh-keygen</code> 命令来生成一个新的密钥。</p>
+<pre><code class="language-bash">ssh-keygen -t rsa
+</code></pre>
+<p>如果在 Windows 系统上找不到 <code>ssh-keygen</code> 命令，那么可以在 Git Bash 中运行。</p>
+<p>生成完成后，查看生成的公钥：</p>
+<pre><code class="language-bash">cat ~/.ssh/id_rsa.pub
+</code></pre>
+<p>在 GitHub 上添加这个公钥，然后检测一下是否成功：</p>
+<pre><code>$ ssh git@github.com
+PTY allocation request failed on channel 0
+Hi Wybxc! You've successfully authenticated, but GitHub does not provide shell access.
+Connection to github.com closed.
+</code></pre>
+<p>看到这样的欢迎信息，说明 SSH 密钥添加成功。</p>
+<h2 id="gpg-密钥"><a class="header" href="#gpg-密钥">GPG 密钥</a></h2>
+<p>上面提到 Git 在确定身份的时候用的是名字和邮箱，但是，这也意味着只要知道了别人的名字和邮箱，就可以冒充他的身份。理论上，这种冒充是无法甄别的，甚至 GitHub 也无法避免。</p>
+<p>所以，在名字和邮箱以外，Git 还有另一重保护措施：GPG 密钥。你可以使用自己的 GPG 私钥对提交进行签名，这样别人就能通过公钥鉴定身份。如果你的所有提交都经过签名，那么别人就知道没有签名的那些提交就是冒牌货。</p>
+<p>生成 GPG 密钥：</p>
+<pre><code class="language-shell">gpg --full-generate-key
+</code></pre>
+<p>如果在 Windows 系统上提示找不到 gpg 命令，可以在 Git Bash 中运行。</p>
+<p>基本按照默认配置即可。生成时需要填写名字和邮箱，需要和 Git 的配置一致，而且邮箱需要和 GitHub 账号认证的邮箱一致。</p>
+<p>如果生成的是 RSA 密钥，需要设置密钥长度。GitHub 要求 RSA 密钥是 4096 位。</p>
+<p>生成过程中会给密钥设置密码，这个密码是解锁私钥的关键。</p>
+<p>生成完成后，查看生成的密钥：</p>
+<pre><code>$ gpg --list-secret-keys --keyid-format LONG
+~/.gnupg/pubring.kbx
+-----------------------------------------------
+sec   ed25519/85E18D73E1B2E193 2022-06-15 [SC]
+      6BBEA37A752DBC75008ABB6B85E18D73E1B2E193
+uid                 [ultimate] 忘忧北萱草 &lt;wybxc@qq.com&gt;
+ssb   cv25519/FB6CDE598D2CD679 2022-06-15 [E]
+</code></pre>
+<p>这里的 <code>85E18D73E1B2E193</code> 就是密钥 ID。</p>
+<p>将 GPG 与 git 相关联：</p>
+<pre><code class="language-shell">git config --global user.signingkey 85E18D73E1B2E193
+git config --global commit.gpgsign true
+</code></pre>
+<p>如果配置 GPG 之后，提交时 Git 找不到 GPG，那么可以手动设置一下 GPG 的路径：</p>
+<pre><code class="language-shell">$ which gpg
+/usr/bin/gpg
+$ git config --global gpg.program /usr/bin/gpg
+</code></pre>
+<p>接下来导出 GPG 公钥，然后添加到 GitHub 中：</p>
+<pre><code>$ gpg --armor --export 85E18D73E1B2E193
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+mDMEYqn6LBYJKwYBBAHaRw8BAQdAdUKrYViGQwyP6OvG0zi4BtkztQSHmVSzJweG
+RH5YbkC0HuW/mOW/p+WMl+iQseiNiSA8d3lieGNAcXEuY29tPoiTBBMWCgA7FiEE
+a76jenUtvHUAirtrheGNc+Gy4ZMFAmKp+iwCGwMFCwkIBwICIgIGFQoJCAsCBBYC
+AwECHgcCF4AACgkQheGNc+Gy4ZMLvgD+LPHZ/61I3V2QtcQxjhE7Mmx/zzf7nMu9
+yoKsBS0DoHsBAOmGcnz8Ldxt8g5annPoS4JXhyC0vUgvBl5ks+LQ6WILuDgEYqn6
+LBIKKwYBBAGXVQEFAQEHQKwoXBZT20+8mEfaqAuSEyMi4eeiE1Adjkj0TCZuV2UE
+AwEIB4h4BBgWCgAgFiEEa76jenUtvHUAirtrheGNc+Gy4ZMFAmKp+iwCGwwACgkQ
+heGNc+Gy4ZOtkwEAuyAAI2Va4xNuXwWf+WZg7Bt5KcXfcezYGG3EDFstaJMA/i6O
+B1wiq7kByLBFmRVBGewKpDA2Z2UGnAQuSvCY5nwF
+=FzfD
+-----END PGP PUBLIC KEY BLOCK-----
+</code></pre>
+<p>之后，提交的 commit 在 GitHub 上就会显示 <code>verified</code>，表明这条 commit 是通过了 GPG 签名认证的。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../安装/下载.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../储存库/储存库.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../安装/下载.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../储存库/储存库.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript" src="../assets/sidetoc.js"></script>
+    </body>
+</html>
