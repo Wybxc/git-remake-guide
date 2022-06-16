@@ -2,6 +2,9 @@ main {
   position: relative;
   padding-right: 170px;
 }
+.nav-wrapper {
+  display: block;
+}
 .sidetoc {
   margin-left: auto;
   margin-right: auto;

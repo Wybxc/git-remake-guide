@@ -7,6 +7,6 @@ title = "Git 重学指南"
 
 [output.html]
 additional-css = ["assets/sidetoc.css", "assets/custom.css"]
-additional-js = ["assets/sidetoc.js"]
+additional-js = ["assets/sidetoc.js", "assets/giscus.js"]
 git-repository-url = "https://github.com/Wybxc/git-remake-guide"
 edit-url-template = "https://github.com/Wybxc/git-remake-guide/edit/main/{path}"
