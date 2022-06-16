@@ -17,7 +17,7 @@ window.addEventListener('load', function () {
 
     link.appendChild(document.createTextNode(el.text));
     link.style.paddingLeft = indent;
-    link.attributes['data-href'] = el.parentElement.id;
+    link.href = el.href;
 
     link.addEventListener('click', function () {
       // Un-active everything when you click it
@@ -25,13 +25,6 @@ window.addEventListener('load', function () {
         el.classList.remove('active');
       });
       el.classList.add('active');
-
-      // Smooth scroll to the element
-      window.scrollTo({
-        top: el.offsetTop,
-        behavior: 'smooth',
-      });
-      history.pushState(null, null, el.href);
     });
 
     pagetoc.appendChild(link);
@@ -44,10 +37,7 @@ window.addEventListener('load', function () {
     });
 
     Array.prototype.forEach.call(pagetoc.children, function (el) {
-      if (
-        id !== null &&
-        id.parentElement.id.localeCompare(el.attributes['data-href']) == 0
-      ) {
+      if (id !== null && id.href.localeCompare(el.href) == 0) {
         el.classList.add('active');
       } else {
         el.classList.remove('active');

@@ -44,3 +44,16 @@ main {
     display: none;
   }
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes highlight {
+  from { background-color: #f5c772; }
+  to { background-color: inherit; }
+}
+
+h1:target,h2:target,h3:target,h4:target,h5:target,h6:target {
+  animation: highlight 1s ease-in-out;
+}
