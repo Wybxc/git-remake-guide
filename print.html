@@ -263,10 +263,62 @@ ssb   cv25519/FB6CDE598D2CD679 2022-06-15 [E]
 <pre><code class="language-shell">git config --global user.signingkey 85E18D73E1B2E193
 git config --global commit.gpgsign true
 </code></pre>
+<p>此时可以随便开一个 Git 仓库，测试一下 GPG 签名是否可用：</p>
+<pre><code>$ git init test
+$ cd test
+$ echo &quot;test&quot; &gt; test.txt
+$ git add .
+$ git commit -m &quot;test&quot;
+$ git cat-file commit HEAD
+tree 02bdfa7bef60afbeb20ae09bb3145e2a4b1cb977
+author 忘忧北萱草 &lt;wybxc@qq.com&gt; 1655478113 +0800
+committer 忘忧北萱草 &lt;wybxc@qq.com&gt; 1655478113 +0800
+gpgsig -----BEGIN PGP SIGNATURE-----
+
+ iQIzBAABCgAdFiEEpRDvWeHZl2iUnVm+/Xek1OdFr8MFAmKsl2EACgkQ/Xek1OdF
+ r8PWLQ/+JO2J99tFrMqK4eFPbhhDVbQJBxmYcJHS/iSVqxm6c8S97itQ//7QnLIe
+ rpk1/jspbLm4E5f4EzYeoX4v9UstSDBpgrYnAQj81txwZ8l4Kps/XGv4lXDaaTrH
+ E8V3Bk3zRj57RjLQwRC2TZGFZXJy6/bQUjgMS3jkiGdcpUsBzrVXmo5sOmPtM8GN
+ m1yB1mgy/jjs8nuJIKG8hf1NuAaG+ST8hToEGDb5rYdBCLc4R8dPkp4Ha+3SHcZy
+ MMBvAf5STWQAW7gq6Vwsdqj9IqF4DQga5yWvodnJkKtbkJY5RIvgh1NLrT4/M266
+ KnVbRgd6ifPzUJb4yyhuOUR32y52JqYXz3SGb7HMkN541HtquaClSCt45lsTACzO
+ 2AhrtlMl3GYCL9EedQ8ql9cCn+Aj2Ol/PnizK49dE+Vfc/KtzUU+9vsMOD1aZ2vW
+ 2M8Nz5GLiLX7lpnOUviYnMf7/VStTbeielvcKnC4FQDbJK86yEmjjK+tCTgoiGo3
+ Eive7LPB0H9ruenXx26hlOwP1vb2PUSWxXXM0bwEjktrvCRX8byE4w/q9gN8G8TZ
+ kZJbvyPh5JBDnq1AIhhyPu9nnizmFml10ynWxqwPQplVG4g1SkV2kYTd8rvt2Jit
+ Dj/ka9f1Sh6T2r5r06WNA+DvRJrbYWDovOU68Edj7XALTfmZNeM=
+ =pF8U
+ -----END PGP SIGNATURE-----
+</code></pre>
+<p>能够在 commit 中看到 GPG 签名，说明 GPG 签名已经在 Git 中配置成功。</p>
 <p>如果配置 GPG 之后，提交时 Git 找不到 GPG，那么可以手动设置一下 GPG 的路径：</p>
 <pre><code class="language-shell">$ which gpg
 /usr/bin/gpg
 $ git config --global gpg.program /usr/bin/gpg
+</code></pre>
+<p>如果遇到 <code>error: gpg failed to sign the data</code> 的问题，可以尝试把 <code>GPG_TTY</code> 环境变量设置为 <code>$(tty)</code>（<a href="https://gist.github.com/repodevs/a18c7bb42b2ab293155aca889d447f1b">参考</a>）：</p>
+<pre><code class="language-shell">$ git config user.signingKey 38AF394C
+$ git config commit.gpgSign true
+$ echo &quot;test&quot; | gpg --clearsign
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+test
+gpg: signing failed: Inappropriate ioctl for device
+gpg: [stdin]: clear-sign failed: Inappropriate ioctl for device
+
+$ export GPG_TTY=$(tty)
+$ echo &quot;test&quot; | gpg --clearsign
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+test
+-----BEGIN PGP SIGNATURE-----
+XXXXXX SUCCESS XXXX
+-----END PGP SIGNATURE-----
+
+
+ref: https://github.com/keybase/keybase-issues/issues/2798
 </code></pre>
 <p>接下来导出 GPG 公钥，然后添加到 GitHub 中：</p>
 <pre><code>$ gpg --armor --export 85E18D73E1B2E193
@@ -551,7 +603,7 @@ M  c.txt
 <h3 id="在文本编辑器中输入提交信息"><a class="header" href="#在文本编辑器中输入提交信息">在文本编辑器中输入提交信息</a></h3>
 <p>如果不指定 <code>-m</code> 参数，Git 会打开你的文本编辑器，等待你输入提交信息。这在想要输入多行的提交信息时非常有用。</p>
 <blockquote>
-<p>Git 会使用什么文本编辑器？在 Linux 上，按照 <code>$EDITOR</code> 环境变量，一般是 vim；而在 Windows 上，是在安装 Git for Windows 时设置的，一般是 VSCode。如果想要更改 Git 使用的文本编辑器，可以使用 <code>git config --global core.editor</code> 设置。</p>
+<p>Git 会使用什么文本编辑器？在 Linux 上，默认会按照 <code>$EDITOR</code> 环境变量的指定，一般是 GNU nano 或者 vim；而在 Windows 上，是在安装 Git for Windows 时设置的，一般是 VSCode。如果想要更改 Git 使用的文本编辑器，可以使用 <code>git config --global core.editor</code> 设置。</p>
 </blockquote>
 <p>编辑器会显示类似下面的文本信息（本例选用 Vim 的屏显方式展示）：</p>
 <pre><code>
