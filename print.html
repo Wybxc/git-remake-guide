@@ -78,7 +78,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="Git-重学指南.html">Git 重学指南</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="安装/安装.html"><strong aria-hidden="true">1.</strong> 安装</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="安装/下载.html"><strong aria-hidden="true">1.1.</strong> 下载</a></li><li class="chapter-item expanded "><a href="安装/配置.html"><strong aria-hidden="true">1.2.</strong> 配置</a></li></ol></li><li class="chapter-item expanded "><a href="储存库/储存库.html"><strong aria-hidden="true">2.</strong> 储存库</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="储存库/创建储存库.html"><strong aria-hidden="true">2.1.</strong> 创建储存库</a></li><li class="chapter-item expanded "><a href="储存库/管理暂存区.html"><strong aria-hidden="true">2.2.</strong> 管理暂存区</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 远程和分支</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 工作流程</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 杂项</div></li><li class="spacer"></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> 附录</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> 语义化版本</div></li><li class="chapter-item expanded "><a href="附录/约定式提交.html"><strong aria-hidden="true">6.2.</strong> 约定式提交</a></li><li class="chapter-item expanded "><a href="附录/gitmoji-速查表.html"><strong aria-hidden="true">6.3.</strong> gitmoji 速查表</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="Git-重学指南.html">Git 重学指南</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="安装/安装.html"><strong aria-hidden="true">1.</strong> 安装</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="安装/下载.html"><strong aria-hidden="true">1.1.</strong> 下载</a></li><li class="chapter-item expanded "><a href="安装/配置.html"><strong aria-hidden="true">1.2.</strong> 配置</a></li></ol></li><li class="chapter-item expanded "><a href="储存库/储存库.html"><strong aria-hidden="true">2.</strong> 储存库</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="储存库/创建储存库.html"><strong aria-hidden="true">2.1.</strong> 创建储存库</a></li><li class="chapter-item expanded "><a href="储存库/管理暂存区.html"><strong aria-hidden="true">2.2.</strong> 管理暂存区</a></li><li class="chapter-item expanded "><a href="储存库/提交更改.html"><strong aria-hidden="true">2.3.</strong> 提交更改</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 远程和分支</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 工作流程</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 杂项</div></li><li class="spacer"></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> 附录</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> 语义化版本</div></li><li class="chapter-item expanded "><a href="附录/约定式提交.html"><strong aria-hidden="true">6.2.</strong> 约定式提交</a></li><li class="chapter-item expanded "><a href="附录/gitmoji-速查表.html"><strong aria-hidden="true">6.3.</strong> gitmoji 速查表</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -541,6 +541,88 @@ M  c.txt
 <p>至于为什么在工作目录里有未跟踪文件时还允许签出，我没有想到一个很完美的解释。一种可能是这种行为没有违背不修改未跟踪文件的规则，另一种可能是为了允许先新增文件，再新建分支。</p>
 <p>当然，<strong>Git 从来不会彻底阻止你干什么事情的</strong>。显式地修改未跟踪地文件是允许的。比如 <code>git clean</code>，它的意思是删掉所有未跟踪的文件。Git 知道当你打下这句命令时，你确实清楚你要对未跟踪的文件进行操作，所以 Git 不会阻止你。</p>
 <p>Git 处处都在保证你的文件的安全性，但也不会阻止你意图明确地做一些不安全的事情。这是 Git 的哲学中最耐人寻味之处，只有真正的相互理解，才能托付彼此的真心。</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="提交更改"><a class="header" href="#提交更改">提交更改</a></h1>
+<blockquote>
+<p>本节部分内容参考自 <a href="https://git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E8%AE%B0%E5%BD%95%E6%AF%8F%E6%AC%A1%E6%9B%B4%E6%96%B0%E5%88%B0%E4%BB%93%E5%BA%93">Pro Git</a> 和 <a href="https://github.com/geeeeeeeeek/git-recipes/blob/revision-2018/sources/2.3.2-git_commit.md">git-recipes</a>，在原文基础上有一定修改。</p>
+</blockquote>
+<h2 id="git-commit"><a class="header" href="#git-commit">git commit</a></h2>
+<p><code>git commit</code> 命令将缓存的快照提交到项目历史。提交的快照可以认为是项目安全的版本，Git 永远不会改变它们，除非你这么要求。和 <code>git add</code> 一样，这是最重要的 Git 命令之一。</p>
+<p>最常用的方式是 <code>git commit -m &quot;&lt;message&gt;&quot;</code>，这会将暂存区的内容提交到历史，并且附加一个提交信息。</p>
+<h3 id="在文本编辑器中输入提交信息"><a class="header" href="#在文本编辑器中输入提交信息">在文本编辑器中输入提交信息</a></h3>
+<p>如果不指定 <code>-m</code> 参数，Git 会打开你的文本编辑器，等待你输入提交信息。这在想要输入多行的提交信息时非常有用。</p>
+<blockquote>
+<p>Git 会使用什么文本编辑器？在 Linux 上，按照 <code>$EDITOR</code> 环境变量，一般是 vim；而在 Windows 上，是在安装 Git for Windows 时设置的，一般是 VSCode。如果想要更改 Git 使用的文本编辑器，可以使用 <code>git config --global core.editor</code> 设置。</p>
+</blockquote>
+<p>编辑器会显示类似下面的文本信息（本例选用 Vim 的屏显方式展示）：</p>
+<pre><code>
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#	new file:   README
+#	modified:   CONTRIBUTING.md
+#
+~
+~
+~
+&quot;.git/COMMIT_EDITMSG&quot; 9L, 283C
+</code></pre>
+<p>可以看到，默认的提交消息包含最后一次运行 <code>git status</code> 的输出，放在注释行里，另外开头还有一个空行，供你输入提交说明。你完全可以去掉这些注释行，不过留着也没关系，多少能帮你回想起这次更新的内容有哪些。</p>
+<p>更详细的内容修改提示可以用 -v 选项查看，这会将你所作的更改的 diff 输出呈现在编辑器中，以便让你知道本次提交具体作出哪些修改。</p>
+<p>退出编辑器时，Git 会丢弃注释行，用你输入的提交说明生成一次提交。</p>
+<h3 id="提交前暂存"><a class="header" href="#提交前暂存">提交前暂存</a></h3>
+<p>默认情况下，<code>git commit</code> 只会提交暂存区中的文件，那些更改过但未暂存的文件不会被提交。</p>
+<p>如果想要在提交之前自动暂存，可以指定 <code>-a</code> 参数，这会提交已暂存的文件和已更改的文件，并且文件的更改就算没有暂存也包括在内。<strong>注意，与 <code>git add .</code> 不同，未跟踪的文件不会被提交</strong>。</p>
+<h2 id="重视每一次提交"><a class="header" href="#重视每一次提交">重视每一次提交</a></h2>
+<p>Git 初学者最容易犯的一个问题就是随意地使用 <code>git commit</code> 提交，甚至把提交当成随时可用的存档点，把很多做到一半的工作提交进去。</p>
+<p>好吧，对于初学者来说，也无可厚非。多用一点 Git 命令，熟悉一下也是好的。毕竟每个人都有起步的过程嘛。</p>
+<p>但是，这是一篇「重学指南」，当你再一次学习 <code>git commit</code> 时，<strong>你就必须开始养成重视提交的习惯了</strong>。</p>
+<h3 id="重视提交的内容"><a class="header" href="#重视提交的内容">重视提交的内容</a></h3>
+<p>首先要重视提交的内容。<strong>最好的情况下，每一次提交都包含一次完整的功能变更，没有任何尚未完成的搁置的工作</strong>。你不应该把写到一半的功能提交进储存库。</p>
+<p>当然，这只是理想的情况。实际肯定不会总是这么顺利。还有一些不那么好的情况，也是允许的。</p>
+<ul>
+<li>上上策：提交中不含未完成的工作，并且仅包含一个功能变动。</li>
+<li>上策：提交中不含未完成的工作。</li>
+<li>中策：本地的提交可以包含未完成的工作，但不能把这样的提交推送到远程。</li>
+<li>下策：不完整的提交被推送上去，现在所有人都看到你做了多么糟糕的事情。</li>
+</ul>
+<p>这几种情况中，除去下策，其他都是在一个科学管理的项目中允许发生的。</p>
+<h4 id="如果不得不"><a class="header" href="#如果不得不">如果不得不……</a></h4>
+<p>有的时候，出于某些特殊的目的，我们不得不提交一些不完整的代码。但是在这么做之前，请想一想，有没有别的更好的方式来让我完成这件事？</p>
+<ul>
+<li><em>我想临时切换到别的分支</em>：请优先使用 <code>git stash</code>，它就是为这一需求设计的。如果你需要在另一个分支上长期工作，也可以考虑用 <code>git worktree</code> 建立一个新的工作树，这样两个分支的内容就不会相互干扰了。</li>
+<li><em>我需要在别的机器上继续这项工作</em>：的确是棘手的情况。这种时候，允许你<em>偷偷地</em>把未完成的工作提交上去，在提交消息里警告别人不要在这个节点签出。工作完成后，用下面所说的<a href="%E5%82%A8%E5%AD%98%E5%BA%93/%E6%8F%90%E4%BA%A4%E6%9B%B4%E6%94%B9.html#%E4%BF%AE%E6%94%B9%E6%8F%90%E4%BA%A4">修改提交</a>或者 <code>git rebase -i</code>（将在后面的文章里介绍）覆盖掉之前未完成的提交。</li>
+<li><em>我不小心在提交里漏了一个文件</em>：这种事情在所难免。下文的<a href="%E5%82%A8%E5%AD%98%E5%BA%93/%E6%8F%90%E4%BA%A4%E6%9B%B4%E6%94%B9.html#%E4%BF%AE%E6%94%B9%E6%8F%90%E4%BA%A4">修改提交</a>会对你有帮助。</li>
+</ul>
+<h3 id="重视提交消息"><a class="header" href="#重视提交消息">重视提交消息</a></h3>
+<p>其次要重视提交消息。<strong>最好的情况下，提交消息要符合一定的格式规范，并且清晰描述了这次提交做出的变更</strong>。</p>
+<p>为什么格式规范那么重要？第一个原因是能够让别人快速理解你的项目历史，第二个原因是这有助于使用自动化工具。</p>
+<p>提交的格式规范有很多种，没有哪个比哪个更好。常见的提交格式规范有「约定式提交」和「gitmoji」等等，关于它们的详细信息可以看附录中的内容。</p>
+<h2 id="修改提交"><a class="header" href="#修改提交">修改提交</a></h2>
+<p>上面我们提到了一种情况：在本地的提交中可以包含未完成的工作，但这样的提交不能推送到远程。</p>
+<p>你可能会疑惑：<code>git push</code> 的时候，所有的提交历史都会推送，那么怎么保证那些不完整的提交不被推送呢？</p>
+<p>很简单。因为保存未完成工作的提交永远是最后一个提交，所以只要我们用新的提交替换掉它就可以了。</p>
+<p><strong>完成这一操作的命令，是 <code>git commit --amend</code>。</strong></p>
+<p>“amend”是修正的意思。<strong>用这条命令产生的提交，会替换掉上一次的提交。</strong></p>
+<p>比如说，在提交之前，提交的历史记录是这样的：</p>
+<pre><code>* b9d4ede :construction: [WIP] Some work in progress
+* 78e1527 :zap: Improve UI performance
+* 34a1e52 :sparkles: Connect to the database
+* f6a09fe :bug: Fix stats not updating
+</code></pre>
+<p>然后产生一条新的 amend 提交：</p>
+<pre><code>git commit --amend -m &quot;:bug: Fix layout issues&quot;
+</code></pre>
+<p>新的历史记录会是这样：</p>
+<pre><code>* d5b5ad3 :bug: Fix layout issues
+* 78e1527 :zap: Improve UI performance
+* 34a1e52 :sparkles: Connect to the database
+* f6a09fe :bug: Fix stats not updating
+</code></pre>
+<p>可以看到，原本的包含未完成工作的提交，被新的提交替换掉了。现在所有的提交都是完整又可爱的。</p>
+<p>需要注意的是，提交的哈希值在 <code>git commit --amend</code> 之后发生了变化。这意味着如果那条被替换的提交已经推送到远程，你需要用 <code>git push --force</code> 来强制覆盖它。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="约定式提交"><a class="header" href="#约定式提交">约定式提交</a></h1>
 <blockquote>
 <p>部分内容参考自约定式提交的<a href="https://www.conventionalcommits.org/zh-hans/v1.0.0/">官方网站</a>，在原文基础上有一定修改。</p>
