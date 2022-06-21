@@ -1,0 +1,379 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>查看历史 - Git 重学指南</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../assets/sidetoc.css">
+        <link rel="stylesheet" href="../assets/custom.css">
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../Git-重学指南.html">Git 重学指南</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../安装/安装.html"><strong aria-hidden="true">1.</strong> 安装</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../安装/下载.html"><strong aria-hidden="true">1.1.</strong> 下载</a></li><li class="chapter-item expanded "><a href="../安装/配置.html"><strong aria-hidden="true">1.2.</strong> 配置</a></li></ol></li><li class="chapter-item expanded "><a href="../储存库/储存库.html"><strong aria-hidden="true">2.</strong> 储存库</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../储存库/创建储存库.html"><strong aria-hidden="true">2.1.</strong> 创建储存库</a></li><li class="chapter-item expanded "><a href="../储存库/管理暂存区.html"><strong aria-hidden="true">2.2.</strong> 管理暂存区</a></li><li class="chapter-item expanded "><a href="../储存库/提交更改.html"><strong aria-hidden="true">2.3.</strong> 提交更改</a></li><li class="chapter-item expanded "><a href="../储存库/查看历史.html" class="active"><strong aria-hidden="true">2.4.</strong> 查看历史</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 远程和分支</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 工作流程</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 杂项</div></li><li class="spacer"></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> 附录</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> 语义化版本</div></li><li class="chapter-item expanded "><a href="../附录/约定式提交.html"><strong aria-hidden="true">6.2.</strong> 约定式提交</a></li><li class="chapter-item expanded "><a href="../附录/gitmoji-速查表.html"><strong aria-hidden="true">6.3.</strong> gitmoji 速查表</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Git 重学指南</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/Wybxc/git-remake-guide" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/Wybxc/git-remake-guide/edit/main/src/储存库/查看历史.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <!-- Page table of contents -->
+                    <div class="sidetoc"><nav class="pagetoc"></nav></div>
+                    <main>
+                        <h1 id="查看历史"><a class="header" href="#查看历史">查看历史</a></h1>
+<blockquote>
+<p>本节部分内容参考自 <a href="https://git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E6%9F%A5%E7%9C%8B%E6%8F%90%E4%BA%A4%E5%8E%86%E5%8F%B2">Pro Git</a> 和 <a href="https://github.com/geeeeeeeeek/git-recipes/blob/revision-2018/sources/2.4-%E6%9F%A5%E7%9C%8B%E4%BB%93%E5%BA%93%E7%8A%B6%E6%80%81.md">git-recipes</a>，在原文基础上有一定修改。</p>
+</blockquote>
+<h2 id="git-log"><a class="header" href="#git-log">git log</a></h2>
+<p>在提交了若干更新，又或者克隆了某个项目之后，你也许想回顾下提交历史。完成这个任务最简单而又有效的工具是 <code>git log</code> 命令。</p>
+<p>下面是一个典型的 <code>git log</code> 输出：</p>
+<pre><code>$ git log
+commit ca82a6dff817ec66f44342007202690a93763949
+Author: Scott Chacon &lt;schacon@gee-mail.com&gt;
+Date:   Mon Mar 17 21:52:11 2008 -0700
+
+    changed the version number
+
+commit 085bb3bcb608e1e8451d4b2432f8ecbe6306e7e7
+Author: Scott Chacon &lt;schacon@gee-mail.com&gt;
+Date:   Sat Mar 15 16:40:33 2008 -0700
+
+    removed unnecessary test
+
+commit a11bef06a3f659402fe7563abf99ad00de2209e6
+Author: Scott Chacon &lt;schacon@gee-mail.com&gt;
+Date:   Sat Mar 15 10:31:28 2008 -0700
+
+    first commit
+</code></pre>
+<p>不传入任何参数的默认情况下，<code>git log</code> 会按时间先后顺序列出所有的提交，最近的更新排在最上面。正如你所看到的，这个命令会列出每个提交的 SHA-1 校验和、作者的名字和电子邮件地址、提交时间以及提交说明。</p>
+<blockquote>
+<p>有的时候，在 Windows 上使用 <code>git log</code> 时，会在输出一段信息后卡住。这是因为 <code>git log</code> 在输出过长时，会调用分页器来实现分屏输出，但 Git for Windows 自带的分页器有一定的不兼容。这种情况下，可以使用 <code>git config --global core.pager cat</code> 来禁用分页功能。</p>
+</blockquote>
+<h2 id="筛选历史"><a class="header" href="#筛选历史">筛选历史</a></h2>
+<pre><code>git log -n &lt;limit&gt;
+</code></pre>
+<p>显示前 <code>&lt;limit&gt;</code> 个提交。比如 <code>git log -n 3</code> 只会显示 3 个提交。<code>-n 3</code> 也可以写成 <code>-3</code>。</p>
+<pre><code>git log --author=&quot;&lt;pattern&gt;&quot;
+</code></pre>
+<p>搜索特定作者的提交。<code>&lt;pattern&gt;</code> 可以是字符串或正则表达式。</p>
+<pre><code>git log --grep=&quot;&lt;pattern&gt;&quot;
+</code></pre>
+<p>搜索特定提交信息的提交。<code>&lt;pattern&gt;</code> 可以是字符串或正则表达式。</p>
+<pre><code>git log &lt;since&gt;..&lt;until&gt;
+</code></pre>
+<p>只显示发生在 <code>&lt;since&gt;</code> 和 <code>&lt;until&gt;</code> 之间的提交。两个参数可以是提交 ID、分支名、HEAD 或是任何一种引用。</p>
+<pre><code>git log &lt;file&gt;
+</code></pre>
+<p>只显示包含特定文件的提交。查找特定文件的历史这样做会很方便。</p>
+<pre><code>git log --since=&lt;since&gt;
+git log --until=&lt;until&gt;
+</code></pre>
+<p>仅显示指定时间之后或之前的提交。<code>&lt;since&gt;</code> 和 <code>&lt;until&gt;</code> 可以为多种时间格式，可以是类似 &quot;2008-01-15&quot; 的具体的某一天，也可以是类似 &quot;2 years 1 day 3 minutes ago&quot; 的相对日期。</p>
+<pre><code>git log -S &lt;name&gt;
+</code></pre>
+<p>仅显示添加或删除特定字符串的提交。比如，搜索代码中添加或删除了对某一个特定函数的引用的提交。</p>
+<h2 id="显示更多信息"><a class="header" href="#显示更多信息">显示更多信息</a></h2>
+<p><code>-p</code> 或 <code>--patch</code> 选项会显示每次提交所引入的差异（按补丁的格式输出）。</p>
+<pre><code>$ git log -p -1
+commit ca82a6dff817ec66f44342007202690a93763949
+Author: Scott Chacon &lt;schacon@gee-mail.com&gt;
+Date:   Mon Mar 17 21:52:11 2008 -0700
+
+    changed the version number
+
+diff --git a/Rakefile b/Rakefile
+index a874b73..8f94139 100644
+--- a/Rakefile
++++ b/Rakefile
+@@ -5,7 +5,7 @@ require 'rake/gempackagetask'
+ spec = Gem::Specification.new do |s|
+     s.platform  =   Gem::Platform::RUBY
+     s.name      =   &quot;simplegit&quot;
+-    s.version   =   &quot;0.1.0&quot;
++    s.version   =   &quot;0.1.1&quot;
+     s.author    =   &quot;Scott Chacon&quot;
+     s.email     =   &quot;schacon@gee-mail.com&quot;
+     s.summary   =   &quot;A simple gem for using Git in Ruby code.&quot;
+</code></pre>
+<p><code>--stat</code> 选项可以显示每次提交的简略统计信息，包括所有被修改过的文件、有多少文件被修改了以及被修改过的文件的哪些行被移除或是添加。</p>
+<pre><code>$ git log --stat -1
+commit a11bef06a3f659402fe7563abf99ad00de2209e6
+Author: Scott Chacon &lt;schacon@gee-mail.com&gt;
+Date:   Sat Mar 15 10:31:28 2008 -0700
+
+    first commit
+
+ README           |  6 ++++++
+ Rakefile         | 23 +++++++++++++++++++++++
+ lib/simplegit.rb | 25 +++++++++++++++++++++++++
+ 3 files changed, 54 insertions(+)
+</code></pre>
+<h2 id="格式化输出"><a class="header" href="#格式化输出">格式化输出</a></h2>
+<p><code>--format</code> 选项可以定制记录的显示格式。这样的输出对后期提取分析格外有用——因为你知道输出的格式不会随着 Git 的更新而发生改变：</p>
+<pre><code>$ git log --pretty=format:&quot;%h - %an, %ar : %s&quot;
+ca82a6d - Scott Chacon, 6 years ago : changed the version number
+085bb3b - Scott Chacon, 6 years ago : removed unnecessary test
+a11bef0 - Scott Chacon, 6 years ago : first commit
+</code></pre>
+<p>下面列出了 <code>--format</code> 接受的常用格式占位符的写法及其代表的意义。</p>
+<table><thead><tr><th>占位符</th><th>说明</th></tr></thead><tbody>
+<tr><td>%H</td><td>提交的完整哈希值</td></tr>
+<tr><td>%h</td><td>提交的短哈希值</td></tr>
+<tr><td>%T</td><td>树的完整哈希值</td></tr>
+<tr><td>%t</td><td>树的短哈希值</td></tr>
+<tr><td>%P</td><td>父提交的完整哈希值</td></tr>
+<tr><td>%p</td><td>父提交的简写哈希值</td></tr>
+<tr><td>%an</td><td>作者名字</td></tr>
+<tr><td>%ae</td><td>作者的电子邮件地址</td></tr>
+<tr><td>%ad</td><td>作者修订日期（可以用 <code>--date=选项</code> 来定制格式）</td></tr>
+<tr><td>%ar</td><td>作者修订日期，按多久以前的方式显示</td></tr>
+<tr><td>%cn</td><td>提交者的名字</td></tr>
+<tr><td>%ce</td><td>提交者的电子邮件地址</td></tr>
+<tr><td>%cd</td><td>提交日期</td></tr>
+<tr><td>%cr</td><td>提交日期（距今多长时间）</td></tr>
+<tr><td>%s</td><td>提交说明</td></tr>
+</tbody></table>
+<p>你一定奇怪作者和提交者之间究竟有何差别，其实作者指的是实际作出修改的人，提交者指的是最后将此工作成果提交到仓库的人。所以，当你为某个项目发布补丁，然后某个核心成员将你的补丁并入项目时，你就是作者，而那个核心成员就是提交者。关于其中具体的区别，我们会在以后的章节中详细讨论。</p>
+<p>当 <code>format</code> 与另一个 log 选项 <code>--graph</code> 结合使用时尤其有用。 这个选项添加了一些 ASCII 字符串来形象地展示你的分支、合并历史：</p>
+<pre><code>$ git log --pretty=format:&quot;%h %s&quot; --graph
+* 2d3acf9 ignore errors from SIGCHLD on trap
+*  5e3ee11 Merge branch 'master' of git://github.com/dustin/grit
+|\
+| * 420eac9 Added a method for getting the current branch.
+* | 30e367c timeout code and tests
+* | 5a09431 add timeout protection to grit
+* | e1193f8 support for heads with slashes in them
+|/
+* d6016bc require time for xmlschema
+*  11d191e Merge branch 'defunkt' into local
+</code></pre>
+<p>下面是我很喜欢的一种 log 格式，在纵览项目历史时很有用：</p>
+<pre><code>git log --no-merges --color --graph --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit
+</code></pre>
+<p>可以为这一长串命令起一个别名：</p>
+<pre><code>git config --global alias.ls &quot;log --no-merges --color --graph --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit&quot;
+</code></pre>
+<p>之后，就可以用 <code>git ls</code> 来快速调用这个命令。</p>
+<pre><code class="hljs" style="background-color: black"><span style="color:#DCDFE4;">$ git ls -10</span>
+<span style="color:#DCDFE4;">* </span><span style="color:#E06C75;">e7a595e </span><span style="color:#DCDFE4;">- </span><span style="color:#E5C07B;">(HEAD -&gt; 查看历史) </span><span style="color:#DCDFE4;">:adhesive_bandage: 更正关于 Linux 上的文本编辑器的描述 </span><span style="color:#98C379;">(2022-06-17 23:19:29) </span><span style="color:#61AFEF;">&lt;忘忧北萱草&gt;
+</span><span style="color:#DCDFE4;">* </span><span style="color:#E06C75;">0089bc1 </span><span style="color:#DCDFE4;">- :sparkles: 更新关于 GPG 出错的解决方案 </span><span style="color:#98C379;">(2022-06-17 23:16:33) </span><span style="color:#61AFEF;">&lt;忘忧北萱草&gt;
+</span><span style="color:#DCDFE4;">* </span><span style="color:#E06C75;">23b7ae1 </span><span style="color:#DCDFE4;">- :sparkles: 提交更改 </span><span style="color:#98C379;">(2022-06-17 18:20:09) </span><span style="color:#61AFEF;">&lt;忘忧北萱草&gt;
+</span><span style="color:#DCDFE4;">* </span><span style="color:#E06C75;">4fb486c </span><span style="color:#DCDFE4;">- :sparkles: 本项目的 gitmoji 规范 </span><span style="color:#98C379;">(2022-06-17 16:08:40) </span><span style="color:#61AFEF;">&lt;忘忧北萱草&gt;
+</span><span style="color:#DCDFE4;">* </span><span style="color:#E06C75;">35ecf52 </span><span style="color:#DCDFE4;">- :adhesive_bandage: 修正关于储存库中文件储存方式的描述 </span><span style="color:#98C379;">(2022-06-17 15:57:25) </span><span style="color:#61AFEF;">&lt;忘忧北萱草&gt;
+</span><span style="color:#DCDFE4;">* </span><span style="color:#E06C75;">b571156 </span><span style="color:#DCDFE4;">- :zap: 添加 giscus 支持，以及修复导航按钮问题 </span><span style="color:#98C379;">(2022-06-17 01:59:31) </span><span style="color:#61AFEF;">&lt;忘忧北萱草&gt;
+</span><span style="color:#DCDFE4;">* </span><span style="color:#E06C75;">4e84d9d </span><span style="color:#DCDFE4;">- :sparkles: 管理暂存区 </span><span style="color:#98C379;">(2022-06-16 23:05:09) </span><span style="color:#61AFEF;">&lt;忘忧北萱草&gt;
+</span><span style="color:#DCDFE4;">* </span><span style="color:#E06C75;">ad3b4fc </span><span style="color:#DCDFE4;">- :pencil2: 规范标点的使用 </span><span style="color:#98C379;">(2022-06-16 19:13:06) </span><span style="color:#61AFEF;">&lt;忘忧北萱草&gt;
+</span><span style="color:#DCDFE4;">* </span><span style="color:#E06C75;">64273e0 </span><span style="color:#DCDFE4;">- :memo: 增加 badges 和链接 </span><span style="color:#98C379;">(2022-06-16 17:28:53) </span><span style="color:#61AFEF;">&lt;忘忧北萱草&gt;
+</span><span style="color:#DCDFE4;">* </span><span style="color:#E06C75;">30cae30 </span><span style="color:#DCDFE4;">- :lipstick: 优化点击跳转的平滑滚动的方式和效果 </span><span style="color:#98C379;">(2022-06-16 16:38:37) </span><span style="color:#61AFEF;">&lt;忘忧北萱草&gt;</span>
+</code>
+</pre>
+<h2 id="在钩子中使用-git-log"><a class="header" href="#在钩子中使用-git-log">在钩子中使用 <code>git log</code></a></h2>
+<p>上一节我们说过，必须重视每一次提交，保证不完整的提交记录不会被推送到远程。</p>
+<p>但是，Git 并非一个所见即所得的系统，有时候你做出了一些更改，并不能立刻想到结果是到底是什么样的。这时 <code>git log</code> 会是很好的帮助，它可以帮你检查你做出的更改是否有问题。只要更改还留在本地，你永远有修正的机会。</p>
+<p>不过，假如在提推送前你忘记了用 <code>git log</code> 查看一下，就有可能发生一些不好的事情。所以，<strong>我们需要一个东西，来提醒我们在每次推送之前 <code>git log</code> 一下。这种东西就是 Git 钩子</strong>。</p>
+<p>关于钩子的详细说明，将会在以后的章节涉及。这里就简单举一个使用钩子的实例。</p>
+<p>储存库所使用的钩子存放在 <code>.git/hooks</code> 目录中。将其中 <code>pre-push.sample</code> 文件改名为 <code>pre-push</code>，去掉 <code>.sample</code> 来启用它。<strong>这个钩子会在每次推送前被调用。</strong></p>
+<p>将 <code>pre-push</code> 的内容修改为：</p>
+<pre><code class="language-bash">#!/bin/bash
+
+remote=&quot;$1&quot;
+url=&quot;$2&quot;
+
+echo &quot;You are pushing to $remote($url), please check the commits history: &quot;
+
+git log --no-merges --color --graph --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit -10
+
+echo &quot;&quot;
+read -r -p &quot;Type 'y' to continue or 'n' to abort: &quot; confirm &lt; /dev/tty
+if [[ $confirm =~ ^[Yy]$ ]]; then
+    exit 0
+else
+    echo &quot;Abort.&quot;
+    exit 1
+fi
+</code></pre>
+<p>这样，每次推送前，都会自动显示最近10条提交记录，并询问是否继续，这就给了我们反悔的机会。</p>
+<pre><code>$ git push
+You are pushing to origin(git@github.com:Wybxc/git-remake-guide.git), please check the commits history:
+* e7a595e - (HEAD -&gt; master) :adhesive_bandage: 更正关于 Linux 上的文本编辑器的描述 (2022-06-17 23:19:29) &lt;忘忧北萱草&gt;
+* 0089bc1 - :sparkles: 更新关于 GPG 出错的解决方案 (2022-06-17 23:16:33) &lt;忘忧北萱草&gt;
+* 23b7ae1 - :sparkles: 提交更改 (2022-06-17 18:20:09) &lt;忘忧北萱草&gt;
+* 4fb486c - :sparkles: 本项目的 gitmoji 规范 (2022-06-17 16:08:40) &lt;忘忧北萱草&gt;
+* 35ecf52 - :adhesive_bandage: 修正关于储存库中文件储存方式的描述 (2022-06-17 15:57:25) &lt;忘忧北萱草&gt;
+* b571156 - :zap: 添加 giscus 支持，以及修复导航按钮问题 (2022-06-17 01:59:31) &lt;忘忧北萱草&gt;
+* 4e84d9d - :sparkles: 管理暂存区 (2022-06-16 23:05:09) &lt;忘忧北萱草&gt;
+* ad3b4fc - :pencil2: 规范标点的使用 (2022-06-16 19:13:06) &lt;忘忧北萱草&gt;
+* 64273e0 - :memo: 增加 badges 和链接 (2022-06-16 17:28:53) &lt;忘忧北萱草&gt;
+* 30cae30 - :lipstick: 优化点击跳转的平滑滚动的方式和效果 (2022-06-16 16:38:37) &lt;忘忧北萱草&gt;
+Type 'y' to continue or 'n' to abort: y
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 882 bytes | 882.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To git@github.com:Wybxc/git-remake-guide.git
+ * [new branch]      master -&gt; master
+branch 'master' set up to track 'origin/master'.
+</code></pre>
+<p>如果你觉得这个钩子很好，并且想要给其他的仓库也启用，你可以修改 Git 创建新储存库所用的模板仓库，它的目录在 <code>/usr/share/git-core/templates</code> 或者 <code>&lt;Git for Windows 目录&gt;/mingw64/share/git-core/templates</code>。这会影响之后新建或者新克隆的储存库，而之前已经建立的储存库是不受影响的。</p>
+
+                        <br />
+                        <div class="giscus"></div>
+                        <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Navigation buttons -->
+                            <a rel="prev" href="../储存库/提交更改.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="prev" href="../储存库/提交更改.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left" style="display:none">
+                            </a>
+                            <a rel="next" href="../附录/约定式提交.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                            <a rel="next" href="../附录/约定式提交.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right" style="display:none">
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                    </main>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript" src="../assets/sidetoc.js"></script>
+        <script type="text/javascript" src="../assets/giscus.js"></script>
+    </body>
+</html>
