@@ -1,0 +1,318 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>撤销操作 - Git 重学指南</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../assets/sidetoc.css">
+        <link rel="stylesheet" href="../assets/custom.css">
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../Git-重学指南.html">Git 重学指南</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../安装/安装.html"><strong aria-hidden="true">1.</strong> 安装</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../安装/下载.html"><strong aria-hidden="true">1.1.</strong> 下载</a></li><li class="chapter-item expanded "><a href="../安装/配置.html"><strong aria-hidden="true">1.2.</strong> 配置</a></li></ol></li><li class="chapter-item expanded "><a href="../储存库/储存库.html"><strong aria-hidden="true">2.</strong> 储存库</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../储存库/创建储存库.html"><strong aria-hidden="true">2.1.</strong> 创建储存库</a></li><li class="chapter-item expanded "><a href="../储存库/管理暂存区.html"><strong aria-hidden="true">2.2.</strong> 管理暂存区</a></li><li class="chapter-item expanded "><a href="../储存库/提交更改.html"><strong aria-hidden="true">2.3.</strong> 提交更改</a></li><li class="chapter-item expanded "><a href="../储存库/查看历史.html"><strong aria-hidden="true">2.4.</strong> 查看历史</a></li><li class="chapter-item expanded "><a href="../储存库/撤销操作.html" class="active"><strong aria-hidden="true">2.5.</strong> 撤销操作</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> 远程和分支</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 工作流程</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 杂项</div></li><li class="spacer"></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> 附录</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> 语义化版本</div></li><li class="chapter-item expanded "><a href="../附录/约定式提交.html"><strong aria-hidden="true">6.2.</strong> 约定式提交</a></li><li class="chapter-item expanded "><a href="../附录/gitmoji-速查表.html"><strong aria-hidden="true">6.3.</strong> gitmoji 速查表</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Git 重学指南</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/Wybxc/git-remake-guide" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/Wybxc/git-remake-guide/edit/main/src/储存库/撤销操作.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <!-- Page table of contents -->
+                    <div class="sidetoc"><nav class="pagetoc"></nav></div>
+                    <main>
+                        <h1 id="撤销操作"><a class="header" href="#撤销操作">撤销操作</a></h1>
+<blockquote>
+<p>本节部分内容参考自 Pro Git 的<a href="https://git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E6%92%A4%E6%B6%88%E6%93%8D%E4%BD%9C">《撤销操作》</a>和<a href="https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%87%8D%E7%BD%AE%E6%8F%AD%E5%AF%86">《重置揭秘》</a>，在原文基础上有一定修改。</p>
+</blockquote>
+<h2 id="git-restore"><a class="header" href="#git-restore">git restore</a></h2>
+<h3 id="取消暂存"><a class="header" href="#取消暂存">取消暂存</a></h3>
+<p>有的时候，我们需要取消一些文件的暂存状态。例如，你已经修改了两个文件，并且想要将它们作为两次独立的修改提交，但是却意外地输入 <code>git add *</code> 暂存了它们两个。如何只取消暂存两个中的一个呢？<code>git status</code> 命令提示了你：</p>
+<pre><code>$ git add *
+$ git status
+On branch master
+Changes to be committed:
+  (use &quot;git restore --staged &lt;file&gt;...&quot; to unstage)
+
+    renamed:    README.md -&gt; README
+    modified:   CONTRIBUTING.md
+</code></pre>
+<p>在 “Changes to be committed” 文字正下方，提示使用 <code>git restore --staged &lt;file&gt;...</code> 来取消暂存。所以，我们可以这样来取消暂存 <code>CONTRIBUTING.md</code> 文件：</p>
+<pre><code>$ git restore --staged CONTRIBUTING.md
+$ git status
+On branch master
+Changes to be committed:
+  (use &quot;git restore --staged &lt;file&gt;...&quot; to unstage)
+
+    renamed:    README.md -&gt; README
+
+Changes not staged for commit:
+  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+  (use &quot;git restore &lt;file&gt;...&quot; to discard changes in working directory)
+
+    modified:   CONTRIBUTING.md
+</code></pre>
+<p>正如你看到的一样，<code>CONTRIBUTING.md</code> 文件已经是修改未暂存的状态了。</p>
+<blockquote>
+<p><code>git restore</code> 是在 Git 2.23.0 中引入的新命令。在以前的 Git 版本中，<code>git status</code> 给出的提示命令是 <code>git reset HEAD &lt;file&gt;...</code>。这条命令和上面的命令的效果和用法都是一样的，只不过它更多涉及到一些底层的复杂操作，而 <code>git restore</code> 对这些操作给出了一个易于理解的上层抽象（详见<a href="#git-restore-%E7%9A%84%E5%B7%A5%E4%BD%9C">下文</a>）。</p>
+</blockquote>
+<h3 id="撤消对文件的修改"><a class="header" href="#撤消对文件的修改">撤消对文件的修改</a></h3>
+<p>如果你并不想保留对 <code>CONTRIBUTING.md</code> 文件的修改怎么办？你该如何方便地撤消修改——将它还原成上次提交时的样子（或者刚克隆完的样子，或者刚把它放入工作目录时的样子）？幸运的是，<code>git status</code> 也告诉了你应该如何做。在最后一个例子中，未暂存区域是这样：</p>
+<pre><code>Changes not staged for commit:
+  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+  (use &quot;git restore &lt;file&gt;...&quot; to discard changes in working directory)
+
+    modified:   CONTRIBUTING.md
+</code></pre>
+<p>它非常清楚地告诉了你如何撤消之前所做的修改。让我们来按照提示执行：</p>
+<pre><code>$ git restore CONTRIBUTING.md
+$ git status
+On branch master
+Changes to be committed:
+  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
+
+    renamed:    README.md -&gt; README
+</code></pre>
+<p>可以看到那些修改已经被撤消了。</p>
+<p>请务必记得 <code>git restore &lt;file&gt;</code> 是一个危险的命令。你对那个文件在本地的任何修改都会消失——Git 会用最近提交的版本覆盖掉它。除非你确实清楚不想要对那个文件的本地修改了，否则请不要使用这个命令。</p>
+<p>记住，在 Git 中任何<strong>已提交</strong>的东西几乎总是可以恢复的。甚至那些被删除的分支中的提交或使用 <code>--amend</code> 选项覆盖的提交也可以恢复。然而，任何你未提交的东西丢失后很可能再也找不到了。</p>
+<blockquote>
+<p>同样，在 Git 的旧版本中，完成这一任务的命令是 <code>git checkout -- &lt;file&gt;...</code>。用法和效果和上面也是一样的。</p>
+</blockquote>
+<h3 id="详细用法"><a class="header" href="#详细用法">详细用法</a></h3>
+<details>
+<summary>点击展开</summary>
+<pre><code>git restore &lt;file&gt;...
+</code></pre>
+<p>将文件恢复为暂存区的状态。这会覆盖文件当前的内容。</p>
+<pre><code>git restore --staged &lt;file&gt;...
+</code></pre>
+<p>将暂存区的文件恢复为上一次提交的状态，不会影响工作树中的文件。</p>
+<pre><code>git restore --staged --worktree &lt;file&gt;...
+</code></pre>
+<p>将暂存区和工作树的文件恢复为上一次提交的状态。</p>
+<pre><code>git restore -s &lt;tree&gt; &lt;file&gt;...
+</code></pre>
+<p>将文件恢复到 <code>&lt;tree&gt;</code> 所对应的快照的状态。</p>
+</details>
+<h2 id="撤销的原理"><a class="header" href="#撤销的原理">撤销的原理</a></h2>
+<h3 id="快照"><a class="header" href="#快照">快照</a></h3>
+<p>理解 <code>git restore</code> 的最简方法，就是以 Git 的思维框架（将其作为内容管理器）来管理三棵不同的「树」。</p>
+<table><thead><tr><th style="text-align: center">树</th><th style="text-align: center">用途</th></tr></thead><tbody>
+<tr><td style="text-align: center">HEAD</td><td style="text-align: center">上一次提交的快照</td></tr>
+<tr><td style="text-align: center">Index（索引/暂存区）</td><td style="text-align: center">预期的下一次提交的快照</td></tr>
+<tr><td style="text-align: center">工作目录</td><td style="text-align: center">沙盒</td></tr>
+</tbody></table>
+<p>这里涉及到一个 Git 的概念：<strong>快照</strong>。快照是对 Git 中工作目录的状态的一次完整记录。Git 所管理的版本历史便是由一个个快照组成的。</p>
+<p>必须要澄清一个误区：虽然 Git 似乎无时无刻不在“比较”两个文件的版本，但<strong>在 Git 中，保存的并非是文件的差异，而是每一次都保存文件的完整内容</strong>。事实上，我们在 Git 中看到的各种比较结果，都真的是在比较两个文件，<strong>文件的差异是临时算出来的</strong>。</p>
+<p>你可能会疑惑：如果每一次提交都保存了整个工作区的内容，那么储存库不是会飞速地膨胀吗？其实不用担心。对于两次提交中没有改变的文件，Git 在储存库中只会保存一份内容。所以 Git 的储存方式还是比较精简的。</p>
+<p>顺带一提，Git 的这种保存策略，无意中鼓励我们把大文件拆分为多个小文件。大多数情况下，能够进行这种拆分，是程序模块化设计良好的表象。</p>
+<h3 id="三棵树"><a class="header" href="#三棵树">三棵树</a></h3>
+<h4 id="head"><a class="header" href="#head">HEAD</a></h4>
+<p>HEAD 是当前分支引用的指针，它总是指向该分支上的最后一次提交。这表示 HEAD 将是下一次提交的父结点。通常，理解 HEAD 的最简方式，就是将它看做该分支上的<strong>最后一次提交的快照</strong>。</p>
+<p>其实，查看快照的样子很容易。下例就显示了 HEAD 快照实际的目录列表，以及其中每个文件的 SHA-1 校验和：</p>
+<pre><code>$ git cat-file -p HEAD
+tree cfda3bf379e4f8dba8717dee55aab78aef7f4daf
+author Scott Chacon  1301511835 -0700
+committer Scott Chacon  1301511835 -0700
+
+initial commit
+
+$ git ls-tree -r HEAD
+100644 blob a906cb2a4a904a152...   README
+100644 blob 8f94139338f9404f2...   Rakefile
+040000 tree 99f1a6d12cb4b6f19...   lib
+</code></pre>
+<p>Git 的 <code>cat-file</code> 和 <code>ls-tree</code> 是底层命令，它们一般用于底层工作，在日常工作中并不使用。不过它们能帮助我们了解到底发生了什么。</p>
+<h4 id="索引暂存区"><a class="header" href="#索引暂存区">索引（暂存区）</a></h4>
+<p>索引是你的<strong>预期的下一次提交</strong>。我们也会将这个概念引用为 Git 的「<strong>暂存区</strong>」，这就是当你运行 <code>git commit</code> 时 Git 看起来的样子。</p>
+<p>Git 将上一次检出到工作目录中的所有文件填充到索引区，它们看起来就像最初被检出时的样子。之后你会将其中一些文件替换为新版本，接着通过 git commit 将它们转换为树来用作新的提交。</p>
+<pre><code>$ git ls-files -s
+100644 a906cb2a4a904a152e80877d4088654daad0c859 0	README
+100644 8f94139338f9404f26296befa88755fc2598c289 0	Rakefile
+100644 47c6340d6459e05787f644c2447d2595f5d3a54b 0	lib/simplegit.rb
+</code></pre>
+<p>再说一次，我们在这里又用到了 <code>git ls-files</code> 这个幕后的命令，它会显示出索引当前的样子。</p>
+<p>确切来说，索引在技术上并非树结构，它其实是以扁平的清单实现的。不过对我们而言，把它当做树就够了。</p>
+<h4 id="工作目录"><a class="header" href="#工作目录">工作目录</a></h4>
+<p>最后，你就有了自己的<strong>工作目录</strong>（通常也叫<strong>工作区</strong>或<strong>工作树</strong>）。另外两棵树以一种高效但并不直观的方式，将它们的内容存储在 <code>.git</code> 文件夹中。工作目录会将它们解包为实际的文件以便编辑。你可以把工作目录当做一个沙盒。在你将修改提交到暂存区并记录到历史之前，可以随意更改。</p>
+<pre><code>$ tree
+.
+├── README
+├── Rakefile
+└── lib
+    └── simplegit.rb
+
+1 directory, 3 files
+</code></pre>
+<h3 id="git-restore-的工作"><a class="header" href="#git-restore-的工作">git restore 的工作</a></h3>
+<p><code>git restore</code> 是一条很新的命令。在它诞生之前，完成对应的工作的命令是 <code>git reset</code> 和 <code>git checkout</code>。这两个命令的功能很强大，同时原理也很复杂，需要到下一章再详细讲解。<code>git restore</code> 从它们的功能中抽取了一个子集，并建立了一种易于理解的接口。</p>
+<p><code>git restore</code> 所做的工作只有一个：<strong>把文件从一棵树复制到另一棵树</strong>。比如说，当我们执行 <code>git restore &lt;file&gt;...</code> 时，是把文件从索引树，也就是暂存区，复制到工作目录中。当我们执行 <code>git restore --staged &lt;file&gt;...</code> 时，是把文件从 HEAD 指向的树复制到暂存区中。因为复制的来源总是比目标要旧，表现出来的就是撤销了对文件的修改。</p>
+<p><code>git restore</code> 的 <code>--staged</code> 和 <code>--worktree</code> 参数分别指定了复制的目标是索引树和工作目录。复制的来源一般是索引树，而如果指定了 <code>--staged</code>，则以 HEAD 指向的树为来源。用 <code>-s &lt;tree&gt;</code> 或者 <code>--source=&lt;tree&gt;</code> 可以自行指定来源。</p>
+<p>下表展示了 <code>git restore</code> 在不同参数下的复制来源与目标的设定。</p>
+<table><thead><tr><th style="text-align: center"></th><th>默认</th><th><code>-s &lt;tree&gt;</code></th></tr></thead><tbody>
+<tr><td style="text-align: center">默认</td><td>暂存区 -&gt; 工作树</td><td>tree -&gt; 工作树</td></tr>
+<tr><td style="text-align: center"><code>--staged</code></td><td>HEAD -&gt; 暂存区</td><td>tree -&gt; 暂存区</td></tr>
+<tr><td style="text-align: center"><code>--worktree</code></td><td>暂存区 -&gt; 工作树</td><td>tree -&gt; 工作树</td></tr>
+<tr><td style="text-align: center"><code>--staged --worktree</code></td><td>HEAD -&gt; 工作树&amp;暂存区</td><td>tree -&gt; 工作树&amp;暂存区</td></tr>
+</tbody></table>
+
+                        <br />
+                        <div class="giscus"></div>
+                        <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Navigation buttons -->
+                            <a rel="prev" href="../储存库/查看历史.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="prev" href="../储存库/查看历史.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left" style="display:none">
+                            </a>
+                            <a rel="next" href="../附录/约定式提交.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                            <a rel="next" href="../附录/约定式提交.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right" style="display:none">
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                    </main>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript" src="../assets/sidetoc.js"></script>
+        <script type="text/javascript" src="../assets/giscus.js"></script>
+    </body>
+</html>
