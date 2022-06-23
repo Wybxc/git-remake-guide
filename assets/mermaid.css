@@ -1,0 +1,64 @@
+html.light {
+  --mermaid-fill: #efe0ff;
+  --mermaid-stroke: #a06fc4;
+  --mermaid-line: var(--fg);
+  --mermaid-font-color: var(--fg);
+  --mermaid-pnode-fill: #ffe7cf;
+  --mermaid-pnode-stroke: #c48f64;
+  --mermaid-ppnode-fill: #ffe0e0;
+  --mermaid-ppnode-stroke: #c46f6f;
+}
+
+html.rust {
+  --mermaid-fill: #dee3c1;
+  --mermaid-stroke: #626e1b;
+  --mermaid-line: var(--fg);
+  --mermaid-font-color: var(--fg);
+  --mermaid-pnode-fill: #f2edd0;
+  --mermaid-pnode-stroke: #6e5f1b;
+  --mermaid-ppnode-fill: #fae2d2;
+  --mermaid-ppnode-stroke: #6e351b;
+}
+
+html.coal,
+html.navy,
+html.ayu {
+  --mermaid-fill: #251d2e;
+  --mermaid-stroke: #ab84e3;
+  --mermaid-line: var(--fg);
+  --mermaid-font-color: var(--fg);
+  --mermaid-pnode-fill: #42300f;
+  --mermaid-pnode-stroke: #ad8651;
+  --mermaid-ppnode-fill: #420f0f;
+  --mermaid-ppnode-stroke: #ad5151;
+}
+
+.mermaid .node > rect {
+  fill: var(--mermaid-fill) !important;
+  stroke: var(--mermaid-stroke) !important;
+}
+
+.mermaid .pnode > rect {
+  fill: var(--mermaid-pnode-fill) !important;
+  stroke: var(--mermaid-pnode-stroke) !important;
+}
+
+.mermaid .ppnode > rect {
+  fill: var(--mermaid-ppnode-fill) !important;
+  stroke: var(--mermaid-ppnode-stroke) !important;
+}
+
+.mermaid hr {
+  background-color: var(--mermaid-stroke);
+  border: none;
+  height: 1.5px;
+}
+
+.mermaid .edgePath .path,
+.mermaid .edgePath .arrowheadPath {
+  stroke: var(--mermaid-line) !important;
+}
+
+.mermaid .label {
+  color: var(--mermaid-font-color) !important;
+}

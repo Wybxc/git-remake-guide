@@ -6,7 +6,21 @@ src = "src"
 title = "Git 重学指南"
 
 [output.html]
-additional-css = ["assets/sidetoc.css", "assets/custom.css"]
-additional-js = ["assets/sidetoc.js", "assets/giscus.js"]
+additional-css = [
+    "assets/sidetoc.css",
+    "assets/custom.css",
+    "assets/mermaid.css",
+]
+additional-js = [
+    "assets/sidetoc.js",
+    "assets/giscus.js",
+    "assets/mermaid.min.js",
+    "assets/mermaid-init.js",
+]
 git-repository-url = "https://github.com/Wybxc/git-remake-guide"
 edit-url-template = "https://github.com/Wybxc/git-remake-guide/edit/main/{path}"
+
+[preprocessor]
+
+[preprocessor.mermaid]
+command = "mdbook-mermaid"
