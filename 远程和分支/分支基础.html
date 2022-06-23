@@ -78,7 +78,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../Git-重学指南.html">Git 重学指南</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../安装/安装.html"><strong aria-hidden="true">1.</strong> 安装</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../安装/下载.html"><strong aria-hidden="true">1.1.</strong> 下载</a></li><li class="chapter-item expanded "><a href="../安装/配置.html"><strong aria-hidden="true">1.2.</strong> 配置</a></li></ol></li><li class="chapter-item expanded "><a href="../储存库/储存库.html"><strong aria-hidden="true">2.</strong> 储存库</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../储存库/创建储存库.html"><strong aria-hidden="true">2.1.</strong> 创建储存库</a></li><li class="chapter-item expanded "><a href="../储存库/管理暂存区.html"><strong aria-hidden="true">2.2.</strong> 管理暂存区</a></li><li class="chapter-item expanded "><a href="../储存库/提交更改.html"><strong aria-hidden="true">2.3.</strong> 提交更改</a></li><li class="chapter-item expanded "><a href="../储存库/查看历史.html"><strong aria-hidden="true">2.4.</strong> 查看历史</a></li><li class="chapter-item expanded "><a href="../储存库/撤销操作.html"><strong aria-hidden="true">2.5.</strong> 撤销操作</a></li></ol></li><li class="chapter-item expanded "><a href="../远程和分支/远程和分支.html"><strong aria-hidden="true">3.</strong> 远程和分支</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../远程和分支/分支基础.html" class="active"><strong aria-hidden="true">3.1.</strong> 分支基础</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 工作流程</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 杂项</div></li><li class="spacer"></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> 附录</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> 语义化版本</div></li><li class="chapter-item expanded "><a href="../附录/约定式提交.html"><strong aria-hidden="true">6.2.</strong> 约定式提交</a></li><li class="chapter-item expanded "><a href="../附录/gitmoji-速查表.html"><strong aria-hidden="true">6.3.</strong> gitmoji 速查表</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Git 重学指南</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../安装/index.html"><strong aria-hidden="true">1.</strong> 安装</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../安装/下载.html"><strong aria-hidden="true">1.1.</strong> 下载</a></li><li class="chapter-item expanded "><a href="../安装/配置.html"><strong aria-hidden="true">1.2.</strong> 配置</a></li></ol></li><li class="chapter-item expanded "><a href="../储存库/index.html"><strong aria-hidden="true">2.</strong> 储存库</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../储存库/创建储存库.html"><strong aria-hidden="true">2.1.</strong> 创建储存库</a></li><li class="chapter-item expanded "><a href="../储存库/管理暂存区.html"><strong aria-hidden="true">2.2.</strong> 管理暂存区</a></li><li class="chapter-item expanded "><a href="../储存库/提交更改.html"><strong aria-hidden="true">2.3.</strong> 提交更改</a></li><li class="chapter-item expanded "><a href="../储存库/查看历史.html"><strong aria-hidden="true">2.4.</strong> 查看历史</a></li><li class="chapter-item expanded "><a href="../储存库/撤销操作.html"><strong aria-hidden="true">2.5.</strong> 撤销操作</a></li></ol></li><li class="chapter-item expanded "><a href="../远程和分支/index.html"><strong aria-hidden="true">3.</strong> 远程和分支</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../远程和分支/分支基础.html" class="active"><strong aria-hidden="true">3.1.</strong> 分支基础</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 工作流程</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 杂项</div></li><li class="spacer"></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> 附录</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> 语义化版本</div></li><li class="chapter-item expanded "><a href="../附录/约定式提交.html"><strong aria-hidden="true">6.2.</strong> 约定式提交</a></li><li class="chapter-item expanded "><a href="../附录/gitmoji-速查表.html"><strong aria-hidden="true">6.3.</strong> gitmoji 速查表</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -169,23 +169,23 @@ git add a.txt
 git commit -m &quot;ver 3.0&quot;
 </code></pre>
 <p>那么，现在它的提交历史是这样的：</p>
-<pre><code class="language-mermaid">graph RL
+<pre class="mermaid">graph RL
 A[commit&lt;br/&gt;5a52af6&lt;hr/&gt;ver 1.0&lt;hr/&gt;blob README]
 B[commit&lt;br/&gt;ea71414&lt;hr/&gt;ver 2.0&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt]
 C[commit&lt;br/&gt;eec6df0&lt;hr/&gt;ver 3.0&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt]
 C--&gt;B--&gt;A
-</code></pre>
+</pre>
 <p>不要对「指针」这个说法感到迷惑。很多关于 Git 的书籍都采用这个说法，因为 Git 的工作原理真的非常像内存分配器。关于工作原理的仔细讨论，我们留到后面文章，这里只需要知道：<strong>在 Git 中，有一些「Git 指针」，它们可以指向 Git 中保存的数据，比如一次提交，或者一个文件</strong>。</p>
 <h2 id="指针和分支"><a class="header" href="#指针和分支">指针和分支</a></h2>
 <p>有一个指针我们已经见过了。它叫做 HEAD，一般指向当前分支的最后一次提交。所以，上面那个图的完整版本应该是这样的：</p>
-<pre><code class="language-mermaid">graph RL
+<pre class="mermaid">graph RL
 A[commit&lt;br/&gt;5a52af6&lt;hr/&gt;ver 1.0&lt;hr/&gt;blob README]
 B[commit&lt;br/&gt;ea71414&lt;hr/&gt;ver 2.0&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt]
 C[commit&lt;br/&gt;eec6df0&lt;hr/&gt;ver 3.0&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt]
 M(main):::pnode--&gt;C
 HEAD([HEAD]):::ppnode--&gt;M
 C--&gt;B--&gt;A
-</code></pre>
+</pre>
 <p>这里假设当前分支的名称叫做 <code>main</code>。</p>
 <p>从图里可以看出来，<strong>分支实际上就是指向一次提交的指针</strong>。而 HEAD 指针，在此时指向的是一个分支，也就是说，它是一个<strong>二重指针</strong>。</p>
 <p>二重指针听起来挺唬人，但在 Git 里几重指针并没有那么重要。Git 在访问时，不论几重指针，都会反复解引用找到它实际指向的东西。HEAD 指针也不一定是二重指针，有的时候它可以直接指向一个具体的提交，至于这种情况，我们会在后面的文章中讨论。</p>
@@ -193,7 +193,7 @@ C--&gt;B--&gt;A
 <p>这里所说的 fork 和 GitHub 的 fork 还有点不同。这里的分叉，指的是 Git 提交历史的分叉，也就是平行分支的诞生。</p>
 <p>Git 采用反向的链表而非正向链表来记录历史，就是为了应对分叉的情形。毕竟一次提交只能基于一个历史，却可以有无数种未来发展的可能。</p>
 <p>当分叉发生之后，历史记录会变成类似这样：</p>
-<pre><code class="language-mermaid">graph RL
+<pre class="mermaid">graph RL
 A[commit&lt;br/&gt;5a52af6&lt;hr/&gt;ver 1.0&lt;hr/&gt;blob README]
 B[commit&lt;br/&gt;ea71414&lt;hr/&gt;ver 2.0&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt]
 C[commit&lt;br/&gt;eec6df0&lt;hr/&gt;ver 3.0&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt]
@@ -203,12 +203,12 @@ BR(dev):::pnode--&gt;D
 HEAD([HEAD]):::ppnode--&gt;BR
 C--&gt;B--&gt;A
 D--&gt;B
-</code></pre>
+</pre>
 <p>在 <code>ver 2.0</code> 之后，发生了分叉，出现了一个新的分支 <code>dev</code>，这个分支和原本的 <code>main</code> 分支是平行进展的。HEAD 指针指向 <code>dev</code>，表示当前正在 <code>dev</code> 分支上工作。</p>
 <h2 id="切换分支"><a class="header" href="#切换分支">切换分支</a></h2>
 <p>在切换分支时，发生了两件事情：<strong>HEAD 指针指向新的分支，随后工作树的内容会变成新切换的分支指向的快照</strong>。</p>
 <p>分叉之后，我们切换到原本的 <code>main</code> 分支：</p>
-<pre><code class="language-mermaid">graph RL
+<pre class="mermaid">graph RL
 A[commit&lt;br/&gt;5a52af6&lt;hr/&gt;ver 1.0&lt;hr/&gt;blob README]
 B[commit&lt;br/&gt;ea71414&lt;hr/&gt;ver 2.0&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt]
 C[commit&lt;br/&gt;eec6df0&lt;hr/&gt;ver 3.0&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt]
@@ -218,12 +218,12 @@ BR(dev):::pnode--&gt;D
 HEAD([HEAD]):::ppnode--&gt;M
 C--&gt;B--&gt;A
 D--&gt;B
-</code></pre>
+</pre>
 <p>看起来几乎没有什么变化。这就是 Git 分支轻量快速的原因。</p>
 <h2 id="删除分支"><a class="header" href="#删除分支">删除分支</a></h2>
 <p>删除分支，真的只是删除“分支”本身。Git 只会删掉分支的指针，别的都不会变。</p>
 <p>比如说，我们删掉 <code>dev</code> 分支：</p>
-<pre><code class="language-mermaid">graph RL
+<pre class="mermaid">graph RL
 A[commit&lt;br/&gt;5a52af6&lt;hr/&gt;ver 1.0&lt;hr/&gt;blob README]
 B[commit&lt;br/&gt;ea71414&lt;hr/&gt;ver 2.0&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt]
 C[commit&lt;br/&gt;eec6df0&lt;hr/&gt;ver 3.0&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt]
@@ -232,7 +232,7 @@ M(main):::pnode--&gt;C
 HEAD([HEAD]):::ppnode--&gt;M
 C--&gt;B--&gt;A
 D--&gt;B
-</code></pre>
+</pre>
 <p>现在指向 <code>7cd1352</code> 这次提交的指针消失了。但是等等，这次提交还保存着一个快照，不是在浪费我们的空间吗？</p>
 <p>没错。所以 Git 会提醒你，<strong><code>dev</code> 分支的工作没有完全并入主分支，这时删除需要谨慎</strong>。你可以用命令来强制删除 <code>dev</code> 分支，那么 <code>7cd1352</code> 这次提交就无法被任何分支访问了。</p>
 <p>这种不可及的快照，会被 Git 的垃圾回收机制删除。这是 Git 工作起来确实像一个内存分配器的另一个表现。关于垃圾回收机制，我们会在后续的文章展开讲解。</p>
@@ -241,10 +241,10 @@ D--&gt;B
                         <div class="giscus"></div>
                         <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Navigation buttons -->
-                            <a rel="prev" href="../远程和分支/远程和分支.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../远程和分支/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                            <a rel="prev" href="../远程和分支/远程和分支.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left" style="display:none">
+                            <a rel="prev" href="../远程和分支/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left" style="display:none">
                             </a>
                             <a rel="next" href="../附录/约定式提交.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
