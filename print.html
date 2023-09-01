@@ -829,6 +829,9 @@ a11bef0 - Scott Chacon, 6 years ago : first commit
 </code>
 </pre>
 <h2 id="在钩子中使用-git-log"><a class="header" href="#在钩子中使用-git-log">在钩子中使用 <code>git log</code></a></h2>
+<blockquote>
+<p>后来我发现在 <code>pre-push</code> 钩子里使用交互式命令会破坏一些自动化工具的使用，所以是否使用下面的钩子，还是要看你自己的情况。</p>
+</blockquote>
 <p>上一节我们说过，必须重视每一次提交，保证不完整的提交记录不会被推送到远程。</p>
 <p>但是，Git 并非一个所见即所得的系统，有时候你做出了一些更改，并不能立刻想到结果是到底是什么样的。这时 <code>git log</code> 会是很好的帮助，它可以帮你检查你做出的更改是否有问题。只要更改还留在本地，你永远有修正的机会。</p>
 <p>不过，假如在提推送前你忘记了用 <code>git log</code> 查看一下，就有可能发生一些不好的事情。所以，<strong>我们需要一个东西，来提醒我们在每次推送之前 <code>git log</code> 一下。这种东西就是 Git 钩子</strong>。</p>
