@@ -1,0 +1,11 @@
+{
+    "markdownlint.config": {
+        "MD010": false,
+        "MD024": false,
+        "MD033": false,
+        "MD036": false,
+        "MD040": false,
+        "MD041": false,
+        "MD042": false,
+    }
+}
