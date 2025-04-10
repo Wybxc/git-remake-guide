@@ -1,15 +1,17 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="en" class="light sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>Git 重学指南</title>
-        <meta name="robots" content="noindex" />
+        <meta name="robots" content="noindex">
+
+
         <!-- Custom HTML head -->
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -17,31 +19,38 @@
         <link rel="stylesheet" href="css/general.css">
         <link rel="stylesheet" href="css/chrome.css">
         <link rel="stylesheet" href="css/print.css" media="print">
+
         <!-- Fonts -->
         <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
         <link rel="stylesheet" href="fonts/fonts.css">
+
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
         <link rel="stylesheet" href="assets/sidetoc.css">
         <link rel="stylesheet" href="assets/custom.css">
         <link rel="stylesheet" href="assets/mermaid.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
     </head>
     <body>
-        <!-- Provide site root to javascript -->
-        <script type="text/javascript">
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
-        </script>
-
+    <div id="body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
-        <script type="text/javascript">
+        <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -54,50 +63,60 @@
         </script>
 
         <!-- Set the theme before any content is loaded, prevents flash -->
-        <script type="text/javascript">
-            var theme;
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
-            html.classList.remove('no-js')
+            const html = document.documentElement;
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            html.classList.add("js");
         </script>
 
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
         <!-- Hide / unhide sidebar before it is displayed -->
-        <script type="text/javascript">
-            var html = document.querySelector('html');
-            var sidebar = 'hidden';
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
+            sidebar_toggle.checked = sidebar === 'visible';
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Git 重学指南</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="安装/index.html"><strong aria-hidden="true">1.</strong> 安装</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="安装/下载.html"><strong aria-hidden="true">1.1.</strong> 下载</a></li><li class="chapter-item expanded "><a href="安装/配置.html"><strong aria-hidden="true">1.2.</strong> 配置</a></li></ol></li><li class="chapter-item expanded "><a href="储存库/index.html"><strong aria-hidden="true">2.</strong> 储存库</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="储存库/创建储存库.html"><strong aria-hidden="true">2.1.</strong> 创建储存库</a></li><li class="chapter-item expanded "><a href="储存库/管理暂存区.html"><strong aria-hidden="true">2.2.</strong> 管理暂存区</a></li><li class="chapter-item expanded "><a href="储存库/提交更改.html"><strong aria-hidden="true">2.3.</strong> 提交更改</a></li><li class="chapter-item expanded "><a href="储存库/查看历史.html"><strong aria-hidden="true">2.4.</strong> 查看历史</a></li><li class="chapter-item expanded "><a href="储存库/撤销操作.html"><strong aria-hidden="true">2.5.</strong> 撤销操作</a></li></ol></li><li class="chapter-item expanded "><a href="远程和分支/index.html"><strong aria-hidden="true">3.</strong> 远程和分支</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="远程和分支/分支基础.html"><strong aria-hidden="true">3.1.</strong> 分支基础</a></li><li class="chapter-item expanded "><a href="远程和分支/创建和切换分支.html"><strong aria-hidden="true">3.2.</strong> 创建和切换分支</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> 工作流程</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> 杂项</div></li><li class="spacer"></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> 附录</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> 语义化版本</div></li><li class="chapter-item expanded "><a href="附录/约定式提交.html"><strong aria-hidden="true">6.2.</strong> 约定式提交</a></li><li class="chapter-item expanded "><a href="附录/gitmoji-速查表.html"><strong aria-hidden="true">6.3.</strong> gitmoji 速查表</a></li></ol></li></ol>
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
                 <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
@@ -117,6 +136,7 @@
                         <a href="https://github.com/Wybxc/git-remake-guide" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
+
                     </div>
                 </div>
 
@@ -130,8 +150,9 @@
                         </ul>
                     </div>
                 </div>
+
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
-                <script type="text/javascript">
+                <script>
                     document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
                     document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
                     Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
@@ -142,6 +163,7 @@
                 <div id="content" class="content">
                     <!-- Page table of contents -->
                     <div class="sidetoc"><nav class="pagetoc"></nav></div>
+
                     <main>
                         <h1 id="git-重学指南"><a class="header" href="#git-重学指南">Git 重学指南</a></h1>
 <blockquote>
@@ -220,8 +242,8 @@ sudo yum install git
 <div style="break-before: page; page-break-before: always;"></div><h1 id="配置"><a class="header" href="#配置">配置</a></h1>
 <h2 id="名字和邮箱"><a class="header" href="#名字和邮箱">名字和邮箱</a></h2>
 <p>在命令行输入：</p>
-<pre><code class="language-bash">git config --global user.name &quot;Your Name&quot;
-git config --global user.email &quot;email@example.com&quot;
+<pre><code class="language-bash">git config --global user.name "Your Name"
+git config --global user.email "email@example.com"
 </code></pre>
 <p>因为 Git 是分布式版本控制系统，所以，每个机器都必须自报家门：你的名字和邮箱。大多数情况下，Git 就是靠这些来确定身份的。</p>
 <p>注意 <code>git config</code> 命令的 <code>--global</code> 参数，这表示将配置设置为全局的。全局设置对本机的每个仓库都生效。</p>
@@ -271,9 +293,9 @@ git config --global commit.gpgsign true
 <p>此时可以随便开一个 Git 仓库，测试一下 GPG 签名是否可用：</p>
 <pre><code>$ git init test
 $ cd test
-$ echo &quot;test&quot; &gt; test.txt
+$ echo "test" &gt; test.txt
 $ git add .
-$ git commit -m &quot;test&quot;
+$ git commit -m "test"
 $ git cat-file commit HEAD
 tree 02bdfa7bef60afbeb20ae09bb3145e2a4b1cb977
 author 忘忧北萱草 &lt;wybxc@qq.com&gt; 1655478113 +0800
@@ -304,7 +326,7 @@ $ git config --global gpg.program /usr/bin/gpg
 <p>如果遇到 <code>error: gpg failed to sign the data</code> 的问题，可以尝试把 <code>GPG_TTY</code> 环境变量设置为 <code>$(tty)</code>（<a href="https://gist.github.com/repodevs/a18c7bb42b2ab293155aca889d447f1b">参考</a>）：</p>
 <pre><code class="language-shell">$ git config user.signingKey 38AF394C
 $ git config commit.gpgSign true
-$ echo &quot;test&quot; | gpg --clearsign
+$ echo "test" | gpg --clearsign
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA256
 
@@ -313,7 +335,7 @@ gpg: signing failed: Inappropriate ioctl for device
 gpg: [stdin]: clear-sign failed: Inappropriate ioctl for device
 
 $ export GPG_TTY=$(tty)
-$ echo &quot;test&quot; | gpg --clearsign
+$ echo "test" | gpg --clearsign
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA256
 
@@ -443,20 +465,20 @@ git-remake-guide
 <pre><code>$ git status
 On branch 管理暂存区
 Changes to be committed:
-  (use &quot;git restore --staged &lt;file&gt;...&quot; to unstage)
+  (use "git restore --staged &lt;file&gt;..." to unstage)
         new file:   src/储存库/Git-文件状态.svg
 
 Changes not staged for commit:
-  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
-  (use &quot;git restore &lt;file&gt;...&quot; to discard changes in working directory)
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git restore &lt;file&gt;..." to discard changes in working directory)
         modified:   src/SUMMARY.md
         deleted:    test.txt
 
 Untracked files:
-  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+  (use "git add &lt;file&gt;..." to include in what will be committed)
         src/储存库/管理暂存区.md
 
-no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
+no changes added to commit (use "git add" and/or "git commit -a")
 </code></pre>
 <p>这就是一个典型的 <code>git status</code> 的输出，它显示了哪些文件是已暂存的，哪些文件是已修改的，哪些文件是未跟踪的。</p>
 <h3 id="状态简览"><a class="header" href="#状态简览">状态简览</a></h3>
@@ -498,7 +520,7 @@ M  lib/simplegit.rb
 $ git status
 On branch master
 Changes to be committed:
-    (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
+    (use "git reset HEAD &lt;file&gt;..." to unstage)
         renamed: README.md -&gt; README        
 </code></pre>
 <p>事实上，运行 <code>git mv</code> 就相当于运行了下面三条命令：</p>
@@ -559,12 +581,13 @@ doc/**/*.pdf
 <p>在上面我也提到了，这张图是“正常的”状态周期。那么，有没有“不正常”的状态周期呢？</p>
 <p>实际上我们已经见识过了，就是 <code>git rm</code> 命令的两个选项：<code>--cached</code> 和 <code>-f</code>。前者可以把已暂存的文件变成其他状态，后者更是可以强行把任何文件变成未跟踪状态并且从硬盘上删除。这些操作对应的箭头，都是在正常的状态周期中没有出现的。</p>
 <p>下面这个表格展示了在文件在不同状态之间的转换：</p>
-<table><thead><tr><th style="text-align: center"></th><th style="text-align: center">从「未跟踪」</th><th style="text-align: center">从「未修改」</th><th style="text-align: center">从「已修改」</th><th style="text-align: center">从「已暂存」</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: center"></th><th style="text-align: center">从「未跟踪」</th><th style="text-align: center">从「未修改」</th><th style="text-align: center">从「已修改」</th><th style="text-align: center">从「已暂存」</th></tr></thead><tbody>
 <tr><td style="text-align: center"><strong>到「未跟踪」</strong></td><td style="text-align: center">-</td><td style="text-align: center"><code>git rm</code></td><td style="text-align: center"><em><code>git rm -f</code></em></td><td style="text-align: center"><em><code>git rm --cached</code></em></td></tr>
 <tr><td style="text-align: center"><strong>到「未修改」</strong></td><td style="text-align: center">-</td><td style="text-align: center">-</td><td style="text-align: center"><em><code>git restore</code></em></td><td style="text-align: center"><code>git commit</code> <em>或 <code>git checkout</code></em></td></tr>
 <tr><td style="text-align: center"><strong>到「已修改」</strong></td><td style="text-align: center">-</td><td style="text-align: center">edit file</td><td style="text-align: center">-</td><td style="text-align: center"><em><code>git restore --staged</code></em></td></tr>
 <tr><td style="text-align: center"><strong>到「已暂存」</strong></td><td style="text-align: center"><code>git add</code></td><td style="text-align: center">-</td><td style="text-align: center"><code>git add</code></td><td style="text-align: center">-</td></tr>
 </tbody></table>
+</div>
 <p>表格中 <code>-</code> 表示无需转换或不能转换。斜体标出的是所谓的“不正常”状态周期操作。</p>
 <h3 id="不正常-vs-不允许"><a class="header" href="#不正常-vs-不允许">不正常 vs 不允许</a></h3>
 <p>其实，所谓的“不正常”是我自造的一个说法。<strong>这些“不正常”的操作，并非不允许这么做，实际上它们完全是被允许的</strong>，不然 Git 就不会提供干这些事情的命令了。</p>
@@ -604,7 +627,7 @@ M  c.txt
 </blockquote>
 <h2 id="git-commit"><a class="header" href="#git-commit">git commit</a></h2>
 <p><code>git commit</code> 命令将缓存的快照提交到项目历史。提交的快照可以认为是项目安全的版本，Git 永远不会改变它们，除非你这么要求。和 <code>git add</code> 一样，这是最重要的 Git 命令之一。</p>
-<p>最常用的方式是 <code>git commit -m &quot;&lt;message&gt;&quot;</code>，这会将暂存区的内容提交到历史，并且附加一个提交信息。</p>
+<p>最常用的方式是 <code>git commit -m "&lt;message&gt;"</code>，这会将暂存区的内容提交到历史，并且附加一个提交信息。</p>
 <h3 id="在文本编辑器中输入提交信息"><a class="header" href="#在文本编辑器中输入提交信息">在文本编辑器中输入提交信息</a></h3>
 <p>如果不指定 <code>-m</code> 参数，Git 会打开你的文本编辑器，等待你输入提交信息。这在想要输入多行的提交信息时非常有用。</p>
 <blockquote>
@@ -624,7 +647,7 @@ M  c.txt
 ~
 ~
 ~
-&quot;.git/COMMIT_EDITMSG&quot; 9L, 283C
+".git/COMMIT_EDITMSG" 9L, 283C
 </code></pre>
 <p>可以看到，默认的提交消息包含最后一次运行 <code>git status</code> 的输出，放在注释行里，另外开头还有一个空行，供你输入提交说明。你完全可以去掉这些注释行，不过留着也没关系，多少能帮你回想起这次更新的内容有哪些。</p>
 <p>更详细的内容修改提示可以用 -v 选项查看，这会将你所作的更改的 diff 输出呈现在编辑器中，以便让你知道本次提交具体作出哪些修改。</p>
@@ -670,7 +693,7 @@ M  c.txt
 * f6a09fe :bug: Fix stats not updating
 </code></pre>
 <p>然后产生一条新的 amend 提交：</p>
-<pre><code>git commit --amend -m &quot;:bug: Fix layout issues&quot;
+<pre><code>git commit --amend -m ":bug: Fix layout issues"
 </code></pre>
 <p>新的历史记录会是这样：</p>
 <pre><code>* d5b5ad3 :bug: Fix layout issues
@@ -714,10 +737,10 @@ Date:   Sat Mar 15 10:31:28 2008 -0700
 <pre><code>git log -n &lt;limit&gt;
 </code></pre>
 <p>显示前 <code>&lt;limit&gt;</code> 个提交。比如 <code>git log -n 3</code> 只会显示 3 个提交。<code>-n 3</code> 也可以写成 <code>-3</code>。</p>
-<pre><code>git log --author=&quot;&lt;pattern&gt;&quot;
+<pre><code>git log --author="&lt;pattern&gt;"
 </code></pre>
 <p>搜索特定作者的提交。<code>&lt;pattern&gt;</code> 可以是字符串或正则表达式。</p>
-<pre><code>git log --grep=&quot;&lt;pattern&gt;&quot;
+<pre><code>git log --grep="&lt;pattern&gt;"
 </code></pre>
 <p>搜索特定提交信息的提交。<code>&lt;pattern&gt;</code> 可以是字符串或正则表达式。</p>
 <pre><code>git log &lt;since&gt;..&lt;until&gt;
@@ -729,7 +752,7 @@ Date:   Sat Mar 15 10:31:28 2008 -0700
 <pre><code>git log --since=&lt;since&gt;
 git log --until=&lt;until&gt;
 </code></pre>
-<p>仅显示指定时间之后或之前的提交。<code>&lt;since&gt;</code> 和 <code>&lt;until&gt;</code> 可以为多种时间格式，可以是类似 &quot;2008-01-15&quot; 的具体的某一天，也可以是类似 &quot;2 years 1 day 3 minutes ago&quot; 的相对日期。</p>
+<p>仅显示指定时间之后或之前的提交。<code>&lt;since&gt;</code> 和 <code>&lt;until&gt;</code> 可以为多种时间格式，可以是类似 "2008-01-15" 的具体的某一天，也可以是类似 "2 years 1 day 3 minutes ago" 的相对日期。</p>
 <pre><code>git log -S &lt;name&gt;
 </code></pre>
 <p>仅显示添加或删除特定字符串的提交。比如，搜索代码中添加或删除了对某一个特定函数的引用的提交。</p>
@@ -749,12 +772,12 @@ index a874b73..8f94139 100644
 @@ -5,7 +5,7 @@ require 'rake/gempackagetask'
  spec = Gem::Specification.new do |s|
      s.platform  =   Gem::Platform::RUBY
-     s.name      =   &quot;simplegit&quot;
--    s.version   =   &quot;0.1.0&quot;
-+    s.version   =   &quot;0.1.1&quot;
-     s.author    =   &quot;Scott Chacon&quot;
-     s.email     =   &quot;schacon@gee-mail.com&quot;
-     s.summary   =   &quot;A simple gem for using Git in Ruby code.&quot;
+     s.name      =   "simplegit"
+-    s.version   =   "0.1.0"
++    s.version   =   "0.1.1"
+     s.author    =   "Scott Chacon"
+     s.email     =   "schacon@gee-mail.com"
+     s.summary   =   "A simple gem for using Git in Ruby code."
 </code></pre>
 <p><code>--stat</code> 选项可以显示每次提交的简略统计信息，包括所有被修改过的文件、有多少文件被修改了以及被修改过的文件的哪些行被移除或是添加。</p>
 <pre><code>$ git log --stat -1
@@ -771,13 +794,13 @@ Date:   Sat Mar 15 10:31:28 2008 -0700
 </code></pre>
 <h2 id="格式化输出"><a class="header" href="#格式化输出">格式化输出</a></h2>
 <p><code>--format</code> 选项可以定制记录的显示格式。这样的输出对后期提取分析格外有用——因为你知道输出的格式不会随着 Git 的更新而发生改变：</p>
-<pre><code>$ git log --pretty=format:&quot;%h - %an, %ar : %s&quot;
+<pre><code>$ git log --pretty=format:"%h - %an, %ar : %s"
 ca82a6d - Scott Chacon, 6 years ago : changed the version number
 085bb3b - Scott Chacon, 6 years ago : removed unnecessary test
 a11bef0 - Scott Chacon, 6 years ago : first commit
 </code></pre>
 <p>下面列出了 <code>--format</code> 接受的常用格式占位符的写法及其代表的意义。</p>
-<table><thead><tr><th>占位符</th><th>说明</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>占位符</th><th>说明</th></tr></thead><tbody>
 <tr><td>%H</td><td>提交的完整哈希值</td></tr>
 <tr><td>%h</td><td>提交的短哈希值</td></tr>
 <tr><td>%T</td><td>树的完整哈希值</td></tr>
@@ -794,9 +817,10 @@ a11bef0 - Scott Chacon, 6 years ago : first commit
 <tr><td>%cr</td><td>提交日期（距今多长时间）</td></tr>
 <tr><td>%s</td><td>提交说明</td></tr>
 </tbody></table>
+</div>
 <p>你一定奇怪作者和提交者之间究竟有何差别，其实作者指的是实际作出修改的人，提交者指的是最后将此工作成果提交到仓库的人。所以，当你为某个项目发布补丁，然后某个核心成员将你的补丁并入项目时，你就是作者，而那个核心成员就是提交者。关于其中具体的区别，我们会在以后的章节中详细讨论。</p>
 <p>当 <code>format</code> 与另一个 log 选项 <code>--graph</code> 结合使用时尤其有用。 这个选项添加了一些 ASCII 字符串来形象地展示你的分支、合并历史：</p>
-<pre><code>$ git log --pretty=format:&quot;%h %s&quot; --graph
+<pre><code>$ git log --pretty=format:"%h %s" --graph
 * 2d3acf9 ignore errors from SIGCHLD on trap
 *  5e3ee11 Merge branch 'master' of git://github.com/dustin/grit
 |\
@@ -812,7 +836,7 @@ a11bef0 - Scott Chacon, 6 years ago : first commit
 <pre><code>git log --no-merges --color --graph --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit
 </code></pre>
 <p>可以为这一长串命令起一个别名：</p>
-<pre><code>git config --global alias.ls &quot;log --no-merges --color --graph --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit&quot;
+<pre><code>git config --global alias.ls "log --no-merges --color --graph --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit"
 </code></pre>
 <p>之后，就可以用 <code>git ls</code> 来快速调用这个命令。</p>
 <pre><code class="hljs" style="background-color: black"><span style="color:#DCDFE4;">$ git ls -10</span>
@@ -840,19 +864,19 @@ a11bef0 - Scott Chacon, 6 years ago : first commit
 <p>将 <code>pre-push</code> 的内容修改为：</p>
 <pre><code class="language-bash">#!/bin/bash
 
-remote=&quot;$1&quot;
-url=&quot;$2&quot;
+remote="$1"
+url="$2"
 
-echo &quot;You are pushing to $remote($url), please check the commits history: &quot;
+echo "You are pushing to $remote($url), please check the commits history: "
 
 git log --no-merges --color --graph --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit -10
 
-echo &quot;&quot;
-read -r -p &quot;Type 'y' to continue or 'n' to abort: &quot; confirm &lt; /dev/tty
+echo ""
+read -r -p "Type 'y' to continue or 'n' to abort: " confirm &lt; /dev/tty
 if [[ $confirm =~ ^[Yy]$ ]]; then
     exit 0
 else
-    echo &quot;Abort.&quot;
+    echo "Abort."
     exit 1
 fi
 </code></pre>
@@ -890,7 +914,7 @@ branch 'master' set up to track 'origin/master'.
 $ git status
 On branch master
 Changes to be committed:
-  (use &quot;git restore --staged &lt;file&gt;...&quot; to unstage)
+  (use "git restore --staged &lt;file&gt;..." to unstage)
 
     renamed:    README.md -&gt; README
     modified:   CONTRIBUTING.md
@@ -900,13 +924,13 @@ Changes to be committed:
 $ git status
 On branch master
 Changes to be committed:
-  (use &quot;git restore --staged &lt;file&gt;...&quot; to unstage)
+  (use "git restore --staged &lt;file&gt;..." to unstage)
 
     renamed:    README.md -&gt; README
 
 Changes not staged for commit:
-  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
-  (use &quot;git restore &lt;file&gt;...&quot; to discard changes in working directory)
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git restore &lt;file&gt;..." to discard changes in working directory)
 
     modified:   CONTRIBUTING.md
 </code></pre>
@@ -917,8 +941,8 @@ Changes not staged for commit:
 <h3 id="撤消对文件的修改"><a class="header" href="#撤消对文件的修改">撤消对文件的修改</a></h3>
 <p>如果你并不想保留对 <code>CONTRIBUTING.md</code> 文件的修改怎么办？你该如何方便地撤消修改——将它还原成上次提交时的样子（或者刚克隆完的样子，或者刚把它放入工作目录时的样子）？幸运的是，<code>git status</code> 也告诉了你应该如何做。在最后一个例子中，未暂存区域是这样：</p>
 <pre><code>Changes not staged for commit:
-  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
-  (use &quot;git restore &lt;file&gt;...&quot; to discard changes in working directory)
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git restore &lt;file&gt;..." to discard changes in working directory)
 
     modified:   CONTRIBUTING.md
 </code></pre>
@@ -927,7 +951,7 @@ Changes not staged for commit:
 $ git status
 On branch master
 Changes to be committed:
-  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
+  (use "git reset HEAD &lt;file&gt;..." to unstage)
 
     renamed:    README.md -&gt; README
 </code></pre>
@@ -956,11 +980,12 @@ Changes to be committed:
 <h2 id="撤销的原理"><a class="header" href="#撤销的原理">撤销的原理</a></h2>
 <h3 id="快照"><a class="header" href="#快照">快照</a></h3>
 <p>理解 <code>git restore</code> 的最简方法，就是以 Git 的思维框架（将其作为内容管理器）来管理三棵不同的「树」。</p>
-<table><thead><tr><th style="text-align: center">树</th><th style="text-align: center">用途</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: center">树</th><th style="text-align: center">用途</th></tr></thead><tbody>
 <tr><td style="text-align: center">HEAD</td><td style="text-align: center">上一次提交的快照</td></tr>
 <tr><td style="text-align: center">Index（索引/暂存区）</td><td style="text-align: center">预期的下一次提交的快照</td></tr>
 <tr><td style="text-align: center">工作目录</td><td style="text-align: center">沙盒</td></tr>
 </tbody></table>
+</div>
 <p>这里涉及到一个 Git 的概念：<strong>快照</strong>。快照是对 Git 中工作目录的状态的一次完整记录。Git 所管理的版本历史便是由一个个快照组成的。</p>
 <p>必须要澄清一个误区：虽然 Git 似乎无时无刻不在“比较”两个文件的版本，但<strong>在 Git 中，保存的并非是文件的差异，而是每一次都保存文件的完整内容</strong>。事实上，我们在 Git 中看到的各种比较结果，都真的是在比较两个文件，<strong>文件的差异是临时算出来的</strong>。</p>
 <p>你可能会疑惑：如果每一次提交都保存了整个工作区的内容，那么储存库不是会飞速地膨胀吗？其实不用担心。对于两次提交中没有改变的文件，Git 在储存库中只会保存一份内容。所以 Git 的储存方式还是比较精简的。</p>
@@ -1008,13 +1033,13 @@ $ git ls-tree -r HEAD
 <p><code>git restore</code> 所做的工作只有一个：<strong>把文件从一棵树复制到另一棵树</strong>。比如说，当我们执行 <code>git restore &lt;file&gt;...</code> 时，是把文件从索引树，也就是暂存区，复制到工作目录中。当我们执行 <code>git restore --staged &lt;file&gt;...</code> 时，是把文件从 HEAD 指向的树复制到暂存区中。因为复制的来源总是比目标要旧，表现出来的就是撤销了对文件的修改。</p>
 <p><code>git restore</code> 的 <code>--staged</code> 和 <code>--worktree</code> 参数分别指定了复制的目标是索引树和工作目录。复制的来源一般是索引树，而如果指定了 <code>--staged</code>，则以 HEAD 指向的树为来源。用 <code>-s &lt;tree&gt;</code> 或者 <code>--source=&lt;tree&gt;</code> 可以自行指定来源。</p>
 <p>下表展示了 <code>git restore</code> 在不同参数下的复制来源与目标的设定。</p>
-<table><thead><tr><th style="text-align: center"></th><th>默认</th><th><code>-s &lt;tree&gt;</code></th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: center"></th><th>默认</th><th><code>-s &lt;tree&gt;</code></th></tr></thead><tbody>
 <tr><td style="text-align: center">默认</td><td>暂存区 -&gt; 工作树</td><td>tree -&gt; 工作树</td></tr>
 <tr><td style="text-align: center"><code>--staged</code></td><td>HEAD -&gt; 暂存区</td><td>tree -&gt; 暂存区</td></tr>
 <tr><td style="text-align: center"><code>--worktree</code></td><td>暂存区 -&gt; 工作树</td><td>tree -&gt; 工作树</td></tr>
 <tr><td style="text-align: center"><code>--staged --worktree</code></td><td>HEAD -&gt; 工作树&amp;暂存区</td><td>tree -&gt; 工作树&amp;暂存区</td></tr>
 </tbody></table>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="远程和分支"><a class="header" href="#远程和分支">远程和分支</a></h1>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="远程和分支"><a class="header" href="#远程和分支">远程和分支</a></h1>
 <p>如果说储存库是 Git 的基础，那么分支则是 Git 的精华。</p>
 <p><strong>分支最容易理解的意义，是表示两个平行存在的版本</strong>，它们在历史的某一点发生分歧，走向不同，也可以在未来的某一点重新合并。Git 的分支非常轻量，因为 Git 鼓励用户通过大量地创建和合并分支，来完成协作工作。</p>
 <p>远程对大多数人来说也许更加熟悉，像 GitHub、GitLab、Bitbucket 这些，都是远程储存库的托管网站。<strong>远程是一个或多个非本机的储存库</strong>。Git 是一个分布式的协作系统，这意味着各个储存库在地位上是等同的。储存库间的协作，围绕着远程储存库的同步展开。</p>
@@ -1030,17 +1055,17 @@ $ git ls-tree -r HEAD
 <p>Git 使用一种类似于反向链表的结构来组织不同版本的快照。每一个节点表示一次提交，其中包含了一个版本快照，加上一条提交消息，以及一个指向上一个版本的指针。</p>
 <p>比如，我们这样子创建一个有三个版本的储存库：</p>
 <pre><code class="language-bash">git init
-echo &quot;Sample&quot; &gt; README
+echo "Sample" &gt; README
 git add README
-git commit -m &quot;ver 1.0&quot;
+git commit -m "ver 1.0"
 
-echo &quot;2.0&quot; &gt; a.txt
+echo "2.0" &gt; a.txt
 git add a.txt
-git commit -m &quot;ver 2.0&quot;
+git commit -m "ver 2.0"
 
-echo &quot;3.0&quot; &gt;&gt; a.txt
+echo "3.0" &gt;&gt; a.txt
 git add a.txt
-git commit -m &quot;ver 3.0&quot;
+git commit -m "ver 3.0"
 </code></pre>
 <p>那么，现在它的提交历史是这样的：</p>
 <pre class="mermaid">graph RL
@@ -1318,7 +1343,7 @@ BREAKING CHANGE: `extends` key in config file is now used for extending other co
 <blockquote>
 <p>下面是一些常用的 gitmoji。完整的列表可以参见 <a href="https://gitmoji.js.org/">Gitmoji 的网站</a>。</p>
 </blockquote>
-<table><thead><tr><th>提交类型</th><th>Emoji</th><th>代码</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>提交类型</th><th>Emoji</th><th>代码</th></tr></thead><tbody>
 <tr><td>创世提交。</td><td>🎉</td><td>:tada:</td></tr>
 <tr><td>引入不兼容改动。</td><td>💥</td><td>:boom:</td></tr>
 <tr><td>性能改善。</td><td>⚡️</td><td>:zap:</td></tr>
@@ -1344,6 +1369,7 @@ BREAKING CHANGE: `extends` key in config file is now used for extending other co
 <tr><td>添加一个彩蛋。</td><td>🥚</td><td>:egg:</td></tr>
 <tr><td>添加或者更新 .gitignore 文件。</td><td>🙈</td><td>:see_no_evil:</td></tr>
 </tbody></table>
+</div>
 <h2 id="本项目采用的-gitmoji-规范"><a class="header" href="#本项目采用的-gitmoji-规范">本项目采用的 gitmoji 规范</a></h2>
 <p>因为本项目是一个电子书，所以一般的代码仓库的 gitmoji 规范不完全适用。下面是本仓库采用的 gitmoji 规范：</p>
 <ul>
@@ -1363,34 +1389,51 @@ BREAKING CHANGE: `extends` key in config file is now used for extending other co
 
                         <br />
                         <div class="giscus"></div>
+
                         <nav class="nav-wrapper" aria-label="Page navigation">
-                        <!-- Navigation buttons -->
+                        <!-- Mobile navigation buttons -->
+
+
                         <div style="clear: both"></div>
                     </nav>
                     </main>
                 </div>
             </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
         </div>
 
-        <script type="text/javascript">
+
+
+
+        <script>
             window.playground_copyable = true;
         </script>
-        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
-        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
 
         <!-- Custom JS scripts -->
-        <script type="text/javascript" src="assets/sidetoc.js"></script>
-        <script type="text/javascript" src="assets/giscus.js"></script>
-        <script type="text/javascript" src="assets/mermaid.min.js"></script>
-        <script type="text/javascript" src="assets/mermaid-init.js"></script>
-        <script type="text/javascript">
+        <script src="assets/sidetoc.js"></script>
+        <script src="assets/giscus.js"></script>
+        <script src="assets/mermaid.min.js"></script>
+        <script src="assets/mermaid-init.js"></script>
+
+        <script>
         window.addEventListener('load', function() {
             window.setTimeout(window.print, 100);
         });
         </script>
+
+    </div>
     </body>
 </html>
