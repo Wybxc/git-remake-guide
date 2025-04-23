@@ -1,0 +1,383 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>合并分支 - Git 重学指南</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../assets/sidetoc.css">
+        <link rel="stylesheet" href="../assets/custom.css">
+        <link rel="stylesheet" href="../assets/mermaid.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Git 重学指南</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/Wybxc/git-remake-guide" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/Wybxc/git-remake-guide/edit/main/src/远程和分支/合并分支.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <!-- Page table of contents -->
+                    <div class="sidetoc"><nav class="pagetoc"></nav></div>
+
+                    <main>
+                        <h1 id="合并分支"><a class="header" href="#合并分支">合并分支</a></h1>
+<blockquote>
+<p>本节部分内容参考自 <a href="https://git-scm.com/docs/merge-strategies">Git Reference</a>，在原文基础上有一定修改。</p>
+</blockquote>
+<h2 id="git-merge"><a class="header" href="#git-merge">git merge</a></h2>
+<p>想象你用 <code>git switch -c</code> 创建了一个新的分支，这个分支的历史从此就和主分支分道扬镳了。如果分支只能新建，不能合并，那么项目的历史就会越来越复杂，这不是一个合格的版本控制系统应该有的行为。Git 允许你将一个分支合并入另一个分支，以此宣告一个分支的使命终结。</p>
+<p>在Git中，<code>git merge</code> 是将分支历史重新结合的主要方式。</p>
+<p>一个典型的场景是，当你在特性分支上完成开发后，通常需要将其合并回主分支。这种情况下，需要先切换到主分支，然后在主分支上执行 <code>git merge</code> 命令。</p>
+<pre><code class="language-shell">git switch main
+git merge feature
+</code></pre>
+<p>这个操作会将 feature 分支的内容合并到当前所在的 main 分支。</p>
+<p>为什么要先切换到主分支？Git 约定的操作逻辑是：<strong>你在当前分支上执行的命令，都是针对当前分支的</strong>。将特性分支的内容合并到主分支是对主分支内容的修改，因此需要先切换到主分支。</p>
+<h2 id="合并的两种方式"><a class="header" href="#合并的两种方式">合并的两种方式</a></h2>
+<p>根据分支历史的不同，合并会产生两种结果：</p>
+<p>第一种情况，当目标分支是被合并分支的直接上游时，此时发生的是<strong>快进合并(Fast-forward)</strong>。例如，这是合并前的分支状态：</p>
+<pre class="mermaid">graph RL
+A[commit&lt;br/&gt;5a52af6&lt;hr/&gt;ver 1.0&lt;hr/&gt;blob README]
+B[commit&lt;br/&gt;ea71414&lt;hr/&gt;ver 2.0&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt]
+D[commit&lt;br/&gt;7cd1352&lt;hr/&gt;ver 2.1&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt&lt;br/&gt;hotfix.patch]
+M(main):::pnode--&gt;B
+BR(feature):::pnode--&gt;D
+HEAD([HEAD]):::ppnode--&gt;M
+B--&gt;A
+D--&gt;B
+</pre>
+<p>将 feature 分支以快进合并的方式合并到 main 分支后，分支状态变为：</p>
+<pre class="mermaid">graph RL
+A[commit&lt;br/&gt;5a52af6&lt;hr/&gt;ver 1.0&lt;hr/&gt;blob README]
+B[commit&lt;br/&gt;ea71414&lt;hr/&gt;ver 2.0&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt]
+D[commit&lt;br/&gt;7cd1352&lt;hr/&gt;ver 2.1&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt&lt;br/&gt;hotfix.patch]
+M(main):::pnode--&gt;D
+BR(feature):::pnode--&gt;D
+HEAD([HEAD]):::ppnode--&gt;M
+B--&gt;A
+D--&gt;B
+</pre>
+<p>第二种情况，如果两个分支在分叉之后，各自都有新提交，则会创建<strong>合并提交(merge commit)</strong>。例如，这是合并前的分支状态：</p>
+<pre class="mermaid">graph RL
+A[commit&lt;br/&gt;5a52af6&lt;hr/&gt;ver 1.0&lt;hr/&gt;blob README]
+B[commit&lt;br/&gt;ea71414&lt;hr/&gt;ver 2.0&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt]
+C[commit&lt;br/&gt;eec6df0&lt;hr/&gt;ver 3.0&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt]
+D[commit&lt;br/&gt;7cd1352&lt;hr/&gt;ver 2.1&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt&lt;br/&gt;hotfix.patch]
+M(main):::pnode--&gt;C
+BR(feature):::pnode--&gt;D
+HEAD([HEAD]):::ppnode--&gt;M
+C--&gt;B--&gt;A
+D--&gt;B
+</pre>
+<p>将 feature 分支合并入 main 分支后，分支状态变为：</p>
+<pre class="mermaid">graph RL
+A[commit&lt;br/&gt;5a52af6&lt;hr/&gt;ver 1.0&lt;hr/&gt;blob README]
+B[commit&lt;br/&gt;ea71414&lt;hr/&gt;ver 2.0&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt]
+C[commit&lt;br/&gt;eec6df0&lt;hr/&gt;ver 3.0&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt]
+D[commit&lt;br/&gt;7cd1352&lt;hr/&gt;ver 2.1&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt&lt;br/&gt;hotfix.patch]
+E[commit&lt;br/&gt;2ff09f3&lt;hr/&gt;Merge branch 'feature'&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt&lt;br/&gt;hotfix.patch]
+M(main):::pnode--&gt;E
+BR(feature):::pnode--&gt;D
+HEAD([HEAD]):::ppnode--&gt;M
+E--&gt;C--&gt;B--&gt;A
+E--&gt;D--&gt;B
+</pre>
+<p>两种合并最大的区别，在于是否会有合并提交产生。合并提交是一种特殊的提交，与普通提交不同，它有<strong>多个父提交</strong>（回忆一下普通提交以反向链表的形式记录历史）。合并提交的作用是将多个分支的历史重新结合在一起，形成一条新的历史线。</p>
+<p>这两种合并之间的区别也不是绝对的，你可以使用命令行参数来告诉 Git 你希望使用哪种方式来合并分支。</p>
+<pre><code class="language-shell">git merge --ff-only feature  # 仅允许快进合并
+git merge --no-ff feature   # 禁止快进合并，强制创建合并提交
+</code></pre>
+<p>因为快进合并并非总是可用的，如果确实存在被分叉的历史，必须有合并提交才能将分支重新结合在一起。如果此时指定了<code>--ff-only</code>，Git 会拒绝合并操作，不会对分支历史进行任何修改。</p>
+<p>而如果在可以快进合并的情况下，使用<code>--no-ff</code>参数禁止快进合并，Git 会强制创建一个合并提交。与快进合并相比，这样可以在历史中记录这一次合并的存在（否则快进合并在历史中是没有记录的），但代价是分支历史不再是线性的了。</p>
+<pre class="mermaid">graph RL
+A[commit&lt;br/&gt;5a52af6&lt;hr/&gt;ver 1.0&lt;hr/&gt;blob README]
+B[commit&lt;br/&gt;ea71414&lt;hr/&gt;ver 2.0&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt]
+D[commit&lt;br/&gt;7cd1352&lt;hr/&gt;ver 2.1&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt&lt;br/&gt;hotfix.patch]
+E[commit&lt;br/&gt;2ff09f3&lt;hr/&gt;Merge branch 'feature'&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt&lt;br/&gt;hotfix.patch]
+M(main):::pnode--&gt;E
+BR(feature):::pnode--&gt;D
+HEAD([HEAD]):::ppnode--&gt;M
+E--&gt;B--&gt;A
+E--&gt;D--&gt;B
+</pre>
+<h2 id="三路合并"><a class="header" href="#三路合并">三路合并</a></h2>
+<p>当合并提交被记录入历史，意味着两个分支上不同的修改被重新结合在一起，成为一个统一的文件快照。之后继续在此分支上开发，都将基于这个被结合的快照进行。这个快照被记录在合并提交中，成为这个提交的内容。</p>
+<p>那么，Git 是如何计算两个分支下，不同的文件结合之后的结果的呢？Git 使用了一种叫做<strong>三路合并</strong>（three-way merge）的算法。</p>
+<h3 id="三路合并的原理"><a class="header" href="#三路合并的原理">三路合并的原理</a></h3>
+<p>三路合并的核心思想是：<strong>在合并两个分支时，Git 会找到这两个分支的共同祖先（merge base），然后将这个共同祖先与两个分支的最新提交进行比较</strong>。</p>
+<p>当执行 <code>git merge feature</code> 时：</p>
+<ol>
+<li>
+<p><strong>定位共同祖先</strong>：Git首先找到当前分支和被合并分支最近的共同提交（merge base）。</p>
+</li>
+<li>
+<p><strong>分析差异</strong>：</p>
+<ul>
+<li>计算从共同祖先到当前分支末端的变更（ours）；</li>
+<li>计算从共同祖先到 feature 分支末端的变更（theirs）。</li>
+</ul>
+</li>
+<li>
+<p><strong>整合变更</strong>：</p>
+<ul>
+<li>如果只有一方修改了某个文件，直接使用该方的修改；</li>
+<li>如果双方都修改了同一文件，尝试使用 diff 算法自动合并，如果不能自动合并，标记为<strong>合并冲突</strong>，等待用户手动解决。</li>
+</ul>
+</li>
+<li>
+<p><strong>创建合并提交</strong>：当所有冲突解决后，Git 会创建合并提交，记录合并的结果。</p>
+</li>
+</ol>
+<p>例如，这是合并前的分支状态：</p>
+<pre class="mermaid">graph RL
+A[commit&lt;br/&gt;5a52af6&lt;hr/&gt;ver 1.0&lt;hr/&gt;blob README]
+B[commit&lt;br/&gt;ea71414&lt;hr/&gt;ver 2.0&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt]
+C[commit&lt;br/&gt;eec6df0&lt;hr/&gt;ver 3.0&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt]
+D[commit&lt;br/&gt;7cd1352&lt;hr/&gt;ver 2.1&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt&lt;br/&gt;hotfix.patch]
+M(main):::pnode--&gt;C
+BR(feature):::pnode--&gt;D
+HEAD([HEAD]):::ppnode--&gt;M
+C--&gt;B--&gt;A
+D--&gt;B
+</pre>
+<p>将 feature 分支合并入 main 分支时，Git 会找到共同祖先 <code>ea71414</code>，然后计算出两个分支相对于共同祖先的变更。假如两个分支的变更如下：</p>
+<pre><code class="language-bash"># main 分支的变更
+M README
+M a.txt
+
+# feature 分支的变更
+M README
+A hotfix.patch
+</code></pre>
+<p>那么，Git 将会保留 main 分支的 <code>a.txt</code> 和 feature 分支的 <code>hotfix.patch</code>，并尝试将两个分支的 <code>README</code> 合并在一起。最终的合并结果如下：</p>
+<pre><code class="language-bash">README # 合并后的文件
+a.txt # main 分支的文件
+hotfix.patch # feature 分支的文件
+</code></pre>
+<h3 id="合并策略"><a class="header" href="#合并策略">合并策略</a></h3>
+<p>三路合并中，最重要的一步是寻找共同祖先。因为合并提交的存在，Git 的历史不再是一棵树，而是一个有向无环图（DAG）。在这个图中，两个分支的共同祖先可能不止一个，一个典型的场景是当两个分支互相合并时：</p>
+<pre class="mermaid">graph RL
+A[commit&lt;br/&gt;5a52af6]
+B[commit&lt;br/&gt;ea71414]
+C[commit&lt;br/&gt;eec6df0]
+D[commit&lt;br/&gt;7cd1352]
+E[commit&lt;br/&gt;2ff09f3&lt;hr/&gt;Merge branch 'feature']
+F[commit&lt;br/&gt;96207b8&lt;hr/&gt;Merge branch 'main']
+M(main):::pnode--&gt;E
+BR(feature):::pnode--&gt;F
+E--&gt;C--&gt;B--&gt;A
+F--&gt;C
+E--&gt;D--&gt;B
+F--&gt;D
+</pre>
+<p>在这个场景下，因为 <code>main</code> 和 <code>feature</code> 分支互相合并，导致它们存在两个共同祖先：<code>eec6df0</code> 和 <code>7cd1352</code>。这种情况下，Git 会先对多个共同祖先进行一次三路合并，得到一个虚拟的提交，以此为基础进行后续的合并。这个虚拟提交不会被记录在历史中，但它的存在是为了让 Git 能够正确地计算出两个分支的差异。</p>
+<p>因为寻找共同祖先的过程也是一次递归的三路合并，所以这一合并策略被称为 <code>recursive</code>，长期以来，一直是 Git 的默认合并策略。后来 Git 将 <code>recursive</code> 升级为 <code>ort</code> 策略，但其基本思想没有变化。<code>ort</code> 策略在 <code>recursive</code> 的基础上，优化了对文件重命名的支持，并且改良了在大型项目中的性能。</p>
+<p>Git 还支持其他不同的合并策略，那些策略就不再基于三路合并了。比如 <code>octopus</code> 策略允许你同时合并多个分支，但不支持冲突解决；<code>ours</code> 策略会忽略被合并分支的所有修改，只保留当前分支的修改；<code>subtree</code> 策略则是将被合并分支的内容嵌入到当前分支中。这些策略的使用场景比较少见，通常在一些特殊的情况下才会用到。</p>
+<h3 id="三路合并的不足"><a class="header" href="#三路合并的不足">三路合并的不足</a></h3>
+<p>三路合并的算法在大多数情况下都能很好地工作，但也有一些不足之处：合并时只参考了两个分支的最新提交和它们的共同祖先，而忽略了其他的历史提交。这可能导致一些意外的合并结果。</p>
+<p>例如，两个分支的历史分叉之后，各自独立地进行了一项相同的修改，但后来在其中一个分支上撤销了该更改，那么该更改仍会出现在合并结果中；有些人会觉得这种行为令人困惑。其原因在于合并时只考虑最新版本，而不考虑历史中的变化。因此，合并算法将撤销的更改视为没有更改，并替换为已更改的版本。</p>
+
+                        <br />
+                        <div class="giscus"></div>
+
+                        <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../远程和分支/创建和切换分支.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../附录/约定式提交.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                    </main>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../远程和分支/创建和切换分支.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../附录/约定式提交.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../assets/sidetoc.js"></script>
+        <script src="../assets/giscus.js"></script>
+        <script src="../assets/mermaid.min.js"></script>
+        <script src="../assets/mermaid-init.js"></script>
+
+
+    </div>
+    </body>
+</html>
