@@ -253,22 +253,23 @@ git config --global user.email "email@example.com"
 <pre><code class="language-bash">ls ~/.ssh
 </code></pre>
 <p>如果你没有生成过 SSH 密钥，那么这个目录应该是不存在的。你可以使用 <code>ssh-keygen</code> 命令来生成一个新的密钥。</p>
-<pre><code class="language-bash">ssh-keygen -t rsa
+<pre><code class="language-bash">ssh-keygen -t ed25519
 </code></pre>
 <p>如果在 Windows 系统上找不到 <code>ssh-keygen</code> 命令，那么可以在 Git Bash 中运行。</p>
 <p>生成完成后，查看生成的公钥：</p>
-<pre><code class="language-bash">cat ~/.ssh/id_rsa.pub
+<pre><code class="language-bash">cat ~/.ssh/id_ed25519.pub
 </code></pre>
 <p>在 GitHub 上添加这个公钥，然后检测一下是否成功：</p>
-<pre><code>$ ssh git@github.com
-PTY allocation request failed on channel 0
+<pre><code>$ ssh -T git@github.com
 Hi Wybxc! You've successfully authenticated, but GitHub does not provide shell access.
-Connection to github.com closed.
 </code></pre>
 <p>看到这样的欢迎信息，说明 SSH 密钥添加成功。</p>
 <h2 id="gpg-密钥"><a class="header" href="#gpg-密钥">GPG 密钥</a></h2>
 <p>上面提到 Git 在确定身份的时候用的是名字和邮箱，但是，这也意味着只要知道了别人的名字和邮箱，就可以冒充他的身份。理论上，这种冒充是无法甄别的，甚至 GitHub 也无法避免。</p>
 <p>所以，在名字和邮箱以外，Git 还有另一重保护措施：GPG 密钥。你可以使用自己的 GPG 私钥对提交进行签名，这样别人就能通过公钥鉴定身份。如果你的所有提交都经过签名，那么别人就知道没有签名的那些提交就是冒牌货。</p>
+<blockquote>
+<p>在 Git 2.34 之后，可以用 SSH 密钥代替 GPG 密钥进行签名。这样不仅统一了身份验证方式，还免去了每次提交时都要输入 GPG 密码的麻烦。希望使用 SSH 密钥的可以跳过本节。</p>
+</blockquote>
 <p>生成 GPG 密钥：</p>
 <pre><code class="language-shell">gpg --full-generate-key
 </code></pre>
@@ -364,6 +365,35 @@ B1wiq7kByLBFmRVBGewKpDA2Z2UGnAQuSvCY5nwF
 -----END PGP PUBLIC KEY BLOCK-----
 </code></pre>
 <p>之后，提交的 commit 在 GitHub 上就会显示 <code>verified</code>，表明这条 commit 是通过了 GPG 签名认证的。</p>
+<h2 id="使用-ssh-密钥签名"><a class="header" href="#使用-ssh-密钥签名">使用 SSH 密钥签名</a></h2>
+<p>新版本的 Git（2.34 及以上）支持使用 SSH 密钥进行签名。这样就不需要单独生成 GPG 密钥了，可以直接用身份验证的同一个 SSH 密钥进行签名。</p>
+<p>设置使用 SSH 代替 GPG 签名：</p>
+<pre><code class="language-shell">git config --global gpg.format ssh
+git config --global commit.gpgsign true
+</code></pre>
+<p>指定签名用的密钥文件：</p>
+<pre><code class="language-shell">git config --global user.signingKey ~/.ssh/id_ed25519.pub
+</code></pre>
+<p>然后，需要创建一个文件，向 Git 告知允许用于签名的公钥列表：</p>
+<pre><code class="language-shell">echo "namespaces=\"git\" $(cat ~/.ssh/id_ed25519.pub)" &gt;&gt; ~/.ssh/allowed_signers
+git config --global gpg.ssh.allowedSignersFile ~/.ssh/allowed_signers
+</code></pre>
+<p>然后就可以尝试对提交进行签名了：</p>
+<pre><code>$ git commit -m "test"
+$ git cat-file commit HEAD
+tree 4fb2d17608d9c85a6d969958025aabc42c3675ab
+parent c6ca279780537f71a27da03325e5184fc344d529
+author 忘忧北萱草 &lt;wybxc@qq.com&gt; 1744253548 +0800
+committer 忘忧北萱草 &lt;wybxc@qq.com&gt; 1745379033 +0800
+gpgsig -----BEGIN SSH SIGNATURE-----
+ U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgqar+eQdcNA/Pn7FaQGDKsynneJ
+ CqhBR4StF0mRGJgr4AAAADZ2l0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5
+ AAAAQCNDJfrIOVYx2UUnFfdhPAjKhYx4m5xTcR27JqRgu+KKJDXFPQltvqRAR/HrbLbPwT
+ JrKbTvas1MKINpOXr0rA0=
+ -----END SSH SIGNATURE-----
+</code></pre>
+<p>可以看到，<code>gpgsig</code> 中的内容是 SSH 签名。</p>
+<p>之后，在 GitHub 上将 SSH 公钥添加为签名密钥（即使是与验证密钥相同的密钥，也要再添加一次，因为是不同的用途），然后就可以在 GitHub 上看到 <code>verified</code> 的标记了。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="储存库"><a class="header" href="#储存库">储存库</a></h1>
 <p>储存库，或者叫版本库、代码仓库，英文名 repository，是 Git 用来存储和管理程序的源代码的结构。我们在本地开发的大部分时间，都是在和储存库斗智斗勇。</p>
 <p>实际上，<strong>储存库是 Git 中唯一核心的概念</strong>。所有的 Git 操作，都是围绕着管理和同步储存库来进行的。</p>
