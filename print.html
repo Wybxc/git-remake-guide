@@ -13,26 +13,24 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="icon" href="favicon-a1427de1.svg">
+        <link rel="shortcut icon" href="favicon-0e9e3ff8.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-2459343d.css">
+        <link rel="stylesheet" href="css/chrome-9dfbd86b.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" id="highlight-css" href="highlight.css">
-        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
-        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
 
         <!-- Custom theme stylesheets -->
-        <link rel="stylesheet" href="assets/sidetoc.css">
-        <link rel="stylesheet" href="assets/custom.css">
-        <link rel="stylesheet" href="assets/mermaid.css">
+        <link rel="stylesheet" href="assets/custom-89b10658.css">
+        <link rel="stylesheet" href="assets/mermaid-3e5f7864.css">
 
 
         <!-- Provide site root and default themes to javascript -->
@@ -40,12 +38,24 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-b1950972.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc.js"></script>
+        <script src="toc-ae591e2e.js"></script>
     </head>
     <body>
-    <div id="body-container">
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
@@ -74,56 +84,59 @@
             html.classList.add("js");
         </script>
 
-        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             let sidebar = null;
-            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
+                sidebar_toggle.checked = false;
             }
-            sidebar_toggle.checked = sidebar === 'visible';
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
         </script>
 
-        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
             <!-- populated by js -->
             <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
             <noscript>
                 <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
             </noscript>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
             </div>
         </nav>
 
-        <div id="page-wrapper" class="page-wrapper">
+        <div id="mdbook-page-wrapper" class="page-wrapper">
 
             <div class="page">
-                <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                            <i class="fa fa-bars"></i>
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
                         </label>
-                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                            <i class="fa fa-paint-brush"></i>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
                         </button>
-                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
-                            <i class="fa fa-search"></i>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
                         </button>
                     </div>
 
@@ -131,39 +144,41 @@
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
-                            <i id="print-button" class="fa fa-print"></i>
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
                         </a>
                         <a href="https://github.com/Wybxc/git-remake-guide" title="Git repository" aria-label="Git repository">
-                            <i id="git-repository-button" class="fa fa-github"></i>
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
                         </a>
 
                     </div>
                 </div>
 
-                <div id="search-wrapper" class="hidden">
-                    <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
                     </form>
-                    <div id="searchresults-outer" class="searchresults-outer hidden">
-                        <div id="searchresults-header" class="searchresults-header"></div>
-                        <ul id="searchresults">
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
                         </ul>
                     </div>
                 </div>
 
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script>
-                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
-                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
-                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
                         link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
                     });
                 </script>
 
-                <div id="content" class="content">
-                    <!-- Page table of contents -->
-                    <div class="sidetoc"><nav class="pagetoc"></nav></div>
-
+                <div id="mdbook-content" class="content">
                     <main>
                         <h1 id="git-重学指南"><a class="header" href="#git-重学指南">Git 重学指南</a></h1>
 <blockquote>
@@ -191,12 +206,14 @@
 <p>老实说，我不确定。因为我本人也是正处于 remake 我的 Git 知识的阶段，这本书相当于我重学的笔记，所以难免会有一些错误。</p>
 <p>另一方面，这本书会涉及到很多“最佳实践”。众所周知，“最佳实践”永远不是最完美的解决方案。而且，“最佳实践”难免带有我个人的喜好。我会尽可能做到客观，还希望诸位自行甄别扬弃。</p>
 <h2 id="许可"><a class="header" href="#许可">许可</a></h2>
-<p><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="知识共享许可协议" /></a></p>
+<p><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="知识共享许可协议"></a></p>
 <p>本作品采用<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可。</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="安装"><a class="header" href="#安装">安装</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="安装"><a class="header" href="#安装">安装</a></h1>
 <p>既然是重新学习，那么安装想必是已经会了。</p>
 <p>不过还是简单说一下，就当是参考手册吧。</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="下载"><a class="header" href="#下载">下载</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="下载"><a class="header" href="#下载">下载</a></h1>
 <h2 id="linux"><a class="header" href="#linux">Linux</a></h2>
 <p>大部分情况下，可以用发行版自带的软件包管理器安装。</p>
 <pre><code class="language-bash"># Debian/Ubuntu
@@ -239,7 +256,8 @@ sudo yum install git
 <p>设置换行符的转换。</p>
 <p>这是一个 Windows 独有的选项，因为只有 Windows 系统的换行符是 CRLF。</p>
 <p>默认的选项是推荐的选项，表示在本地的代码中统一使用 CRLF，但在 git 储存中统一使用 LF。这表示你的代码在 <code>git add</code> 的时候会经过从 CRLF 到 LF 的转换，而在 <code>git clone</code> 或者 <code>git checkout</code> 的时候会经过从 LF 到 CRLF 的转换。</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="配置"><a class="header" href="#配置">配置</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="配置"><a class="header" href="#配置">配置</a></h1>
 <h2 id="名字和邮箱"><a class="header" href="#名字和邮箱">名字和邮箱</a></h2>
 <p>在命令行输入：</p>
 <pre><code class="language-bash">git config --global user.name "Your Name"
@@ -394,10 +412,12 @@ gpgsig -----BEGIN SSH SIGNATURE-----
 </code></pre>
 <p>可以看到，<code>gpgsig</code> 中的内容是 SSH 签名。</p>
 <p>之后，在 GitHub 上将 SSH 公钥添加为签名密钥（即使是与验证密钥相同的密钥，也要再添加一次，因为是不同的用途），然后就可以在 GitHub 上看到 <code>verified</code> 的标记了。</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="储存库"><a class="header" href="#储存库">储存库</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="储存库"><a class="header" href="#储存库">储存库</a></h1>
 <p>储存库，或者叫版本库、代码仓库，英文名 repository，是 Git 用来存储和管理程序的源代码的结构。我们在本地开发的大部分时间，都是在和储存库斗智斗勇。</p>
 <p>实际上，<strong>储存库是 Git 中唯一核心的概念</strong>。所有的 Git 操作，都是围绕着管理和同步储存库来进行的。</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="创建储存库"><a class="header" href="#创建储存库">创建储存库</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="创建储存库"><a class="header" href="#创建储存库">创建储存库</a></h1>
 <blockquote>
 <p>本节部分内容参考自 <a href="https://github.com/geeeeeeeeek/git-recipes/blob/master/sources/2.2-%E5%88%9B%E5%BB%BA%E4%BB%A3%E7%A0%81%E4%BB%93%E5%BA%93.md">git-recipes</a>，在原文基础上有一定修改。</p>
 </blockquote>
@@ -477,12 +497,13 @@ git-remake-guide
     └── index.hbs
 </code></pre>
 <p>完美。</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="管理暂存区"><a class="header" href="#管理暂存区">管理暂存区</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="管理暂存区"><a class="header" href="#管理暂存区">管理暂存区</a></h1>
 <blockquote>
 <p>本节部分内容参考自 <a href="https://git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E8%AE%B0%E5%BD%95%E6%AF%8F%E6%AC%A1%E6%9B%B4%E6%96%B0%E5%88%B0%E4%BB%93%E5%BA%93">Pro Git</a> 和 <a href="https://github.com/geeeeeeeeek/git-recipes/blob/master/sources/2.4-%E6%9F%A5%E7%9C%8B%E4%BB%93%E5%BA%93%E7%8A%B6%E6%80%81.md">git-recipes</a>，在原文基础上有一定修改。</p>
 </blockquote>
 <p>在开始之前，先上一张图：</p>
-<p><img src="%E5%82%A8%E5%AD%98%E5%BA%93/./Git-%E6%96%87%E4%BB%B6%E7%8A%B6%E6%80%81.svg" alt="Git 文件状态" /></p>
+<p><img src="储存库/Git-文件状态.svg" alt="Git 文件状态"></p>
 <p>看完这张图，我相信你已经懂了。你可以跳过下面的内容继续看下一节了。</p>
 <h2 id="文件的状态变化周期"><a class="header" href="#文件的状态变化周期">文件的状态变化周期</a></h2>
 <p>工作目录下的每一个文件都不外乎两种状态：<strong>已跟踪 (tracked)</strong> 或 <strong>未跟踪 (untracked)</strong>。已跟踪的文件是指那些被纳入了版本控制的文件，在上一次快照中有它们的记录，在工作一段时间后，它们的状态可能是<strong>未修改 (unmodified)</strong>，<strong>已修改 (modified)</strong> 或<strong>已暂存 (staged)</strong>。简而言之，已跟踪的文件就是 Git 已经知道的文件。</p>
@@ -611,12 +632,18 @@ doc/**/*.pdf
 <p>在上面我也提到了，这张图是“正常的”状态周期。那么，有没有“不正常”的状态周期呢？</p>
 <p>实际上我们已经见识过了，就是 <code>git rm</code> 命令的两个选项：<code>--cached</code> 和 <code>-f</code>。前者可以把已暂存的文件变成其他状态，后者更是可以强行把任何文件变成未跟踪状态并且从硬盘上删除。这些操作对应的箭头，都是在正常的状态周期中没有出现的。</p>
 <p>下面这个表格展示了在文件在不同状态之间的转换：</p>
-<div class="table-wrapper"><table><thead><tr><th style="text-align: center"></th><th style="text-align: center">从「未跟踪」</th><th style="text-align: center">从「未修改」</th><th style="text-align: center">从「已修改」</th><th style="text-align: center">从「已暂存」</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th style="text-align: center"></th><th style="text-align: center">从「未跟踪」</th><th style="text-align: center">从「未修改」</th><th style="text-align: center">从「已修改」</th><th style="text-align: center">从「已暂存」</th></tr>
+</thead>
+<tbody>
 <tr><td style="text-align: center"><strong>到「未跟踪」</strong></td><td style="text-align: center">-</td><td style="text-align: center"><code>git rm</code></td><td style="text-align: center"><em><code>git rm -f</code></em></td><td style="text-align: center"><em><code>git rm --cached</code></em></td></tr>
 <tr><td style="text-align: center"><strong>到「未修改」</strong></td><td style="text-align: center">-</td><td style="text-align: center">-</td><td style="text-align: center"><em><code>git restore</code></em></td><td style="text-align: center"><code>git commit</code> <em>或 <code>git checkout</code></em></td></tr>
 <tr><td style="text-align: center"><strong>到「已修改」</strong></td><td style="text-align: center">-</td><td style="text-align: center">edit file</td><td style="text-align: center">-</td><td style="text-align: center"><em><code>git restore --staged</code></em></td></tr>
 <tr><td style="text-align: center"><strong>到「已暂存」</strong></td><td style="text-align: center"><code>git add</code></td><td style="text-align: center">-</td><td style="text-align: center"><code>git add</code></td><td style="text-align: center">-</td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <p>表格中 <code>-</code> 表示无需转换或不能转换。斜体标出的是所谓的“不正常”状态周期操作。</p>
 <h3 id="不正常-vs-不允许"><a class="header" href="#不正常-vs-不允许">不正常 vs 不允许</a></h3>
@@ -651,7 +678,8 @@ M  c.txt
 <p>至于为什么在工作目录里有未跟踪文件时还允许签出，我没有想到一个很完美的解释。一种可能是这种行为没有违背不修改未跟踪文件的规则，另一种可能是为了允许先新增文件，再新建分支。</p>
 <p>当然，<strong>Git 从来不会彻底阻止你干什么事情的</strong>。显式地修改未跟踪地文件是允许的。比如 <code>git clean</code>，它的意思是删掉所有未跟踪的文件。Git 知道当你打下这句命令时，你确实清楚你要对未跟踪的文件进行操作，所以 Git 不会阻止你。</p>
 <p>Git 处处都在保证你的文件的安全性，但也不会阻止你意图明确地做一些不安全的事情。这是 Git 的哲学中最耐人寻味之处，只有真正的相互理解，才能托付彼此的真心。</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="提交更改"><a class="header" href="#提交更改">提交更改</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="提交更改"><a class="header" href="#提交更改">提交更改</a></h1>
 <blockquote>
 <p>本节部分内容参考自 <a href="https://git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E8%AE%B0%E5%BD%95%E6%AF%8F%E6%AC%A1%E6%9B%B4%E6%96%B0%E5%88%B0%E4%BB%93%E5%BA%93">Pro Git</a> 和 <a href="https://github.com/geeeeeeeeek/git-recipes/blob/revision-2018/sources/2.3.2-git_commit.md">git-recipes</a>，在原文基础上有一定修改。</p>
 </blockquote>
@@ -703,8 +731,8 @@ M  c.txt
 <p>有的时候，出于某些特殊的目的，我们不得不提交一些不完整的代码。但是在这么做之前，请想一想，有没有别的更好的方式来让我完成这件事？</p>
 <ul>
 <li><em>我想临时切换到别的分支</em>：请优先使用 <code>git stash</code>，它就是为这一需求设计的。如果你需要在另一个分支上长期工作，也可以考虑用 <code>git worktree</code> 建立一个新的工作树，这样两个分支的内容就不会相互干扰了。</li>
-<li><em>我需要在别的机器上继续这项工作</em>：的确是棘手的情况。这种时候，允许你<em>偷偷地</em>把未完成的工作提交上去，在提交消息里警告别人不要在这个节点签出。工作完成后，用下面所说的<a href="%E5%82%A8%E5%AD%98%E5%BA%93/%E6%8F%90%E4%BA%A4%E6%9B%B4%E6%94%B9.html#%E4%BF%AE%E6%94%B9%E6%8F%90%E4%BA%A4">修改提交</a>或者 <code>git rebase -i</code>（将在后面的文章里介绍）覆盖掉之前未完成的提交。</li>
-<li><em>我不小心在提交里漏了一个文件</em>：这种事情在所难免。下文的<a href="%E5%82%A8%E5%AD%98%E5%BA%93/%E6%8F%90%E4%BA%A4%E6%9B%B4%E6%94%B9.html#%E4%BF%AE%E6%94%B9%E6%8F%90%E4%BA%A4">修改提交</a>会对你有帮助。</li>
+<li><em>我需要在别的机器上继续这项工作</em>：的确是棘手的情况。这种时候，允许你<em>偷偷地</em>把未完成的工作提交上去，在提交消息里警告别人不要在这个节点签出。工作完成后，用下面所说的<a href="#修改提交">修改提交</a>或者 <code>git rebase -i</code>（将在后面的文章里介绍）覆盖掉之前未完成的提交。</li>
+<li><em>我不小心在提交里漏了一个文件</em>：这种事情在所难免。下文的<a href="#修改提交">修改提交</a>会对你有帮助。</li>
 </ul>
 <h3 id="重视提交消息"><a class="header" href="#重视提交消息">重视提交消息</a></h3>
 <p>其次要重视提交消息。<strong>最好的情况下，提交消息要符合一定的格式规范，并且清晰描述了这次提交做出的变更</strong>。</p>
@@ -733,7 +761,8 @@ M  c.txt
 </code></pre>
 <p>可以看到，原本的包含未完成工作的提交，被新的提交替换掉了。现在所有的提交都是完整又可爱的。</p>
 <p>需要注意的是，提交的哈希值在 <code>git commit --amend</code> 之后发生了变化。这意味着如果那条被替换的提交已经推送到远程，你需要用 <code>git push --force</code> 来强制覆盖它。</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="查看历史"><a class="header" href="#查看历史">查看历史</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="查看历史"><a class="header" href="#查看历史">查看历史</a></h1>
 <blockquote>
 <p>本节部分内容参考自 <a href="https://git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E6%9F%A5%E7%9C%8B%E6%8F%90%E4%BA%A4%E5%8E%86%E5%8F%B2">Pro Git</a> 和 <a href="https://github.com/geeeeeeeeek/git-recipes/blob/revision-2018/sources/2.4-%E6%9F%A5%E7%9C%8B%E4%BB%93%E5%BA%93%E7%8A%B6%E6%80%81.md">git-recipes</a>，在原文基础上有一定修改。</p>
 </blockquote>
@@ -782,7 +811,7 @@ Date:   Sat Mar 15 10:31:28 2008 -0700
 <pre><code>git log --since=&lt;since&gt;
 git log --until=&lt;until&gt;
 </code></pre>
-<p>仅显示指定时间之后或之前的提交。<code>&lt;since&gt;</code> 和 <code>&lt;until&gt;</code> 可以为多种时间格式，可以是类似 "2008-01-15" 的具体的某一天，也可以是类似 "2 years 1 day 3 minutes ago" 的相对日期。</p>
+<p>仅显示指定时间之后或之前的提交。<code>&lt;since&gt;</code> 和 <code>&lt;until&gt;</code> 可以为多种时间格式，可以是类似 “2008-01-15” 的具体的某一天，也可以是类似 “2 years 1 day 3 minutes ago” 的相对日期。</p>
 <pre><code>git log -S &lt;name&gt;
 </code></pre>
 <p>仅显示添加或删除特定字符串的提交。比如，搜索代码中添加或删除了对某一个特定函数的引用的提交。</p>
@@ -830,7 +859,12 @@ ca82a6d - Scott Chacon, 6 years ago : changed the version number
 a11bef0 - Scott Chacon, 6 years ago : first commit
 </code></pre>
 <p>下面列出了 <code>--format</code> 接受的常用格式占位符的写法及其代表的意义。</p>
-<div class="table-wrapper"><table><thead><tr><th>占位符</th><th>说明</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>占位符</th><th>说明</th></tr>
+</thead>
+<tbody>
 <tr><td>%H</td><td>提交的完整哈希值</td></tr>
 <tr><td>%h</td><td>提交的短哈希值</td></tr>
 <tr><td>%T</td><td>树的完整哈希值</td></tr>
@@ -846,7 +880,8 @@ a11bef0 - Scott Chacon, 6 years ago : first commit
 <tr><td>%cd</td><td>提交日期</td></tr>
 <tr><td>%cr</td><td>提交日期（距今多长时间）</td></tr>
 <tr><td>%s</td><td>提交说明</td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <p>你一定奇怪作者和提交者之间究竟有何差别，其实作者指的是实际作出修改的人，提交者指的是最后将此工作成果提交到仓库的人。所以，当你为某个项目发布补丁，然后某个核心成员将你的补丁并入项目时，你就是作者，而那个核心成员就是提交者。关于其中具体的区别，我们会在以后的章节中详细讨论。</p>
 <p>当 <code>format</code> 与另一个 log 选项 <code>--graph</code> 结合使用时尤其有用。 这个选项添加了一些 ASCII 字符串来形象地展示你的分支、合并历史：</p>
@@ -882,6 +917,7 @@ a11bef0 - Scott Chacon, 6 years ago : first commit
 </span><span style="color:#DCDFE4;">* </span><span style="color:#E06C75;">30cae30 </span><span style="color:#DCDFE4;">- :lipstick: 优化点击跳转的平滑滚动的方式和效果 </span><span style="color:#98C379;">(2022-06-16 16:38:37) </span><span style="color:#61AFEF;">&lt;忘忧北萱草&gt;</span>
 </code>
 </pre>
+
 <h2 id="在钩子中使用-git-log"><a class="header" href="#在钩子中使用-git-log">在钩子中使用 <code>git log</code></a></h2>
 <blockquote>
 <p>后来我发现在 <code>pre-push</code> 钩子里使用交互式命令会破坏一些自动化工具的使用，所以是否使用下面的钩子，还是要看你自己的情况。</p>
@@ -933,7 +969,8 @@ To git@github.com:Wybxc/git-remake-guide.git
 branch 'master' set up to track 'origin/master'.
 </code></pre>
 <p>如果你觉得这个钩子很好，并且想要给其他的仓库也启用，你可以修改 Git 创建新储存库所用的模板仓库，它的目录在 <code>/usr/share/git-core/templates</code> 或者 <code>&lt;Git for Windows 目录&gt;/mingw64/share/git-core/templates</code>。这会影响之后新建或者新克隆的储存库，而之前已经建立的储存库是不受影响的。</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="撤销操作"><a class="header" href="#撤销操作">撤销操作</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="撤销操作"><a class="header" href="#撤销操作">撤销操作</a></h1>
 <blockquote>
 <p>本节部分内容参考自 Pro Git 的<a href="https://git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E6%92%A4%E6%B6%88%E6%93%8D%E4%BD%9C">《撤销操作》</a>和<a href="https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%87%8D%E7%BD%AE%E6%8F%AD%E5%AF%86">《重置揭秘》</a>，在原文基础上有一定修改。</p>
 </blockquote>
@@ -966,7 +1003,7 @@ Changes not staged for commit:
 </code></pre>
 <p>正如你看到的一样，<code>CONTRIBUTING.md</code> 文件已经是修改未暂存的状态了。</p>
 <blockquote>
-<p><code>git restore</code> 是在 Git 2.23.0 中引入的新命令。在以前的 Git 版本中，<code>git status</code> 给出的提示命令是 <code>git reset HEAD &lt;file&gt;...</code>。这条命令和上面的命令的效果和用法都是一样的，只不过它更多涉及到一些底层的复杂操作，而 <code>git restore</code> 对这些操作给出了一个易于理解的上层抽象（详见<a href="%E5%82%A8%E5%AD%98%E5%BA%93/%E6%92%A4%E9%94%80%E6%93%8D%E4%BD%9C.html#git-restore-%E7%9A%84%E5%B7%A5%E4%BD%9C">下文</a>）。</p>
+<p><code>git restore</code> 是在 Git 2.23.0 中引入的新命令。在以前的 Git 版本中，<code>git status</code> 给出的提示命令是 <code>git reset HEAD &lt;file&gt;...</code>。这条命令和上面的命令的效果和用法都是一样的，只不过它更多涉及到一些底层的复杂操作，而 <code>git restore</code> 对这些操作给出了一个易于理解的上层抽象（详见<a href="#git-restore-的工作">下文</a>）。</p>
 </blockquote>
 <h3 id="撤消对文件的修改"><a class="header" href="#撤消对文件的修改">撤消对文件的修改</a></h3>
 <p>如果你并不想保留对 <code>CONTRIBUTING.md</code> 文件的修改怎么办？你该如何方便地撤消修改——将它还原成上次提交时的样子（或者刚克隆完的样子，或者刚把它放入工作目录时的样子）？幸运的是，<code>git status</code> 也告诉了你应该如何做。在最后一个例子中，未暂存区域是这样：</p>
@@ -1010,11 +1047,17 @@ Changes to be committed:
 <h2 id="撤销的原理"><a class="header" href="#撤销的原理">撤销的原理</a></h2>
 <h3 id="快照"><a class="header" href="#快照">快照</a></h3>
 <p>理解 <code>git restore</code> 的最简方法，就是以 Git 的思维框架（将其作为内容管理器）来管理三棵不同的「树」。</p>
-<div class="table-wrapper"><table><thead><tr><th style="text-align: center">树</th><th style="text-align: center">用途</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th style="text-align: center">树</th><th style="text-align: center">用途</th></tr>
+</thead>
+<tbody>
 <tr><td style="text-align: center">HEAD</td><td style="text-align: center">上一次提交的快照</td></tr>
 <tr><td style="text-align: center">Index（索引/暂存区）</td><td style="text-align: center">预期的下一次提交的快照</td></tr>
 <tr><td style="text-align: center">工作目录</td><td style="text-align: center">沙盒</td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <p>这里涉及到一个 Git 的概念：<strong>快照</strong>。快照是对 Git 中工作目录的状态的一次完整记录。Git 所管理的版本历史便是由一个个快照组成的。</p>
 <p>必须要澄清一个误区：虽然 Git 似乎无时无刻不在“比较”两个文件的版本，但<strong>在 Git 中，保存的并非是文件的差异，而是每一次都保存文件的完整内容</strong>。事实上，我们在 Git 中看到的各种比较结果，都真的是在比较两个文件，<strong>文件的差异是临时算出来的</strong>。</p>
@@ -1063,18 +1106,27 @@ $ git ls-tree -r HEAD
 <p><code>git restore</code> 所做的工作只有一个：<strong>把文件从一棵树复制到另一棵树</strong>。比如说，当我们执行 <code>git restore &lt;file&gt;...</code> 时，是把文件从索引树，也就是暂存区，复制到工作目录中。当我们执行 <code>git restore --staged &lt;file&gt;...</code> 时，是把文件从 HEAD 指向的树复制到暂存区中。因为复制的来源总是比目标要旧，表现出来的就是撤销了对文件的修改。</p>
 <p><code>git restore</code> 的 <code>--staged</code> 和 <code>--worktree</code> 参数分别指定了复制的目标是索引树和工作目录。复制的来源一般是索引树，而如果指定了 <code>--staged</code>，则以 HEAD 指向的树为来源。用 <code>-s &lt;tree&gt;</code> 或者 <code>--source=&lt;tree&gt;</code> 可以自行指定来源。</p>
 <p>下表展示了 <code>git restore</code> 在不同参数下的复制来源与目标的设定。</p>
-<div class="table-wrapper"><table><thead><tr><th style="text-align: center"></th><th>默认</th><th><code>-s &lt;tree&gt;</code></th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th style="text-align: center"></th><th>默认</th><th><code>-s &lt;tree&gt;</code></th></tr>
+</thead>
+<tbody>
 <tr><td style="text-align: center">默认</td><td>暂存区 -&gt; 工作树</td><td>tree -&gt; 工作树</td></tr>
 <tr><td style="text-align: center"><code>--staged</code></td><td>HEAD -&gt; 暂存区</td><td>tree -&gt; 暂存区</td></tr>
 <tr><td style="text-align: center"><code>--worktree</code></td><td>暂存区 -&gt; 工作树</td><td>tree -&gt; 工作树</td></tr>
 <tr><td style="text-align: center"><code>--staged --worktree</code></td><td>HEAD -&gt; 工作树&amp;暂存区</td><td>tree -&gt; 工作树&amp;暂存区</td></tr>
-</tbody></table>
-</div><div style="break-before: page; page-break-before: always;"></div><h1 id="远程和分支"><a class="header" href="#远程和分支">远程和分支</a></h1>
+</tbody>
+</table>
+</div>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="远程和分支"><a class="header" href="#远程和分支">远程和分支</a></h1>
 <p>如果说储存库是 Git 的基础，那么分支则是 Git 的精华。</p>
 <p><strong>分支最容易理解的意义，是表示两个平行存在的版本</strong>，它们在历史的某一点发生分歧，走向不同，也可以在未来的某一点重新合并。Git 的分支非常轻量，因为 Git 鼓励用户通过大量地创建和合并分支，来完成协作工作。</p>
 <p>远程对大多数人来说也许更加熟悉，像 GitHub、GitLab、Bitbucket 这些，都是远程储存库的托管网站。<strong>远程是一个或多个非本机的储存库</strong>。Git 是一个分布式的协作系统，这意味着各个储存库在地位上是等同的。储存库间的协作，围绕着远程储存库的同步展开。</p>
 <p>Git 对远程的管理方式根植于它的分支模型。因此，我们把远程和分支放在同一章节讲解。</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="分支基础"><a class="header" href="#分支基础">分支基础</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="分支基础"><a class="header" href="#分支基础">分支基础</a></h1>
 <blockquote>
 <p>本节部分内容参考自 <a href="https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%AE%80%E4%BB%8B">Pro Git</a>，在原文基础上有一定修改。</p>
 </blockquote>
@@ -1104,6 +1156,7 @@ B[commit&lt;br/&gt;ea71414&lt;hr/&gt;ver 2.0&lt;hr/&gt;blob README&lt;br/&gt;blo
 C[commit&lt;br/&gt;eec6df0&lt;hr/&gt;ver 3.0&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt]
 C--&gt;B--&gt;A
 </pre>
+
 <p>不要对「指针」这个说法感到迷惑。很多关于 Git 的书籍都采用这个说法，因为 Git 的工作原理真的非常像内存分配器。关于工作原理的仔细讨论，我们留到后面文章，这里只需要知道：<strong>在 Git 中，有一些「Git 指针」，它们可以指向 Git 中保存的数据，比如一次提交，或者一个文件</strong>。</p>
 <h2 id="指针和分支"><a class="header" href="#指针和分支">指针和分支</a></h2>
 <p>有一个指针我们已经见过了。它叫做 HEAD，一般指向当前分支的最后一次提交。所以，上面那个图的完整版本应该是这样的：</p>
@@ -1115,6 +1168,7 @@ M(main):::pnode--&gt;C
 HEAD([HEAD]):::ppnode--&gt;M
 C--&gt;B--&gt;A
 </pre>
+
 <p>这里假设当前分支的名称叫做 <code>main</code>。</p>
 <p>从图里可以看出来，<strong>分支实际上就是指向一次提交的指针</strong>。而 HEAD 指针，在此时指向的是一个分支，也就是说，它是一个<strong>二重指针</strong>。</p>
 <p>二重指针听起来挺唬人，但在 Git 里几重指针并没有那么重要。Git 在访问时，不论几重指针，都会反复解引用找到它实际指向的东西。HEAD 指针也不一定是二重指针，有的时候它可以直接指向一个具体的提交，至于这种情况，我们会在后面的文章中讨论。</p>
@@ -1133,6 +1187,7 @@ HEAD([HEAD]):::ppnode--&gt;BR
 C--&gt;B--&gt;A
 D--&gt;B
 </pre>
+
 <p>在 <code>ver 2.0</code> 之后，发生了分叉，出现了一个新的分支 <code>dev</code>，这个分支和原本的 <code>main</code> 分支是平行进展的。HEAD 指针指向 <code>dev</code>，表示当前正在 <code>dev</code> 分支上工作。</p>
 <h2 id="切换分支"><a class="header" href="#切换分支">切换分支</a></h2>
 <p>在切换分支时，发生了两件事情：<strong>HEAD 指针指向新的分支，随后工作树的内容会变成新切换的分支指向的快照</strong>。</p>
@@ -1148,6 +1203,7 @@ HEAD([HEAD]):::ppnode--&gt;M
 C--&gt;B--&gt;A
 D--&gt;B
 </pre>
+
 <p>看起来几乎没有什么变化。这就是 Git 分支轻量快速的原因。</p>
 <h2 id="删除分支"><a class="header" href="#删除分支">删除分支</a></h2>
 <p>删除分支，真的只是删除“分支”本身。Git 只会删掉分支的指针，别的都不会变。</p>
@@ -1162,10 +1218,12 @@ HEAD([HEAD]):::ppnode--&gt;M
 C--&gt;B--&gt;A
 D--&gt;B
 </pre>
+
 <p>现在指向 <code>7cd1352</code> 这次提交的指针消失了。但是等等，这次提交还保存着一个快照，不是在浪费我们的空间吗？</p>
 <p>没错。所以 Git 会提醒你，<strong><code>dev</code> 分支的工作没有完全并入主分支，这时删除需要谨慎</strong>。你可以用命令来强制删除 <code>dev</code> 分支，那么 <code>7cd1352</code> 这次提交就无法被任何分支访问了。</p>
 <p>这种不可及的快照，会被 Git 的垃圾回收机制删除。这是 Git 工作起来确实像一个内存分配器的另一个表现。关于垃圾回收机制，我们会在后续的文章展开讲解。</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="创建和切换分支"><a class="header" href="#创建和切换分支">创建和切换分支</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="创建和切换分支"><a class="header" href="#创建和切换分支">创建和切换分支</a></h1>
 <blockquote>
 <p>本节部分内容参考自 git-recipes 的<a href="https://github.com/geeeeeeeeek/git-recipes/blob/revision-2018/sources/2.5-%E6%A3%80%E5%87%BA%E4%BB%A5%E5%89%8D%E7%9A%84%E6%8F%90%E4%BA%A4.md">《检出以前的提交》</a>和<a href="https://github.com/geeeeeeeeek/git-recipes/blob/revision-2018/sources/3.4-%E4%BD%BF%E7%94%A8%E5%88%86%E6%94%AF.md">《使用分支》</a>，在原文基础上有一定修改。</p>
 </blockquote>
@@ -1218,6 +1276,7 @@ HEAD([HEAD]):::ppnode--&gt;M
 C--&gt;B--&gt;A
 D--&gt;B
 </pre>
+
 <p>以上图为例，要想指向 <code>ea71414</code> 这次提交，可以使用以下的方式：<code>ea71</code> <code>HEAD~1</code> <code>main~1</code> <code>main...dev</code>。</p>
 <h2 id="git-branch"><a class="header" href="#git-branch">git branch</a></h2>
 <p><code>git branch</code> 是<strong>管理分支</strong>用的命令，它允许你创建、列出、重命名和删除分支，但没有修改工作树和历史记录的功能，因此不能切换和合并分支。</p>
@@ -1241,13 +1300,13 @@ D--&gt;B
 </code></pre>
 <p>将当前分支命名为 <code>&lt;branch&gt;</code>。</p>
 <h2 id="签出"><a class="header" href="#签出">签出</a></h2>
-<p>在<a href="%E8%BF%9C%E7%A8%8B%E5%92%8C%E5%88%86%E6%94%AF/../%E5%82%A8%E5%AD%98%E5%BA%93/%E5%88%9B%E5%BB%BA%E5%82%A8%E5%AD%98%E5%BA%93.html">之前的章节</a>，我们简单提及了「签出」的概念：从储存库中提取文件，释放到工作树中的过程，称为签出。</p>
+<p>在<a href="#创建储存库">之前的章节</a>，我们简单提及了「签出」的概念：从储存库中提取文件，释放到工作树中的过程，称为签出。</p>
 <p>切换分支的过程会发生签出。在切换分支时，实际上发生了两个操作：<strong>将 HEAD 指针指向目标分支</strong>，然后<strong>签出当前的 HEAD</strong>。</p>
 <h3 id="git-checkout"><a class="header" href="#git-checkout">git checkout</a></h3>
 <p><code>git checkout</code> 是用于进行签出的命令，它有两种功能：签出某个文件，签出以前的提交。</p>
 <p>签出提交会使工作目录和这个提交完全匹配。你可以用它来查看项目之前的状态，而不改变当前的状态。</p>
 <p>签出文件使你能够查看某个特定文件的旧版本，而工作目录中剩下的文件不变。</p>
-<h4 id="详细用法-5"><a class="header" href="#详细用法-5">详细用法</a></h4>
+<h4 id="详细用法-1-1"><a class="header" href="#详细用法-1-1">详细用法</a></h4>
 <pre><code>git checkout &lt;start-point&gt;
 </code></pre>
 <p>签出 <code>&lt;start-point&gt;</code> 指定的提交。同上面的规则一样，<code>&lt;start-point&gt;</code> 可以是一个分支名、提交，或者表示提交的表达式。这条命令会使 HEAD 指向签出的提交，并且更新工作目录中的所有文件，使得和某个特定提交中的文件一致。</p>
@@ -1271,6 +1330,7 @@ M(main):::pnode--&gt;C
 HEAD([HEAD]):::ppnode--&gt;M
 C--&gt;B--&gt;A
 </pre>
+
 <p>如果 HEAD 从一个分支上分离，直接指向一个提交，那么 HEAD 就从二重指针变成了一重指针：</p>
 <pre class="mermaid">graph RL
 A[commit&lt;br/&gt;5a52af6&lt;hr/&gt;ver 1.0&lt;hr/&gt;blob README]
@@ -1280,6 +1340,7 @@ M(main):::pnode--&gt;C
 HEAD(HEAD):::ppnode--&gt;B
 C--&gt;B--&gt;A
 </pre>
+
 <p>这种 HEAD 直接指向一个提交的情况，就叫做 Detached Head。</p>
 <p>产生 Detached Head 的原因，是签出了一个不是某一分支最新提交的提交，比如用 <code>git checkout &lt;commit-id&gt;</code> 直接指定一个提交进行签出。</p>
 <p>在 Detached Head 状态下，更改、暂存等对工作树的操作都是可以进行的。提交也可以进行，这会导致一段新的历史被分叉出去。比如，在上面的图中，再发起一次提交：</p>
@@ -1293,6 +1354,7 @@ HEAD(HEAD):::ppnode--&gt;D
 C--&gt;B--&gt;A
 D--&gt;B
 </pre>
+
 <p>新的提交产生后，HEAD 指向了新的提交，但是仍然出于 Detached Head 状态。如果此时试图签出 <code>main</code> 分支，Git 会提醒你，之前所在的提交记录没有任何分支指向它。</p>
 <pre><code>$ git checkout main
 Warning: you are leaving 1 commit behind, not connected to
@@ -1308,7 +1370,8 @@ to do so with:
 Switched to branch 'main'
 </code></pre>
 <p>按照提示，可以用 <code>git branch</code> 新建一个分支，保存在 Detached Head 时做出的变更。如果此时不建立分支，那么这个提交将只能通过哈希值来访问。假如忘记了哈希值，那么这里的发生的变更将会永远无法找回。（事实上，还是有 <code>reflog</code> 这种补救措施的。）</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="合并分支"><a class="header" href="#合并分支">合并分支</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="合并分支"><a class="header" href="#合并分支">合并分支</a></h1>
 <blockquote>
 <p>本节部分内容参考自 <a href="https://git-scm.com/docs/merge-strategies">Git Reference</a>，在原文基础上有一定修改。</p>
 </blockquote>
@@ -1334,6 +1397,7 @@ HEAD([HEAD]):::ppnode--&gt;M
 B--&gt;A
 D--&gt;B
 </pre>
+
 <p>将 feature 分支以快进合并的方式合并到 main 分支后，分支状态变为：</p>
 <pre class="mermaid">graph RL
 A[commit&lt;br/&gt;5a52af6&lt;hr/&gt;ver 1.0&lt;hr/&gt;blob README]
@@ -1345,6 +1409,7 @@ HEAD([HEAD]):::ppnode--&gt;M
 B--&gt;A
 D--&gt;B
 </pre>
+
 <p>第二种情况，如果两个分支在分叉之后，各自都有新提交，则会创建<strong>合并提交(merge commit)</strong>。例如，这是合并前的分支状态：</p>
 <pre class="mermaid">graph RL
 A[commit&lt;br/&gt;5a52af6&lt;hr/&gt;ver 1.0&lt;hr/&gt;blob README]
@@ -1357,6 +1422,7 @@ HEAD([HEAD]):::ppnode--&gt;M
 C--&gt;B--&gt;A
 D--&gt;B
 </pre>
+
 <p>将 feature 分支合并入 main 分支后，分支状态变为：</p>
 <pre class="mermaid">graph RL
 A[commit&lt;br/&gt;5a52af6&lt;hr/&gt;ver 1.0&lt;hr/&gt;blob README]
@@ -1370,6 +1436,7 @@ HEAD([HEAD]):::ppnode--&gt;M
 E--&gt;C--&gt;B--&gt;A
 E--&gt;D--&gt;B
 </pre>
+
 <p>两种合并最大的区别，在于是否会有合并提交产生。合并提交是一种特殊的提交，与普通提交不同，它有<strong>多个父提交</strong>（回忆一下普通提交以反向链表的形式记录历史）。合并提交的作用是将多个分支的历史重新结合在一起，形成一条新的历史线。</p>
 <p>这两种合并之间的区别也不是绝对的，你可以使用命令行参数来告诉 Git 你希望使用哪种方式来合并分支。</p>
 <pre><code class="language-shell">git merge --ff-only feature  # 仅允许快进合并
@@ -1388,6 +1455,7 @@ HEAD([HEAD]):::ppnode--&gt;M
 E--&gt;B--&gt;A
 E--&gt;D--&gt;B
 </pre>
+
 <h2 id="三路合并"><a class="header" href="#三路合并">三路合并</a></h2>
 <p>当合并提交被记录入历史，意味着两个分支上不同的修改被重新结合在一起，成为一个统一的文件快照。之后继续在此分支上开发，都将基于这个被结合的快照进行。这个快照被记录在合并提交中，成为这个提交的内容。</p>
 <p>那么，Git 是如何计算两个分支下，不同的文件结合之后的结果的呢？Git 使用了一种叫做<strong>三路合并</strong>（three-way merge）的算法。</p>
@@ -1428,6 +1496,7 @@ HEAD([HEAD]):::ppnode--&gt;M
 C--&gt;B--&gt;A
 D--&gt;B
 </pre>
+
 <p>将 feature 分支合并入 main 分支时，Git 会找到共同祖先 <code>ea71414</code>，然后计算出两个分支相对于共同祖先的变更。假如两个分支的变更如下：</p>
 <pre><code class="language-bash"># main 分支的变更
 M README
@@ -1458,13 +1527,15 @@ F--&gt;C
 E--&gt;D--&gt;B
 F--&gt;D
 </pre>
+
 <p>在这个场景下，因为 <code>main</code> 和 <code>feature</code> 分支互相合并，导致它们存在两个共同祖先：<code>eec6df0</code> 和 <code>7cd1352</code>。这种情况下，Git 会先对多个共同祖先进行一次三路合并，得到一个虚拟的提交，以此为基础进行后续的合并。这个虚拟提交不会被记录在历史中，但它的存在是为了让 Git 能够正确地计算出两个分支的差异。</p>
 <p>因为寻找共同祖先的过程也是一次递归的三路合并，所以这一合并策略被称为 <code>recursive</code>，长期以来，一直是 Git 的默认合并策略。后来 Git 将 <code>recursive</code> 升级为 <code>ort</code> 策略，但其基本思想没有变化。<code>ort</code> 策略在 <code>recursive</code> 的基础上，优化了对文件重命名的支持，并且改良了在大型项目中的性能。</p>
 <p>Git 还支持其他不同的合并策略，那些策略就不再基于三路合并了。比如 <code>octopus</code> 策略允许你同时合并多个分支，但不支持冲突解决；<code>ours</code> 策略会忽略被合并分支的所有修改，只保留当前分支的修改；<code>subtree</code> 策略则是将被合并分支的内容嵌入到当前分支中。这些策略的使用场景比较少见，通常在一些特殊的情况下才会用到。</p>
 <h3 id="三路合并的不足"><a class="header" href="#三路合并的不足">三路合并的不足</a></h3>
 <p>三路合并的算法在大多数情况下都能很好地工作，但也有一些不足之处：合并时只参考了两个分支的最新提交和它们的共同祖先，而忽略了其他的历史提交。这可能导致一些意外的合并结果。</p>
 <p>例如，两个分支的历史分叉之后，各自独立地进行了一项相同的修改，但后来在其中一个分支上撤销了该更改，那么该更改仍会出现在合并结果中；有些人会觉得这种行为令人困惑。其原因在于合并时只考虑最新版本，而不考虑历史中的变化。因此，合并算法将撤销的更改视为没有更改，并替换为已更改的版本。</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="约定式提交"><a class="header" href="#约定式提交">约定式提交</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="约定式提交"><a class="header" href="#约定式提交">约定式提交</a></h1>
 <blockquote>
 <p>部分内容参考自约定式提交的<a href="https://www.conventionalcommits.org/zh-hans/v1.0.0/">官方网站</a>，在原文基础上有一定修改。</p>
 </blockquote>
@@ -1525,11 +1596,17 @@ BREAKING CHANGE: `extends` key in config file is now used for extending other co
 <p>在冒号前面加上 <code>!</code> ，或者在脚注中表明 <code>BREAKING CHANGE</code>，就表示此次更改是破坏性更改。</p>
 <h2 id="约定式提交的正式规范"><a class="header" href="#约定式提交的正式规范">约定式提交的正式规范</a></h2>
 <p>详见<a href="https://www.conventionalcommits.org/zh-hans/v1.0.0/#%E7%BA%A6%E5%AE%9A%E5%BC%8F%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83">官方网站</a>。</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="gitmoji-速查表"><a class="header" href="#gitmoji-速查表">gitmoji 速查表</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="gitmoji-速查表"><a class="header" href="#gitmoji-速查表">gitmoji 速查表</a></h1>
 <blockquote>
 <p>下面是一些常用的 gitmoji。完整的列表可以参见 <a href="https://gitmoji.js.org/">Gitmoji 的网站</a>。</p>
 </blockquote>
-<div class="table-wrapper"><table><thead><tr><th>提交类型</th><th>Emoji</th><th>代码</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>提交类型</th><th>Emoji</th><th>代码</th></tr>
+</thead>
+<tbody>
 <tr><td>创世提交。</td><td>🎉</td><td>:tada:</td></tr>
 <tr><td>引入不兼容改动。</td><td>💥</td><td>:boom:</td></tr>
 <tr><td>性能改善。</td><td>⚡️</td><td>:zap:</td></tr>
@@ -1554,7 +1631,8 @@ BREAKING CHANGE: `extends` key in config file is now used for extending other co
 <tr><td>添加或者更新许可。</td><td>📄</td><td>:page_facing_up:</td></tr>
 <tr><td>添加一个彩蛋。</td><td>🥚</td><td>:egg:</td></tr>
 <tr><td>添加或者更新 .gitignore 文件。</td><td>🙈</td><td>:see_no_evil:</td></tr>
-</tbody></table>
+</tbody>
+</table>
 </div>
 <h2 id="本项目采用的-gitmoji-规范"><a class="header" href="#本项目采用的-gitmoji-规范">本项目采用的 gitmoji 规范</a></h2>
 <p>因为本项目是一个电子书，所以一般的代码仓库的 gitmoji 规范不完全适用。下面是本仓库采用的 gitmoji 规范：</p>
@@ -1573,16 +1651,14 @@ BREAKING CHANGE: `extends` key in config file is now used for extending other co
 <li>📄 LICENSE 相关。</li>
 </ul>
 
-                        <br />
-                        <div class="giscus"></div>
+                    </main>
 
-                        <nav class="nav-wrapper" aria-label="Page navigation">
+                    <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
 
 
                         <div style="clear: both"></div>
                     </nav>
-                    </main>
                 </div>
             </div>
 
@@ -1592,6 +1668,11 @@ BREAKING CHANGE: `extends` key in config file is now used for extending other co
 
         </div>
 
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
 
 
 
@@ -1600,25 +1681,25 @@ BREAKING CHANGE: `extends` key in config file is now used for extending other co
         </script>
 
 
-        <script src="elasticlunr.min.js"></script>
-        <script src="mark.min.js"></script>
-        <script src="searcher.js"></script>
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-c2a407aa.js"></script>
 
-        <script src="clipboard.min.js"></script>
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="assets/sidetoc.js"></script>
-        <script src="assets/giscus.js"></script>
-        <script src="assets/mermaid.min.js"></script>
-        <script src="assets/mermaid-init.js"></script>
+        <script src="assets/giscus-8374cffb.js"></script>
+        <script src="assets/mermaid-eefea253.min.js"></script>
+        <script src="assets/mermaid-init-ccf746f1.js"></script>
 
         <script>
         window.addEventListener('load', function() {
             window.setTimeout(window.print, 100);
         });
         </script>
+
 
     </div>
     </body>
