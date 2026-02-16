@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-0940be3d.js";
+            window.path_to_searchindex_js = "searchindex-5c476c9a.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-ae591e2e.js"></script>
+        <script src="toc-e6452b2a.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -1534,6 +1534,58 @@ F--&gt;D
 <h3 id="三路合并的不足"><a class="header" href="#三路合并的不足">三路合并的不足</a></h3>
 <p>三路合并的算法在大多数情况下都能很好地工作，但也有一些不足之处：合并时只参考了两个分支的最新提交和它们的共同祖先，而忽略了其他的历史提交。这可能导致一些意外的合并结果。</p>
 <p>例如，两个分支的历史分叉之后，各自独立地进行了一项相同的修改，但后来在其中一个分支上撤销了该更改，那么该更改仍会出现在合并结果中；有些人会觉得这种行为令人困惑。其原因在于合并时只考虑最新版本，而不考虑历史中的变化。因此，合并算法将撤销的更改视为没有更改，并替换为已更改的版本。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="远程与跟踪分支"><a class="header" href="#远程与跟踪分支">远程与跟踪分支</a></h1>
+<blockquote>
+<p>本节部分内容参考自 <a href="https://git-scm.com/book/zh/v2/Git-分支-远程分支">Pro Git</a>，在原文基础上有一定修改。</p>
+</blockquote>
+<h2 id="中心化的分布式模型"><a class="header" href="#中心化的分布式模型">中心化的分布式模型</a></h2>
+<p>Git 从设计之初就确立了分布式的特性，这使得每一个克隆下来的仓库都拥有完整的提交历史和全部的数据备份。这种设计赋予了开发者在没有网络连接的情况下也能进行提交、查看历史和切换分支的能力，并且极大地提高了操作的速度。每一个本地仓库在功能上都是平等的，并没有所谓的“主”仓库和“从”仓库的技术限制。只要拥有适当的权限，任何一个仓库都可以向其他仓库推送更新或者从中拉取数据。</p>
+<p>在实际的软件开发流程中，开发团队倾向于构建一种中心化的工作流模型以便于管理和协作。虽然 Git 技术层面上支持点对点的数据传输，但在工程实践中，人们通常会选定一个远程仓库作为“中央服务器”。这个服务器（通常被托管在 GitHub、GitLab 或公司内部服务器上）作为代码的权威版本和团队成员同步工作的集散地。这种“中心化的分布式”模式结合了分布式版本控制的安全性和灵活性，以及中心化管理的高效性和可控性。</p>
+<p>在这一模型下，名为 <code>origin</code> 的远程仓库并不具有任何特殊的命令级地位，它只是 <code>git clone</code> 命令默认建立的一个远程引用名称。开发者可以在本地创建分支进行开发，待功能完善后，再将其推送到这个被共识认可的中央仓库中。同样，其他开发者也从这里拉取更新来同步项目的最新进展。这种模式有效地解决了多人协作时的代码统合问题，确保了项目历史的线性演进和版本的一致性。</p>
+<h2 id="跟踪分支"><a class="header" href="#跟踪分支">跟踪分支</a></h2>
+<p>为了在本地仓库和远程仓库之间建立清晰的对应关系，Git 引入了远程引用这一概念。远程引用是指向远程仓库中分支或标签的指针，它们存在于本地的 <code>.git</code> 目录中，但用户无法像操作本地分支那样直接移动它们。这些引用的作用在于精确记录上次与服务器通信时，远程仓库中各分支所处的状态。可以将远程跟踪分支理解为一种状态快照，只有在执行网络通信命令（如 <code>git fetch</code> 或 <code>git push</code>）时，Git 才会自动更新这些指针的位置，以反映远程端的最新变化。</p>
+<p>远程跟踪分支遵循 <code>&lt;remote&gt;/&lt;branch&gt;</code> 的命名规范，例如 <code>origin/master</code> 代表了远程仓库 <code>origin</code> 中的 <code>master</code> 分支。当用户从远程仓库克隆一个项目时，Git 会自动创建一个名为 <code>master</code> 的本地分支，并将其配置为跟踪远程的 <code>origin/master</code> 分支。这种自动建立的关系使得 <code>master</code> 分支成为一个跟踪分支，而 <code>origin/master</code> 则被称为上游分支。如果用户想查看同事推送到 <code>origin/iss53</code> 的工作内容，虽然本地没有同名分支，但可以通过检出 <code>origin/iss53</code> 这个远程跟踪分支来查看相关代码。</p>
+<p>当本地分支与远程分支建立跟踪关系后，它们之间的演进过程往往是不同步的。开发者在本地 <code>master</code> 分支上进行提交，会导致本地指针向前移动；与此同时，其他团队成员可能向远程服务器推送了新的代码，导致服务器上的 <code>master</code> 指针也向前移动。由于没有进行通信，本地的 <code>origin/master</code> 指针会停留在最后一次克隆或拉取时的位置。这种状态被称为“分叉”，即本地历史和远程历史各自独立发展，这在多人协作中是非常普遍的现象。</p>
+<p>为了在本地创建特定的跟踪分支，Git 提供了便捷的命令行选项。通常使用 <code>git checkout -b [branch] [remotename]/[branch]</code> 来基于远程分支创建一个同名的本地分支并建立跟踪关系。由于这一操作极为频繁，Git 提供了 <code>--track</code> 快捷参数。如果用户尝试检出一个本地不存在但与某个远程分支同名的分支，Git 会自动创建并设置跟踪。若需要修改现有的本地分支以跟踪特定的远程分支，或者修改上游分支的设置，则可以使用 <code>git branch -u</code> 或 <code>--set-upstream-to</code> 选项来进行显式指定。</p>
+<p>了解本地分支与上游分支的状态差异对于管理进度至关重要。使用 <code>git branch -vv</code> 命令可以列出所有本地分支及其跟踪的远程分支，并显示本地落后或领先于远程多少个提交。需要注意的是，这个命令展示的数据基于本地缓存的远程引用状态，并不代表服务器的实时状况。如果需要查看绝对精确的领先或落后数据，用户必须先执行抓取操作来更新本地的远程引用，然后再运行状态查看命令，从而获得关于代码同步状态的真实视图。</p>
+<h2 id="git-push"><a class="header" href="#git-push">git push</a></h2>
+<p><code>git push</code> 命令用于将本地分支的更新上传到远程仓库，这是与团队共享代码成果的主要方式。由于本地分支不会自动同步到服务器，开发者必须显式地执行推送操作。这一机制允许开发者在本地维护多个私有分支进行实验性工作，而仅将成熟的功能分支推送到公共视野中。基本的推送命令结构为 <code>git push &lt;remote&gt; &lt;branch&gt;</code>，Git 会解析这个命令，提取本地分支的数据并更新远程端的对应分支。如果远程分支不存在，该命令通常会在服务器上创建一个新分支。</p>
+<pre><code class="language-bash"># 将本地的 serverfix 分支推送到 origin 远程仓库的 serverfix 分支
+$ git push origin serverfix
+
+# 将本地分支推送到远程但重命名（本地名为 serverfix，远程名为 awesomebranch）
+$ git push origin serverfix:awesomebranch
+
+# 删除远程分支
+$ git push origin --delete serverfix
+</code></pre>
+<p>在执行推送时，Git 采用了“快进”（fast-forward）策略的变体。如果远程分支的历史比本地分支更新（即其他人已经推送了新的提交），Git 通常会拒绝本次推送以防止覆盖他人的工作。在这种情况下，开发者必须先拉取最新的远程变更并将其合并到本地，解决可能存在的冲突后，才能成功执行推送。对于使用 HTTPS 协议的仓库，推送时通常需要验证身份，可以通过配置凭证缓存来避免频繁输入用户名和密码。</p>
+<h2 id="git-fetch"><a class="header" href="#git-fetch">git fetch</a></h2>
+<p><code>git fetch</code> 是 Git 中用于同步远程仓库数据的核心命令，它的主要职责是更新本地数据库中的远程引用。执行该命令时，Git 会连接到指定的远程服务器（如 <code>origin</code>），检查服务器上有哪些本地尚未拥有的数据和对象，并将它们全部下载下来。完成数据下载后，Git 会自动将本地的远程跟踪分支指针（如 <code>origin/master</code>）移动到服务器端的最新位置。这个过程确保了本地仓库拥有远程仓库的完整历史镜像，使得用户可以在断网状态下检查远程代码的最新进展。</p>
+<pre><code class="language-bash"># 从默认的 origin 远程仓库抓取所有变动
+$ git fetch origin
+
+# 如果配置了多个远程仓库（如 teamone），可以指定抓取
+$ git fetch teamone
+
+# 抓取所有已配置远程仓库的变动
+$ git fetch --all
+</code></pre>
+<p>理解 <code>git fetch</code> 的关键在于明确它对工作目录的影响。该命令虽然下载了数据并更新了远程引用，但它完全不会修改用户当前的工作目录或当前检出的分支。这意味新下载的代码被存储在 <code>.git</code> 数据库中，用户可以通过 <code>git checkout origin/master</code> 这样的命令以分离头指针（detached HEAD）的方式查看代码，或者准备将这些变动合并到本地开发分支中。可以将 <code>git fetch</code> 视为一个纯粹的数据同步操作，它为后续的代码整合提供了必要的素材，但把整合的时机和方式的控制权完全交给了用户。</p>
+<p>当团队中存在多个远程仓库时，<code>git fetch</code> 的作用显得尤为重要。例如，除了官方的 <code>origin</code> 仓库外，开发者可能还添加了团队成员的个人仓库作为远程源。通过抓取特定远程源的数据，Git 会在本地建立如 <code>teamone/feature-branch</code> 这样的远程跟踪分支。这使得开发者能够在不将无关代码混入主线的情况下，轻松审查队友的实验性代码，体现了 Git 在处理复杂协作网络时的灵活性和安全性。</p>
+<h2 id="git-pull"><a class="header" href="#git-pull">git pull</a></h2>
+<p><code>git pull</code> 命令在日常开发中使用频率极高，它实际上是 <code>git fetch</code> 和 <code>git merge</code> 两个命令的组合封装。对于已经配置了上游跟踪关系的本地分支，<code>git pull</code> 提供了一种便捷的一键式同步方案。当运行该命令时，Git 首先会执行抓取操作，从配置的远程服务器下载当前分支所跟踪的远程分支的最新提交，并更新相应的远程跟踪分支指针。紧接着，它会立即尝试将抓取回来的远程变更合并到当前所在的本地分支中。</p>
+<pre><code class="language-bash"># 在跟踪分支上直接执行，自动识别远程和分支并进行 fetch + merge
+$ git pull
+
+# 显式指定从 origin 仓库拉取 master 分支并合并到当前分支
+$ git pull origin master
+
+# 在拉取时使用变基（rebase）而不是合并（merge）来保持历史线性
+$ git pull --rebase
+</code></pre>
+<p>尽管 <code>git pull</code> 操作简便，但在某些复杂场景下可能会带来意想不到的合并冲突。如果本地历史与远程历史产生了分叉，<code>git pull</code> 会默认生成一个合并提交（merge commit），这在某些强调线性提交历史的团队规范中可能并不被推荐。因此，许多资深开发者更倾向于分别手动执行 <code>fetch</code> 和 <code>merge</code>（或 <code>rebase</code>），以便在合并前有充裕的机会去审查远程变动的具体内容。不过对于大多数常规的同步需求，只要分支跟踪关系配置正确，<code>git pull</code> 依然是同步远程代码最直接且高效的工具。</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="约定式提交"><a class="header" href="#约定式提交">约定式提交</a></h1>
 <blockquote>

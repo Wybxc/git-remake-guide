@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>合并分支 - Git 重学指南</title>
+        <title>远程与跟踪分支 - Git 重学指南</title>
 
 
         <!-- Custom HTML head -->
@@ -148,7 +148,7 @@
                         <a href="https://github.com/Wybxc/git-remake-guide" title="Git repository" aria-label="Git repository">
                             <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
                         </a>
-                        <a href="https://github.com/Wybxc/git-remake-guide/edit/main/src/远程和分支/合并分支.md" title="Suggest an edit" aria-label="Suggest an edit" rel="edit">
+                        <a href="https://github.com/Wybxc/git-remake-guide/edit/main/src/远程和分支/远程与跟踪分支.md" title="Suggest an edit" aria-label="Suggest an edit" rel="edit">
                             <span class=fa-svg id="git-edit-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M421.7 220.3l-11.3 11.3-22.6 22.6-205 205c-6.6 6.6-14.8 11.5-23.8 14.1L30.8 511c-8.4 2.5-17.5 .2-23.7-6.1S-1.5 489.7 1 481.2L38.7 353.1c2.6-9 7.5-17.2 14.1-23.8l205-205 22.6-22.6 11.3-11.3 33.9 33.9 62.1 62.1 33.9 33.9zM96 353.9l-9.3 9.3c-.9 .9-1.6 2.1-2 3.4l-25.3 86 86-25.3c1.3-.4 2.5-1.1 3.4-2l9.3-9.3H112c-8.8 0-16-7.2-16-16V353.9zM453.3 19.3l39.4 39.4c25 25 25 65.5 0 90.5l-14.5 14.5-22.6 22.6-11.3 11.3-33.9-33.9-62.1-62.1L314.3 67.7l11.3-11.3 22.6-22.6 14.5-14.5c25-25 65.5-25 90.5 0z"/></svg></span>
                         </a>
 
@@ -182,179 +182,67 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="合并分支"><a class="header" href="#合并分支">合并分支</a></h1>
+                        <h1 id="远程与跟踪分支"><a class="header" href="#远程与跟踪分支">远程与跟踪分支</a></h1>
 <blockquote>
-<p>本节部分内容参考自 <a href="https://git-scm.com/docs/merge-strategies">Git Reference</a>，在原文基础上有一定修改。</p>
+<p>本节部分内容参考自 <a href="https://git-scm.com/book/zh/v2/Git-分支-远程分支">Pro Git</a>，在原文基础上有一定修改。</p>
 </blockquote>
-<h2 id="git-merge"><a class="header" href="#git-merge">git merge</a></h2>
-<p>想象你用 <code>git switch -c</code> 创建了一个新的分支，这个分支的历史从此就和主分支分道扬镳了。如果分支只能新建，不能合并，那么项目的历史就会越来越复杂，这不是一个合格的版本控制系统应该有的行为。Git 允许你将一个分支合并入另一个分支，以此宣告一个分支的使命终结。</p>
-<p>在Git中，<code>git merge</code> 是将分支历史重新结合的主要方式。</p>
-<p>一个典型的场景是，当你在特性分支上完成开发后，通常需要将其合并回主分支。这种情况下，需要先切换到主分支，然后在主分支上执行 <code>git merge</code> 命令。</p>
-<pre><code class="language-shell">git switch main
-git merge feature
+<h2 id="中心化的分布式模型"><a class="header" href="#中心化的分布式模型">中心化的分布式模型</a></h2>
+<p>Git 从设计之初就确立了分布式的特性，这使得每一个克隆下来的仓库都拥有完整的提交历史和全部的数据备份。这种设计赋予了开发者在没有网络连接的情况下也能进行提交、查看历史和切换分支的能力，并且极大地提高了操作的速度。每一个本地仓库在功能上都是平等的，并没有所谓的“主”仓库和“从”仓库的技术限制。只要拥有适当的权限，任何一个仓库都可以向其他仓库推送更新或者从中拉取数据。</p>
+<p>在实际的软件开发流程中，开发团队倾向于构建一种中心化的工作流模型以便于管理和协作。虽然 Git 技术层面上支持点对点的数据传输，但在工程实践中，人们通常会选定一个远程仓库作为“中央服务器”。这个服务器（通常被托管在 GitHub、GitLab 或公司内部服务器上）作为代码的权威版本和团队成员同步工作的集散地。这种“中心化的分布式”模式结合了分布式版本控制的安全性和灵活性，以及中心化管理的高效性和可控性。</p>
+<p>在这一模型下，名为 <code>origin</code> 的远程仓库并不具有任何特殊的命令级地位，它只是 <code>git clone</code> 命令默认建立的一个远程引用名称。开发者可以在本地创建分支进行开发，待功能完善后，再将其推送到这个被共识认可的中央仓库中。同样，其他开发者也从这里拉取更新来同步项目的最新进展。这种模式有效地解决了多人协作时的代码统合问题，确保了项目历史的线性演进和版本的一致性。</p>
+<h2 id="跟踪分支"><a class="header" href="#跟踪分支">跟踪分支</a></h2>
+<p>为了在本地仓库和远程仓库之间建立清晰的对应关系，Git 引入了远程引用这一概念。远程引用是指向远程仓库中分支或标签的指针，它们存在于本地的 <code>.git</code> 目录中，但用户无法像操作本地分支那样直接移动它们。这些引用的作用在于精确记录上次与服务器通信时，远程仓库中各分支所处的状态。可以将远程跟踪分支理解为一种状态快照，只有在执行网络通信命令（如 <code>git fetch</code> 或 <code>git push</code>）时，Git 才会自动更新这些指针的位置，以反映远程端的最新变化。</p>
+<p>远程跟踪分支遵循 <code>&lt;remote&gt;/&lt;branch&gt;</code> 的命名规范，例如 <code>origin/master</code> 代表了远程仓库 <code>origin</code> 中的 <code>master</code> 分支。当用户从远程仓库克隆一个项目时，Git 会自动创建一个名为 <code>master</code> 的本地分支，并将其配置为跟踪远程的 <code>origin/master</code> 分支。这种自动建立的关系使得 <code>master</code> 分支成为一个跟踪分支，而 <code>origin/master</code> 则被称为上游分支。如果用户想查看同事推送到 <code>origin/iss53</code> 的工作内容，虽然本地没有同名分支，但可以通过检出 <code>origin/iss53</code> 这个远程跟踪分支来查看相关代码。</p>
+<p>当本地分支与远程分支建立跟踪关系后，它们之间的演进过程往往是不同步的。开发者在本地 <code>master</code> 分支上进行提交，会导致本地指针向前移动；与此同时，其他团队成员可能向远程服务器推送了新的代码，导致服务器上的 <code>master</code> 指针也向前移动。由于没有进行通信，本地的 <code>origin/master</code> 指针会停留在最后一次克隆或拉取时的位置。这种状态被称为“分叉”，即本地历史和远程历史各自独立发展，这在多人协作中是非常普遍的现象。</p>
+<p>为了在本地创建特定的跟踪分支，Git 提供了便捷的命令行选项。通常使用 <code>git checkout -b [branch] [remotename]/[branch]</code> 来基于远程分支创建一个同名的本地分支并建立跟踪关系。由于这一操作极为频繁，Git 提供了 <code>--track</code> 快捷参数。如果用户尝试检出一个本地不存在但与某个远程分支同名的分支，Git 会自动创建并设置跟踪。若需要修改现有的本地分支以跟踪特定的远程分支，或者修改上游分支的设置，则可以使用 <code>git branch -u</code> 或 <code>--set-upstream-to</code> 选项来进行显式指定。</p>
+<p>了解本地分支与上游分支的状态差异对于管理进度至关重要。使用 <code>git branch -vv</code> 命令可以列出所有本地分支及其跟踪的远程分支，并显示本地落后或领先于远程多少个提交。需要注意的是，这个命令展示的数据基于本地缓存的远程引用状态，并不代表服务器的实时状况。如果需要查看绝对精确的领先或落后数据，用户必须先执行抓取操作来更新本地的远程引用，然后再运行状态查看命令，从而获得关于代码同步状态的真实视图。</p>
+<h2 id="git-push"><a class="header" href="#git-push">git push</a></h2>
+<p><code>git push</code> 命令用于将本地分支的更新上传到远程仓库，这是与团队共享代码成果的主要方式。由于本地分支不会自动同步到服务器，开发者必须显式地执行推送操作。这一机制允许开发者在本地维护多个私有分支进行实验性工作，而仅将成熟的功能分支推送到公共视野中。基本的推送命令结构为 <code>git push &lt;remote&gt; &lt;branch&gt;</code>，Git 会解析这个命令，提取本地分支的数据并更新远程端的对应分支。如果远程分支不存在，该命令通常会在服务器上创建一个新分支。</p>
+<pre><code class="language-bash"># 将本地的 serverfix 分支推送到 origin 远程仓库的 serverfix 分支
+$ git push origin serverfix
+
+# 将本地分支推送到远程但重命名（本地名为 serverfix，远程名为 awesomebranch）
+$ git push origin serverfix:awesomebranch
+
+# 删除远程分支
+$ git push origin --delete serverfix
 </code></pre>
-<p>这个操作会将 feature 分支的内容合并到当前所在的 main 分支。</p>
-<p>为什么要先切换到主分支？Git 约定的操作逻辑是：<strong>你在当前分支上执行的命令，都是针对当前分支的</strong>。将特性分支的内容合并到主分支是对主分支内容的修改，因此需要先切换到主分支。</p>
-<h2 id="合并的两种方式"><a class="header" href="#合并的两种方式">合并的两种方式</a></h2>
-<p>根据分支历史的不同，合并会产生两种结果：</p>
-<p>第一种情况，当目标分支是被合并分支的直接上游时，此时发生的是<strong>快进合并(Fast-forward)</strong>。例如，这是合并前的分支状态：</p>
-<pre class="mermaid">graph RL
-A[commit&lt;br/&gt;5a52af6&lt;hr/&gt;ver 1.0&lt;hr/&gt;blob README]
-B[commit&lt;br/&gt;ea71414&lt;hr/&gt;ver 2.0&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt]
-D[commit&lt;br/&gt;7cd1352&lt;hr/&gt;ver 2.1&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt&lt;br/&gt;hotfix.patch]
-M(main):::pnode--&gt;B
-BR(feature):::pnode--&gt;D
-HEAD([HEAD]):::ppnode--&gt;M
-B--&gt;A
-D--&gt;B
-</pre>
+<p>在执行推送时，Git 采用了“快进”（fast-forward）策略的变体。如果远程分支的历史比本地分支更新（即其他人已经推送了新的提交），Git 通常会拒绝本次推送以防止覆盖他人的工作。在这种情况下，开发者必须先拉取最新的远程变更并将其合并到本地，解决可能存在的冲突后，才能成功执行推送。对于使用 HTTPS 协议的仓库，推送时通常需要验证身份，可以通过配置凭证缓存来避免频繁输入用户名和密码。</p>
+<h2 id="git-fetch"><a class="header" href="#git-fetch">git fetch</a></h2>
+<p><code>git fetch</code> 是 Git 中用于同步远程仓库数据的核心命令，它的主要职责是更新本地数据库中的远程引用。执行该命令时，Git 会连接到指定的远程服务器（如 <code>origin</code>），检查服务器上有哪些本地尚未拥有的数据和对象，并将它们全部下载下来。完成数据下载后，Git 会自动将本地的远程跟踪分支指针（如 <code>origin/master</code>）移动到服务器端的最新位置。这个过程确保了本地仓库拥有远程仓库的完整历史镜像，使得用户可以在断网状态下检查远程代码的最新进展。</p>
+<pre><code class="language-bash"># 从默认的 origin 远程仓库抓取所有变动
+$ git fetch origin
 
-<p>将 feature 分支以快进合并的方式合并到 main 分支后，分支状态变为：</p>
-<pre class="mermaid">graph RL
-A[commit&lt;br/&gt;5a52af6&lt;hr/&gt;ver 1.0&lt;hr/&gt;blob README]
-B[commit&lt;br/&gt;ea71414&lt;hr/&gt;ver 2.0&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt]
-D[commit&lt;br/&gt;7cd1352&lt;hr/&gt;ver 2.1&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt&lt;br/&gt;hotfix.patch]
-M(main):::pnode--&gt;D
-BR(feature):::pnode--&gt;D
-HEAD([HEAD]):::ppnode--&gt;M
-B--&gt;A
-D--&gt;B
-</pre>
+# 如果配置了多个远程仓库（如 teamone），可以指定抓取
+$ git fetch teamone
 
-<p>第二种情况，如果两个分支在分叉之后，各自都有新提交，则会创建<strong>合并提交(merge commit)</strong>。例如，这是合并前的分支状态：</p>
-<pre class="mermaid">graph RL
-A[commit&lt;br/&gt;5a52af6&lt;hr/&gt;ver 1.0&lt;hr/&gt;blob README]
-B[commit&lt;br/&gt;ea71414&lt;hr/&gt;ver 2.0&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt]
-C[commit&lt;br/&gt;eec6df0&lt;hr/&gt;ver 3.0&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt]
-D[commit&lt;br/&gt;7cd1352&lt;hr/&gt;ver 2.1&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt&lt;br/&gt;hotfix.patch]
-M(main):::pnode--&gt;C
-BR(feature):::pnode--&gt;D
-HEAD([HEAD]):::ppnode--&gt;M
-C--&gt;B--&gt;A
-D--&gt;B
-</pre>
-
-<p>将 feature 分支合并入 main 分支后，分支状态变为：</p>
-<pre class="mermaid">graph RL
-A[commit&lt;br/&gt;5a52af6&lt;hr/&gt;ver 1.0&lt;hr/&gt;blob README]
-B[commit&lt;br/&gt;ea71414&lt;hr/&gt;ver 2.0&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt]
-C[commit&lt;br/&gt;eec6df0&lt;hr/&gt;ver 3.0&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt]
-D[commit&lt;br/&gt;7cd1352&lt;hr/&gt;ver 2.1&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt&lt;br/&gt;hotfix.patch]
-E[commit&lt;br/&gt;2ff09f3&lt;hr/&gt;Merge branch 'feature'&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt&lt;br/&gt;hotfix.patch]
-M(main):::pnode--&gt;E
-BR(feature):::pnode--&gt;D
-HEAD([HEAD]):::ppnode--&gt;M
-E--&gt;C--&gt;B--&gt;A
-E--&gt;D--&gt;B
-</pre>
-
-<p>两种合并最大的区别，在于是否会有合并提交产生。合并提交是一种特殊的提交，与普通提交不同，它有<strong>多个父提交</strong>（回忆一下普通提交以反向链表的形式记录历史）。合并提交的作用是将多个分支的历史重新结合在一起，形成一条新的历史线。</p>
-<p>这两种合并之间的区别也不是绝对的，你可以使用命令行参数来告诉 Git 你希望使用哪种方式来合并分支。</p>
-<pre><code class="language-shell">git merge --ff-only feature  # 仅允许快进合并
-git merge --no-ff feature   # 禁止快进合并，强制创建合并提交
+# 抓取所有已配置远程仓库的变动
+$ git fetch --all
 </code></pre>
-<p>因为快进合并并非总是可用的，如果确实存在被分叉的历史，必须有合并提交才能将分支重新结合在一起。如果此时指定了<code>--ff-only</code>，Git 会拒绝合并操作，不会对分支历史进行任何修改。</p>
-<p>而如果在可以快进合并的情况下，使用<code>--no-ff</code>参数禁止快进合并，Git 会强制创建一个合并提交。与快进合并相比，这样可以在历史中记录这一次合并的存在（否则快进合并在历史中是没有记录的），但代价是分支历史不再是线性的了。</p>
-<pre class="mermaid">graph RL
-A[commit&lt;br/&gt;5a52af6&lt;hr/&gt;ver 1.0&lt;hr/&gt;blob README]
-B[commit&lt;br/&gt;ea71414&lt;hr/&gt;ver 2.0&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt]
-D[commit&lt;br/&gt;7cd1352&lt;hr/&gt;ver 2.1&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt&lt;br/&gt;hotfix.patch]
-E[commit&lt;br/&gt;2ff09f3&lt;hr/&gt;Merge branch 'feature'&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt&lt;br/&gt;hotfix.patch]
-M(main):::pnode--&gt;E
-BR(feature):::pnode--&gt;D
-HEAD([HEAD]):::ppnode--&gt;M
-E--&gt;B--&gt;A
-E--&gt;D--&gt;B
-</pre>
+<p>理解 <code>git fetch</code> 的关键在于明确它对工作目录的影响。该命令虽然下载了数据并更新了远程引用，但它完全不会修改用户当前的工作目录或当前检出的分支。这意味新下载的代码被存储在 <code>.git</code> 数据库中，用户可以通过 <code>git checkout origin/master</code> 这样的命令以分离头指针（detached HEAD）的方式查看代码，或者准备将这些变动合并到本地开发分支中。可以将 <code>git fetch</code> 视为一个纯粹的数据同步操作，它为后续的代码整合提供了必要的素材，但把整合的时机和方式的控制权完全交给了用户。</p>
+<p>当团队中存在多个远程仓库时，<code>git fetch</code> 的作用显得尤为重要。例如，除了官方的 <code>origin</code> 仓库外，开发者可能还添加了团队成员的个人仓库作为远程源。通过抓取特定远程源的数据，Git 会在本地建立如 <code>teamone/feature-branch</code> 这样的远程跟踪分支。这使得开发者能够在不将无关代码混入主线的情况下，轻松审查队友的实验性代码，体现了 Git 在处理复杂协作网络时的灵活性和安全性。</p>
+<h2 id="git-pull"><a class="header" href="#git-pull">git pull</a></h2>
+<p><code>git pull</code> 命令在日常开发中使用频率极高，它实际上是 <code>git fetch</code> 和 <code>git merge</code> 两个命令的组合封装。对于已经配置了上游跟踪关系的本地分支，<code>git pull</code> 提供了一种便捷的一键式同步方案。当运行该命令时，Git 首先会执行抓取操作，从配置的远程服务器下载当前分支所跟踪的远程分支的最新提交，并更新相应的远程跟踪分支指针。紧接着，它会立即尝试将抓取回来的远程变更合并到当前所在的本地分支中。</p>
+<pre><code class="language-bash"># 在跟踪分支上直接执行，自动识别远程和分支并进行 fetch + merge
+$ git pull
 
-<h2 id="三路合并"><a class="header" href="#三路合并">三路合并</a></h2>
-<p>当合并提交被记录入历史，意味着两个分支上不同的修改被重新结合在一起，成为一个统一的文件快照。之后继续在此分支上开发，都将基于这个被结合的快照进行。这个快照被记录在合并提交中，成为这个提交的内容。</p>
-<p>那么，Git 是如何计算两个分支下，不同的文件结合之后的结果的呢？Git 使用了一种叫做<strong>三路合并</strong>（three-way merge）的算法。</p>
-<h3 id="三路合并的原理"><a class="header" href="#三路合并的原理">三路合并的原理</a></h3>
-<p>三路合并的核心思想是：<strong>在合并两个分支时，Git 会找到这两个分支的共同祖先（merge base），然后将这个共同祖先与两个分支的最新提交进行比较</strong>。</p>
-<p>当执行 <code>git merge feature</code> 时：</p>
-<ol>
-<li>
-<p><strong>定位共同祖先</strong>：Git首先找到当前分支和被合并分支最近的共同提交（merge base）。</p>
-</li>
-<li>
-<p><strong>分析差异</strong>：</p>
-<ul>
-<li>计算从共同祖先到当前分支末端的变更（ours）；</li>
-<li>计算从共同祖先到 feature 分支末端的变更（theirs）。</li>
-</ul>
-</li>
-<li>
-<p><strong>整合变更</strong>：</p>
-<ul>
-<li>如果只有一方修改了某个文件，直接使用该方的修改；</li>
-<li>如果双方都修改了同一文件，尝试使用 diff 算法自动合并，如果不能自动合并，标记为<strong>合并冲突</strong>，等待用户手动解决。</li>
-</ul>
-</li>
-<li>
-<p><strong>创建合并提交</strong>：当所有冲突解决后，Git 会创建合并提交，记录合并的结果。</p>
-</li>
-</ol>
-<p>例如，这是合并前的分支状态：</p>
-<pre class="mermaid">graph RL
-A[commit&lt;br/&gt;5a52af6&lt;hr/&gt;ver 1.0&lt;hr/&gt;blob README]
-B[commit&lt;br/&gt;ea71414&lt;hr/&gt;ver 2.0&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt]
-C[commit&lt;br/&gt;eec6df0&lt;hr/&gt;ver 3.0&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt]
-D[commit&lt;br/&gt;7cd1352&lt;hr/&gt;ver 2.1&lt;hr/&gt;blob README&lt;br/&gt;blob a.txt&lt;br/&gt;hotfix.patch]
-M(main):::pnode--&gt;C
-BR(feature):::pnode--&gt;D
-HEAD([HEAD]):::ppnode--&gt;M
-C--&gt;B--&gt;A
-D--&gt;B
-</pre>
+# 显式指定从 origin 仓库拉取 master 分支并合并到当前分支
+$ git pull origin master
 
-<p>将 feature 分支合并入 main 分支时，Git 会找到共同祖先 <code>ea71414</code>，然后计算出两个分支相对于共同祖先的变更。假如两个分支的变更如下：</p>
-<pre><code class="language-bash"># main 分支的变更
-M README
-M a.txt
-
-# feature 分支的变更
-M README
-A hotfix.patch
+# 在拉取时使用变基（rebase）而不是合并（merge）来保持历史线性
+$ git pull --rebase
 </code></pre>
-<p>那么，Git 将会保留 main 分支的 <code>a.txt</code> 和 feature 分支的 <code>hotfix.patch</code>，并尝试将两个分支的 <code>README</code> 合并在一起。最终的合并结果如下：</p>
-<pre><code class="language-bash">README # 合并后的文件
-a.txt # main 分支的文件
-hotfix.patch # feature 分支的文件
-</code></pre>
-<h3 id="合并策略"><a class="header" href="#合并策略">合并策略</a></h3>
-<p>三路合并中，最重要的一步是寻找共同祖先。因为合并提交的存在，Git 的历史不再是一棵树，而是一个有向无环图（DAG）。在这个图中，两个分支的共同祖先可能不止一个，一个典型的场景是当两个分支互相合并时：</p>
-<pre class="mermaid">graph RL
-A[commit&lt;br/&gt;5a52af6]
-B[commit&lt;br/&gt;ea71414]
-C[commit&lt;br/&gt;eec6df0]
-D[commit&lt;br/&gt;7cd1352]
-E[commit&lt;br/&gt;2ff09f3&lt;hr/&gt;Merge branch 'feature']
-F[commit&lt;br/&gt;96207b8&lt;hr/&gt;Merge branch 'main']
-M(main):::pnode--&gt;E
-BR(feature):::pnode--&gt;F
-E--&gt;C--&gt;B--&gt;A
-F--&gt;C
-E--&gt;D--&gt;B
-F--&gt;D
-</pre>
-
-<p>在这个场景下，因为 <code>main</code> 和 <code>feature</code> 分支互相合并，导致它们存在两个共同祖先：<code>eec6df0</code> 和 <code>7cd1352</code>。这种情况下，Git 会先对多个共同祖先进行一次三路合并，得到一个虚拟的提交，以此为基础进行后续的合并。这个虚拟提交不会被记录在历史中，但它的存在是为了让 Git 能够正确地计算出两个分支的差异。</p>
-<p>因为寻找共同祖先的过程也是一次递归的三路合并，所以这一合并策略被称为 <code>recursive</code>，长期以来，一直是 Git 的默认合并策略。后来 Git 将 <code>recursive</code> 升级为 <code>ort</code> 策略，但其基本思想没有变化。<code>ort</code> 策略在 <code>recursive</code> 的基础上，优化了对文件重命名的支持，并且改良了在大型项目中的性能。</p>
-<p>Git 还支持其他不同的合并策略，那些策略就不再基于三路合并了。比如 <code>octopus</code> 策略允许你同时合并多个分支，但不支持冲突解决；<code>ours</code> 策略会忽略被合并分支的所有修改，只保留当前分支的修改；<code>subtree</code> 策略则是将被合并分支的内容嵌入到当前分支中。这些策略的使用场景比较少见，通常在一些特殊的情况下才会用到。</p>
-<h3 id="三路合并的不足"><a class="header" href="#三路合并的不足">三路合并的不足</a></h3>
-<p>三路合并的算法在大多数情况下都能很好地工作，但也有一些不足之处：合并时只参考了两个分支的最新提交和它们的共同祖先，而忽略了其他的历史提交。这可能导致一些意外的合并结果。</p>
-<p>例如，两个分支的历史分叉之后，各自独立地进行了一项相同的修改，但后来在其中一个分支上撤销了该更改，那么该更改仍会出现在合并结果中；有些人会觉得这种行为令人困惑。其原因在于合并时只考虑最新版本，而不考虑历史中的变化。因此，合并算法将撤销的更改视为没有更改，并替换为已更改的版本。</p>
+<p>尽管 <code>git pull</code> 操作简便，但在某些复杂场景下可能会带来意想不到的合并冲突。如果本地历史与远程历史产生了分叉，<code>git pull</code> 会默认生成一个合并提交（merge commit），这在某些强调线性提交历史的团队规范中可能并不被推荐。因此，许多资深开发者更倾向于分别手动执行 <code>fetch</code> 和 <code>merge</code>（或 <code>rebase</code>），以便在合并前有充裕的机会去审查远程变动的具体内容。不过对于大多数常规的同步需求，只要分支跟踪关系配置正确，<code>git pull</code> 依然是同步远程代码最直接且高效的工具。</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../远程和分支/创建和切换分支.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../远程和分支/合并分支.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="../远程和分支/远程与跟踪分支.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../附录/约定式提交.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -364,11 +252,11 @@ F--&gt;D
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../远程和分支/创建和切换分支.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../远程和分支/合并分支.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="../远程和分支/远程与跟踪分支.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../附录/约定式提交.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
