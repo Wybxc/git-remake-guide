@@ -9,24 +9,19 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
+
+      - name: Install cargo-binstall
+        uses: cargo-bins/cargo-binstall@v1.17.5
 
       - name: Setup mdBook
         run: |
-          wget -nv https://github.com/rust-lang/mdBook/releases/download/v0.4.48/mdbook-v0.4.48-x86_64-unknown-linux-gnu.tar.gz
-          tar -xzf mdbook-v0.4.48-x86_64-unknown-linux-gnu.tar.gz
-          rm mdbook-v0.4.48-x86_64-unknown-linux-gnu.tar.gz
-          wget -nv https://github.com/badboy/mdbook-mermaid/releases/download/v0.15.0/mdbook-mermaid-v0.15.0-x86_64-unknown-linux-gnu.tar.gz
-          tar -xzf mdbook-mermaid-v0.15.0-x86_64-unknown-linux-gnu.tar.gz
-          rm mdbook-mermaid-v0.15.0-x86_64-unknown-linux-gnu.tar.gz
-          mkdir -p $HOME/.mdbook
-          mv mdbook $HOME/.mdbook/mdbook
-          mv mdbook-mermaid $HOME/.mdbook/mdbook-mermaid
-          echo "$HOME/.mdbook" >> $GITHUB_PATH
+          cargo binstall --no-confirm mdbook@0.5.0
+          cargo binstall --no-confirm mdbook-mermaid@0.17.0
 
       - name: Build book
         run: |

@@ -7,5 +7,10 @@
         "MD040": false,
         "MD041": false,
         "MD042": false,
-    }
+    },
+    "github.copilot.chat.commitMessageGeneration.instructions": [
+        {
+            "text": "使用 Gitmoji 提交信息，规范为：:sparkles:添加新章节。:adhesive_bandage:修正文章内容中的错误。:recycle:重新组织文章结构。:lipstick:页面美化。:zap:新的页面功能。:bug:修复页面功能的错误。:pencil:修改 README。:pencil2:修正 README 中的错误。:rocket:部署相关。:see_no_evil:`.gitignore` 相关。:page_facing_up:LICENSE 相关。用中文书写。",
+        }
+    ]
 }
